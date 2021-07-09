@@ -1,8 +1,6 @@
-package com.minidelivery.minidelivery.platform.controller;
+package com.minidelivery.platform.controller;
 
-import com.minidelivery.minidelivery.access.service.AccessMainService;
-import com.minidelivery.minidelivery.domain.Member;
-import com.minidelivery.minidelivery.domain.MemberForm;
+import com.minidelivery.access.service.AccessMainService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

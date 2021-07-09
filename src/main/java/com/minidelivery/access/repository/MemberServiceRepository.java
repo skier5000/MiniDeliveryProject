@@ -1,6 +1,7 @@
-package com.minidelivery.minidelivery.access.repository;
+package com.minidelivery.access.repository;
 
-import com.minidelivery.minidelivery.domain.Member;
+
+import com.minidelivery.domain.Member;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

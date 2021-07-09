@@ -1,4 +1,4 @@
-package com.minidelivery.minidelivery.aop;
+package com.minidelivery.aop;
 
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;

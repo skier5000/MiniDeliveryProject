@@ -1,7 +1,7 @@
-package com.minidelivery.minidelivery.access.service;
+package com.minidelivery.access.service;
 
-import com.minidelivery.minidelivery.domain.Member;
-import com.minidelivery.minidelivery.access.repository.MemberRepository;
+import com.minidelivery.access.repository.MemberRepository;
+import com.minidelivery.domain.Member;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

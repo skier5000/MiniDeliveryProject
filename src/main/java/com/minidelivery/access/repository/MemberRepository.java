@@ -1,6 +1,7 @@
-package com.minidelivery.minidelivery.access.repository;
+package com.minidelivery.access.repository;
 
-import com.minidelivery.minidelivery.domain.Member;
+
+import com.minidelivery.domain.Member;
 
 import java.util.List;
 import java.util.Optional;

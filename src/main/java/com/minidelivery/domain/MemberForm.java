@@ -1,4 +1,4 @@
-package com.minidelivery.minidelivery.domain;
+package com.minidelivery.domain;
 
 import lombok.Data;
 
