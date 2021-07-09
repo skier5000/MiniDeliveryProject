@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 import java.util.Optional;
@@ -27,12 +28,8 @@ public class AccessMainService {
      * 고객 ID에 따른 정보 조회
      */
     public Optional<Member> selectUserInfo(String id) {
-        Optional<Member> memberList = memberRepository.findById(id);
 
-        // 회원이 존재하지않으면 Error 반환
-        if (memberList == null) {
-            System.out.println("존재하지않는 회원");
-        }
+        Optional<Member> memberList = memberRepository.findById(id);
 
         return memberList;
     }

@@ -89,6 +89,9 @@ public class AccessMainController {
 
         if(selectUserServiceListTest.isEmpty()) {
             System.out.println("등록된 아이디 없음");
+            viewPage.setViewName("");
+            viewPage.addObject("loginErrorMessage", message);
+            return viewPage;
         } else {
             realId = selectUserServiceListTest.get().getId();
             realPassword = selectUserServiceListTest.get().getPassword();
