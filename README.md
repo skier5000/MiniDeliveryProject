@@ -8,4 +8,5 @@ Java(JDK8), Thymeleaf, Spring Boot, JPA, SpringDataJPA, Gradle, H2, Git
 <img src="https://img.shields.io/badge/개발단계-컬러코드?style=flat-square&logo=simpleicons에서_아이콘이름&logoColor=white"/></a><br/>
 ERD설계(초안 완료) -> 엔티티구현 -> 비즈니스로직 구현
 
-2021.07.10 ERD 수정 미팅
+2021.07.10 ERD 수정
+저 왜 안뜨죠
