@@ -1,13 +1,12 @@
-package com.minidelivery.domain;
+package com.minidelivery.application.domain;
 
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import java.util.Date;
+import javax.persistence.*;
+import java.time.LocalDateTime;
 
 /**
  * <pre>
@@ -19,13 +18,15 @@ import java.util.Date;
  * @version 1.0
  * @see
  * =================== 변경 내역 ==================
- * 날짜				변경자			내용
+ * 날짜				변경자			내용3
  * ------------------------------------------------
  * 2021.06.20.		LJB			최초작성
  */
 @Entity
-@Data
-public class Member {
+@Getter
+@Setter
+@ToString
+public class UserMst {
 
     @Id
     // Indentity 전략
@@ -33,10 +34,22 @@ public class Member {
     private Long idSeq; //id 시퀀스번호 (PK)
     private String id;
     private String password;
-    private String name; //닉네임
     private Integer accessCd; //접근권한 코드
-    private Date insDate; //회원가입일자
-    private Date pwUpdDate; //패스워드 업데이트 일자
+    private String insUser  ; //접근권한 코드
+    private LocalDateTime insDate; //회원가입일자
+    private String updUser; //회원가입일자
+    private LocalDateTime updDate; //회원가입일자
+
+
+    @ManyToOne
+    @JoinColumn(name = "TEAM_ID")
+    protected Team team;
+
+
+
+
+
+
 
 
     // Getter and Setter

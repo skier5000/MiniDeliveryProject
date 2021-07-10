@@ -1,7 +1,7 @@
-package com.minidelivery.platform.service;
+package com.minidelivery.application.platform.service;
 
-import com.minidelivery.access.repository.MemberRepository;
-import com.minidelivery.domain.Member;
+import com.minidelivery.application.login.repository.MemberRepository;
+import com.minidelivery.application.domain.UserMst;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,8 +25,8 @@ public class PlatformMainService {
     /**
      * 고객 ID에 따른 정보 조회
      */
-    public Optional<Member> selectUserInfo(String id) {
-        Optional<Member> memberList = memberRepository.findById(id);
+    public Optional<UserMst> selectUserInfo(String id) {
+        Optional<UserMst> memberList = memberRepository.findById(id);
 
         // 회원이 존재하지않으면 Error 반환
         if (memberList == null) {

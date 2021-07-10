@@ -1,7 +1,7 @@
-package com.minidelivery.access.repository;
+package com.minidelivery.application.login.repository;
 
 
-import com.minidelivery.domain.Member;
+import com.minidelivery.application.domain.UserMst;
 
 import java.util.List;
 import java.util.Optional;
@@ -21,9 +21,9 @@ import java.util.Optional;
  * 2021.06.20.		LJB			최초작성
  */
 
-public interface MemberRepository {
-    public Member save(Member member);
-    public Optional<Member> findById(String id);
-    public Optional<Member> findByName(String name);
-    public List<Member> findAll();
+public interface UserRepository {
+    public UserMst save(UserMst userMst);
+    public Optional<UserMst> findById(String id);
+    public Optional<UserMst> findByName(String name);
+    public List<UserMst> findAll();
 }

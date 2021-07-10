@@ -1,7 +1,7 @@
-package com.minidelivery.access.repository;
+package com.minidelivery.application.login.repository;
 
 
-import com.minidelivery.domain.Member;
+import com.minidelivery.application.domain.UserMst;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
@@ -21,10 +21,10 @@ import java.util.Optional;
  * 2021.06.20.		LJB			최초작성
  */
 
-public interface MemberServiceRepository extends JpaRepository<Member, Long>, MemberRepository{
+public interface MemberServiceRepository extends JpaRepository<UserMst, Long>, MemberRepository{
 
     @Override
-    Optional<Member> findByName(String name);
+    Optional<UserMst> findByName(String name);
     // JPQL : select m from Member m where m.name = ?
     // 자동으로 JPQL 생성
 
