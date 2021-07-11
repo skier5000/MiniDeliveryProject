@@ -25,7 +25,6 @@ import java.time.LocalDateTime;
 @Entity
 @Getter
 @Setter
-@ToString
 public class UserMst {
 
     @Id
@@ -41,31 +40,9 @@ public class UserMst {
     private LocalDateTime updDate; //회원가입일자
 
 
-    @ManyToOne
-    @JoinColumn(name = "TEAM_ID")
-    protected Team team;
+//    @ManyToOne
+//    @JoinColumn(name = "TEAM_ID")
+//    protected Team team;
 
 
-
-
-
-
-
-
-    // Getter and Setter
-//    public Long getId() {
-//        return id;
-//    }
-//
-//    public void setId(Long id) {
-//        this.id = id;
-//    }
-//
-//    public String getName() {
-//        return name;
-//    }
-//
-//    public void setName(String name) {
-//        this.name = name;
-//    }
 }

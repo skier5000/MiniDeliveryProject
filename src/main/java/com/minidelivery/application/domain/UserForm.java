@@ -3,7 +3,7 @@ package com.minidelivery.application.domain;
 import lombok.Data;
 
 @Data
-public class MemberForm {
+public class UserForm {
 
     private String id;
     private String password;

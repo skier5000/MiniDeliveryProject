@@ -2,10 +2,9 @@ package com.minidelivery.application.login.controller;
 
 import com.minidelivery.application.login.service.AccessMainService;
 import com.minidelivery.application.domain.UserMst;
-import com.minidelivery.application.domain.MemberForm;
+import com.minidelivery.application.domain.UserForm;
 import lombok.RequiredArgsConstructor;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -33,10 +32,9 @@ import java.util.Optional;
  */
 @Controller
 @RequestMapping("/main")
+@Slf4j
 @RequiredArgsConstructor
 public class AccessMainController {
-    private Logger logger = LoggerFactory.getLogger(this.getClass());
-
     // Bean
     private final AccessMainService accessMainService;
 
@@ -55,7 +53,7 @@ public class AccessMainController {
      */
     @GetMapping("/index")
     public ModelAndView indexAccess() throws Exception {
-        logger.info("AccessMainController::indexAccess called");
+        log.info("AccessMainController::indexAccess called");
 
         ModelAndView viewPage = new ModelAndView();
         viewPage.setViewName("index");
@@ -75,15 +73,15 @@ public class AccessMainController {
     public ModelAndView accessPage(
             HttpServletRequest rq,
             HttpServletResponse rs,
-            MemberForm memberForm
+            UserForm userForm
     ) throws Exception {
-        logger.info("AccessMainController::accessPage called");
+        log.info("AccessMainController::accessPage called");
         String realPassword;
         String message = null;
         int realAccessCd;
         ModelAndView viewPage = new ModelAndView();
 
-        Optional<UserMst> selectUserServiceListTest = accessMainService.selectUserInfo(memberForm.getId());
+        Optional<UserMst> selectUserServiceListTest = accessMainService.selectUserInfo(userForm.getId());
 
         if(selectUserServiceListTest.isEmpty()) {
             System.out.println("등록된 아이디 없음");
@@ -94,7 +92,7 @@ public class AccessMainController {
             // 패스워드까지 맞으면 (후에 암호화 방식으로)
             realPassword = selectUserServiceListTest.get().getPassword();
 
-            if(realPassword.equals(memberForm.getPassword())){
+            if(realPassword.equals(userForm.getPassword())){
                 realAccessCd = selectUserServiceListTest.get().getAccessCd(); // 접근 권한 코드
                 switch (realAccessCd) {
                     case 1:
