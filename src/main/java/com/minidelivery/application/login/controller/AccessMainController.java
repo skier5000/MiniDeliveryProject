@@ -83,12 +83,14 @@ public class AccessMainController {
 
         Optional<UserMst> selectUserServiceListTest = accessMainService.selectUserInfo(userForm.getId());
 
+        // 아이디 체크
         if(selectUserServiceListTest.isEmpty()) {
             System.out.println("등록된 아이디 없음");
             viewPage.setViewName("");
             viewPage.addObject("loginErrorMessage", message);
             return viewPage;
-        } else {
+        }
+        else {
             // 패스워드까지 맞으면 (후에 암호화 방식으로)
             realPassword = selectUserServiceListTest.get().getPassword();
 
@@ -113,7 +115,8 @@ public class AccessMainController {
                     default:
                         break;
                 }
-            } else {
+            }
+            else {
                 viewPage.setViewName("index");
                 message = "패스워드가 다릅니다";
                 System.out.println("패스워드가 다릅니다");

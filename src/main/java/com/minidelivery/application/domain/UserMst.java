@@ -27,8 +27,7 @@ import java.time.LocalDateTime;
 @Setter
 public class UserMst {
 
-    @Id
-    // Indentity 전략
+    @Id // Indentity 전략
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idSeq; //id 시퀀스번호 (PK)
     private String id;
