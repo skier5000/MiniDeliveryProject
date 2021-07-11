@@ -1,4 +1,4 @@
-package com.minidelivery.application.domain;
+package com.minidelivery.application.login.dto;
 
 import lombok.Data;
 

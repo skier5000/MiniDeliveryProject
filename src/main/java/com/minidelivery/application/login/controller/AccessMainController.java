@@ -2,7 +2,7 @@ package com.minidelivery.application.login.controller;
 
 import com.minidelivery.application.login.service.AccessMainService;
 import com.minidelivery.application.domain.UserMst;
-import com.minidelivery.application.domain.UserForm;
+import com.minidelivery.application.login.dto.UserForm;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
