@@ -21,8 +21,9 @@ import java.util.Optional;
  * 2021.07.11       LJB         파일명 수정
  */
 public interface AccessMainServiceRepository extends JpaRepository<UserMst, Long>, AccessMainRepository {
+
     @Override
     Optional<UserMst> findByName(String name);
     // JPQL : select m from Member m where m.name = ?
-    // 자동으로 JPQL 생성
+
 }
