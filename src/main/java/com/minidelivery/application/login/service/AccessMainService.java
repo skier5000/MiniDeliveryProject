@@ -29,9 +29,9 @@ public class AccessMainService {
      */
     public Optional<UserMst> selectUserInfo(String id) {
         log.info("AccessMainService::selectUserInfo called");
-        Optional<UserMst> memberList = accessMainRepository.findById(id);
+        Optional<UserMst> userList = accessMainRepository.findById(id);
 
-        return memberList;
+        return userList;
     }
 
 }
