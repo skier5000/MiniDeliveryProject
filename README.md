@@ -11,3 +11,4 @@ Java(JDK8), Thymeleaf, Spring Boot, JPA, SpringDataJPA, Gradle, H2, Git
 + 일자별
   + 2021.07.10
     + ERD 수정
+    + pr테스트
