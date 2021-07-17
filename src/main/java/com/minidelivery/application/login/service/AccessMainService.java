@@ -6,6 +6,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -28,16 +30,16 @@ import java.util.Optional;
  */
 
 @Slf4j
-@RequiredArgsConstructor
 @Service
 @Transactional
+@RequiredArgsConstructor
 public class AccessMainService {
 
     private final AccessMainRepository accessMainRepository;
 
 //    @Autowired
-//    public AccessMainService(MemberRepository memberRepository) {
-//        this.memberRepository = memberRepository;
+//    public AccessMainService(AccessMainRepository accessMainRepository) {
+//        this.accessMainRepository = accessMainRepository;
 //    }
 
     /**

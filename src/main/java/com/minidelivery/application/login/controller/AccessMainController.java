@@ -5,6 +5,7 @@ import com.minidelivery.application.domain.UserMst;
 import com.minidelivery.application.login.dto.UserForm;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -78,13 +79,13 @@ public class AccessMainController {
         log.info("AccessMainController::accessPage called");
         String realPassword;
         String message = null;
-        int realAccessCd;
+        String realAccessCd;
         ModelAndView viewPage = new ModelAndView();
 
-        Optional<UserMst> selectUserServiceListTest = accessMainService.selectUserInfo(userForm.getId());
+        Optional<UserMst> selectUserServiceList = accessMainService.selectUserInfo(userForm.getId());
 
         // 아이디 체크
-        if(selectUserServiceListTest.isEmpty()) {
+        if(selectUserServiceList.isEmpty()) {
             System.out.println("등록된 아이디 없음");
             viewPage.setViewName("");
             viewPage.addObject("loginErrorMessage", message);
@@ -92,22 +93,22 @@ public class AccessMainController {
         }
         else {
             // 패스워드까지 맞으면 (후에 암호화 방식으로)
-            realPassword = selectUserServiceListTest.get().getPassword();
+            realPassword = selectUserServiceList.get().getPassword();
 
             if(realPassword.equals(userForm.getPassword())){
-                realAccessCd = selectUserServiceListTest.get().getAccessCd(); // 접근 권한 코드
+                realAccessCd = selectUserServiceList.get().getAccessCd(); // 접근 권한 코드
                 switch (realAccessCd) {
-                    case 1:
+                    case "ADMIN":
                         viewPage.setViewName("platform/platformIndex");
                         message = "관리자님 환영합니다.";
                         System.out.println("관리자 화면 진입");
                         break;
-                    case 2:
+                    case "STORE":
                         viewPage.setViewName("store/storeIndex");
                         message = "점포명 + 님 환영합니다."; // 후에 점포명 삽입
                         System.out.println("점포 화면 진입");
                         break;
-                    case 3:
+                    case "CUSTOMER":
                         viewPage.setViewName("customer/customerIndex");
                         message = "이름 + 님 환영합니다."; // 후에 이름 삽입
                         System.out.println("회원 화면 진입");

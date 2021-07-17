@@ -32,11 +32,12 @@ public class UserMst {
     private Long idSeq; //id 시퀀스번호 (PK)
     private String id;
     private String password;
-    private Integer accessCd; //접근권한 코드
-    private String insUser  ; //접근권한 코드
-    private LocalDateTime insDate; //회원가입일자
-    private String updUser; //회원가입일자
-    private LocalDateTime updDate; //회원가입일자
+    private String userName;
+    private String accessCd; //접근권한 코드
+//    private String insUser  ; //Insert User
+//    private LocalDateTime insDate; //Insert Date
+//    private String updUser; //Update User
+//    private LocalDateTime updDate; //Update Date
 
 
 //    @ManyToOne

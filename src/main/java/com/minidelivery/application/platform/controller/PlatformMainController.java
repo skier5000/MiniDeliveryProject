@@ -1,6 +1,7 @@
 package com.minidelivery.application.platform.controller;
 
 import com.minidelivery.application.login.service.AccessMainService;
+import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,7 @@ import org.springframework.web.servlet.ModelAndView;
  * 2021.06.20.		LJB			최초작성
  */
 @Controller
+@RequiredArgsConstructor
 @RequestMapping("/platform")
 public class PlatformMainController {
     private Logger logger = LoggerFactory.getLogger(this.getClass());
@@ -32,10 +34,10 @@ public class PlatformMainController {
     // Bean
     private final AccessMainService accessMainService;
 
-    @Autowired
-    public PlatformMainController(AccessMainService accessMainService){
-        this.accessMainService = accessMainService;
-    }
+//    @Autowired
+//    public PlatformMainController(AccessMainService accessMainService){
+//        this.accessMainService = accessMainService;
+//    }
 
 
     /**

@@ -23,7 +23,7 @@ import java.util.Optional;
 public interface AccessMainServiceRepository extends JpaRepository<UserMst, Long>, AccessMainRepository {
 
     @Override
-    Optional<UserMst> findByName(String name);
+    Optional<UserMst> findByUserName(String userName);
     // JPQL : select m from Member m where m.name = ?
 
 }
