@@ -23,7 +23,7 @@ import java.util.Optional;
  */
 public interface AccessMainRepository {
     public UserMst save(UserMst userMst);
-    public Optional<UserMst> findById(String id);
+    public Optional<UserMst> findByUserId(String userId);
     public Optional<UserMst> findByUserName(String userName);
     public List<UserMst> findAll();
 }
