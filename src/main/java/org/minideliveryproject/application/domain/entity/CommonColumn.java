@@ -11,10 +11,10 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class CommonColumn {
 
-    private LocalDateTime insDate;
-    private String insUser;
-    private LocalDateTime udpDate;
-    private String udpUser;
+    private LocalDateTime insDate; // 입력일자
+    private String insUser; // 입력자
+    private LocalDateTime udpDate; // 수정일자
+    private String udpUser; // 수정자
 
     public CommonColumn(LocalDateTime insDate, String insUser, LocalDateTime udpDate, String udpUser) {
         this.insDate = insDate;
