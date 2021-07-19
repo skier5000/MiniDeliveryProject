@@ -2,6 +2,9 @@ package org.minideliveryproject.application.domain.entity;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.minideliveryproject.application.domain.entity.embeded.FoodType;
+import org.minideliveryproject.application.domain.entity.embeded.StoreState;
+import org.minideliveryproject.application.domain.entity.embeded.StoreType;
 
 import javax.persistence.*;
 import java.time.LocalDate;

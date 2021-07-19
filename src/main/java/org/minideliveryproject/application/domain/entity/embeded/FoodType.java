@@ -1,4 +1,4 @@
-package org.minideliveryproject.application.domain.entity;
+package org.minideliveryproject.application.domain.entity.embeded;
 
 
 public enum FoodType {
