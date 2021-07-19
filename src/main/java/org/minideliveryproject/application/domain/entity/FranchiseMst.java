@@ -14,8 +14,8 @@ public class FranchiseMst {
     @Column(name = "franchise_mst_seq")
     private Long seq;
 
-    private String franchiseName;
-    private String franchiseIssue;
+    private String franchiseName; // 프랜차이즈 명
+    private String franchiseIssue; // 프랜차이즈 이슈사항
 
     @Embedded
     private CommonColumn commonColumn;
