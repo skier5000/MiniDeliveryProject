@@ -13,3 +13,5 @@ Java(JDK8), Thymeleaf, Spring Boot, JPA, SpringDataJPA, Gradle, H2, Git
     + ERD 수정
   + 2021.07.17
     + 프로젝트 전체 수정 (엔티티 설계 추가)
+  + 2021.07.18
+    + 테스트코드 추가(데이터 Insert)
