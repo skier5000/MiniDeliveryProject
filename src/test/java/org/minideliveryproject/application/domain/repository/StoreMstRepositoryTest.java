@@ -3,6 +3,10 @@ package org.minideliveryproject.application.domain.repository;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.minideliveryproject.application.domain.entity.*;
+import org.minideliveryproject.application.domain.entity.embeded.FoodType;
+import org.minideliveryproject.application.domain.entity.embeded.StoreState;
+import org.minideliveryproject.application.domain.entity.embeded.StoreType;
+import org.minideliveryproject.application.domain.entity.embeded.UserRoleType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
@@ -12,8 +16,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 @Transactional
