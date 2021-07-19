@@ -12,5 +12,4 @@ public interface FranchiseMstRepositoryImpl extends JpaRepository<FranchiseMst, 
     @Override
     Optional<FranchiseMst> findByFranchiseName(String franchiseName);
 
-
 }

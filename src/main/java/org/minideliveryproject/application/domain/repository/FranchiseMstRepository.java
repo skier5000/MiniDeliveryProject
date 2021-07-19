@@ -12,4 +12,5 @@ public interface FranchiseMstRepository {
 
     List<FranchiseMst> findAll();
     Optional<FranchiseMst> findByFranchiseName(String franchiseName);
+    void deleteAll();
 }
