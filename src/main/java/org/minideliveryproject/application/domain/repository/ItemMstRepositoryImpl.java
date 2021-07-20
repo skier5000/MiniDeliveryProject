@@ -11,10 +11,10 @@ import java.util.Optional;
 
 public interface ItemMstRepositoryImpl extends JpaRepository<ItemMst, Long>, ItemMstRepository {
 
-//    @Override
-//    Optional<ItemMst> findByItemName(String itemName);
-//
-//    @Override
-//    Optional<ItemMst> findByItemCategory(String itemCategory);
+    @Override
+    Optional<ItemMst> findByItemName(String itemName);
+
+    @Override
+    Optional<ItemMst> findByItemCategory(String itemCategory);
 
 }
