@@ -3,5 +3,4 @@ HELP.md
 .idea
 build/
 *.iml
-db/
 out/
