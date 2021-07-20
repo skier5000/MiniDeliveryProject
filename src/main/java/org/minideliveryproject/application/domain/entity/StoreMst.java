@@ -2,6 +2,7 @@ package org.minideliveryproject.application.domain.entity;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.minideliveryproject.application.domain.entity.embeded.DeleteType;
 import org.minideliveryproject.application.domain.entity.embeded.FoodType;
 import org.minideliveryproject.application.domain.entity.embeded.StoreState;
 import org.minideliveryproject.application.domain.entity.embeded.StoreType;
@@ -39,15 +40,20 @@ public class StoreMst {
     private Address address;
 
     @Embedded
+    private DeleteType deleteType;
+
+    @Embedded
     private CommonColumn commonColumn;
+
+
 
     private String storeName;
     private String storeImgUrl;
     private String storeTel;
     private String storeHop;
-    private Integer minOrdPrice;
-    private LocalDate contDate;
-    private LocalDate contExpDate;
-    private LocalDate contRenewDate;
-    private Integer contCnt;
+    private Integer minOrdPrice;      // 최소주문금액
+    private LocalDate contDate;       // 계약일자
+    private LocalDate contExpDate;    // 계약만료일자
+    private LocalDate contRenewDate;  // 재계약일자
+    private Integer contCnt;          // 계약횟수
 }
