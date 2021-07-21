@@ -1,6 +1,7 @@
 package org.minideliveryproject.application.domain.repository;
 
 import org.minideliveryproject.application.domain.entity.FranchiseMst;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -8,9 +9,8 @@ import java.util.Optional;
 
 
 @Repository
-public interface FranchiseMstRepository {
+public interface FranchiseMstRepository extends JpaRepository<FranchiseMst, Long> {
 
-    List<FranchiseMst> findAll();
     Optional<FranchiseMst> findByFranchiseName(String franchiseName);
-    void deleteAll();
+    Optional<FranchiseMst> findBySeq(Long seq);
 }
