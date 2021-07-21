@@ -165,14 +165,14 @@ public class DbUserInsert {
     @Test
     @Rollback(value = false)
     public void 사장님등록Kyochon() {
-        // kyochon 불당점
+        // Kyochon 불당점
         // given
-        FranchiseMst franchiseMst = franchiseExistOrCreate("kyochon");
+        FranchiseMst franchiseMst = franchiseExistOrCreate("Kyochon");
 
         UserMst userMst = new UserMst();
-        userMst.setUserId("kyochon1000");
-        userMst.setUserPassword("kyochon1000");
-        userMst.setUserName("kyochon불당");
+        userMst.setUserId("Kyochon1000");
+        userMst.setUserPassword("Kyochon1000");
+        userMst.setUserName("Kyochon불당");
         userMst.setPhoneNumber("010-1234-1235");
         userMst.setEmail("DeliveryStoreKing@github.com");
         userMst.setJoinDate(LocalDate.now());
@@ -188,7 +188,7 @@ public class DbUserInsert {
         storeMst.setFoodType(FoodType.CHICKEN);
         storeMst.setStoreImgUrl("/reocurecs/img/210050_232");
         storeMst.setMinOrdPrice(24000);
-        storeMst.setStoreName("kyochon불당점");
+        storeMst.setStoreName("Kyochon불당점");
         storeMst.setStoreType(StoreType.FRANCHISE);
 
         // when
