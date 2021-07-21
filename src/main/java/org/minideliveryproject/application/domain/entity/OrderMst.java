@@ -2,6 +2,7 @@ package org.minideliveryproject.application.domain.entity;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.minideliveryproject.application.domain.entity.embeded.PaymentType;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -32,9 +33,11 @@ public class OrderMst {
     @Embedded
     private CommonColumn commonColumn;
 
+    @Embedded
+    private PaymentType payment;         //결제수단
+
     private LocalDateTime orderDate;
     private Integer totalPrice;
-    private String payment;         //결제수단
     private String requests;
 
 
