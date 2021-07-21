@@ -22,9 +22,6 @@ import static org.assertj.core.api.Assertions.failBecauseExceptionWasNotThrown;
 @Transactional
 public class DbItemInsert {
 
-    @PersistenceContext
-    EntityManager em;
-
     @Autowired
     ItemMstRepository itemMstRepository;
 
