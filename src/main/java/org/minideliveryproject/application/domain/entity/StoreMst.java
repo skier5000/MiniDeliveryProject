@@ -39,7 +39,7 @@ public class StoreMst {
     @Embedded
     private Address address;
 
-    @Embedded
+    @Enumerated(EnumType.STRING)
     private DeleteType deleteType;
 
     @Embedded
