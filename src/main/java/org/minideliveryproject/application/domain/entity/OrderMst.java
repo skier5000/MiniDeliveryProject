@@ -33,7 +33,7 @@ public class OrderMst {
     @Embedded
     private CommonColumn commonColumn;
 
-    @Embedded
+    @Enumerated(EnumType.STRING)
     private PaymentType payment;         //결제수단
 
     private LocalDateTime orderDate;
