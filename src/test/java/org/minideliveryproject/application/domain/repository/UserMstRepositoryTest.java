@@ -4,7 +4,7 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.minideliveryproject.application.domain.entity.Address;
 import org.minideliveryproject.application.domain.entity.CommonColumn;
-import org.minideliveryproject.application.domain.entity.UserRoleType;
+import org.minideliveryproject.application.domain.entity.embeded.UserRoleType;
 import org.minideliveryproject.application.domain.entity.UserMst;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

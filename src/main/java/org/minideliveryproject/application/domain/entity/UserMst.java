@@ -2,6 +2,7 @@ package org.minideliveryproject.application.domain.entity;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.minideliveryproject.application.domain.entity.embeded.UserRoleType;
 
 import javax.persistence.*;
 import java.time.LocalDate;

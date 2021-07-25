@@ -21,4 +21,5 @@ public class UserMstRepository {
     public UserMst findBySeq(Long seq) {
         return em.find (UserMst.class, seq);
     }
+
 }

@@ -22,8 +22,8 @@ public class OrderDetail {
     @JoinColumn(name = "order_mst_seq")
     private OrderMst orderMst;
 
-    private Integer itemQuantity;
-    private Integer itemPrice;
+    private Integer itemQuantity;    // 수량
+    private Integer itemPrice;       // 가격
 
     public void saveOrderMst(OrderMst orderMst) {
         this.orderMst = orderMst;
