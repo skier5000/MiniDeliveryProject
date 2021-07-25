@@ -1,4 +1,4 @@
-package org.minideliveryproject.application.db;
+package org.minideliveryproject.application.DB;
 
 import org.aspectj.weaver.ast.Or;
 import org.assertj.core.api.Assertions;
