@@ -1,4 +1,4 @@
-package org.minideliveryproject.application.db;
+package org.minideliveryproject.application.DB;
 
 import org.junit.jupiter.api.Test;
 import org.minideliveryproject.application.domain.entity.Review;
