@@ -1,0 +1,56 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+  <title>고객 메인화면</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="row mt-5 p-5">
+  <div class="col-md-4"></div>
+
+  <div class="col-md-4 border border-2 border-secondary rounded p-0" >
+    <div class="container-fluid p-0 m-0 ">
+      <div class="d-flex bg-info" style="color: white">
+        <div class="p-2 m-auto"> 충남 천안시 서북구 봉정로 324</div>
+        <div class="p-2 ">
+          <a href="/" >알림</a>
+        </div>
+        <div class="mx-2 p-2 ">
+          <a href="/" >설정</a>
+        </div>
+      </div>
+
+      <div class="container-fluid pb-3 pt-2 px-3 m-0 bg-info">
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="Search">
+            <span class="ml-1 input-group-text bg-white">
+             <a href="/"><img src="/img/search.svg" /></a>
+            </span>
+        </div>
+      </div>
+
+    </div>
+
+
+
+    <div class=".container-fluid mt-5 text-center" >
+      <button type="button" class="btn btn-outline-secondary" style="width: 70%;">네이버로 로그인</button>
+    </div>
+    <div class=".container-fluid mt-3 text-center" >
+      <button type="button" class="btn btn-outline-secondary" style="width: 70%;">카카오로 로그인</button>
+    </div>
+    <div class=".container-fluid mt-3 text-center" >
+      <button type="button" class="btn btn-outline-secondary" style="width: 70%;">구글로 로그인</button>
+    </div>
+
+  </div>
+
+  <div class="col-md-4"></div>
+</div>
+</body>
+</html>

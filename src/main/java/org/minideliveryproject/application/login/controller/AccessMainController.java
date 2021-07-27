@@ -32,7 +32,7 @@ import java.util.Optional;
  * 2021.06.20.		LJB			최초작성
  */
 @Controller
-@RequestMapping("/main")
+@RequestMapping("/")
 @Slf4j
 @RequiredArgsConstructor
 public class AccessMainController {
@@ -52,7 +52,7 @@ public class AccessMainController {
      * @return index
      * @throws Exception
      */
-    @GetMapping("/index")
+    @GetMapping("/main")
     public ModelAndView indexAccess() throws Exception {
         log.info("AccessMainController::indexAccess called");
 
