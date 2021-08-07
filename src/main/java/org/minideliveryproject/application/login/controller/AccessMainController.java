@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.Optional;
 
 
@@ -128,4 +129,14 @@ public class AccessMainController {
         return viewPage;
     }
 
+
+    @GetMapping("/test")
+    public ModelAndView htmlTest() throws IOException {
+        log.info("AccessMainController::htmlTest called");
+
+        ModelAndView viewPage = new ModelAndView();
+        viewPage.setViewName("layout/defaultLayout");
+
+        return viewPage;
+    }
 }
