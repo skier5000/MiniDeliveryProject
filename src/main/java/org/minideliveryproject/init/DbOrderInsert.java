@@ -7,9 +7,12 @@ import org.minideliveryproject.application.domain.entity.OrderDetail;
 import org.minideliveryproject.application.domain.entity.OrderMst;
 import org.minideliveryproject.application.domain.entity.embeded.PaymentType;
 import org.minideliveryproject.application.domain.repository.*;
+import org.springframework.beans.factory.DisposableBean;
+import org.springframework.context.ApplicationListener;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.DependsOn;
+import org.springframework.context.event.ContextClosedEvent;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -25,8 +28,8 @@ import java.util.Optional;
 @Configuration
 @Component("DbOrderInsert")
 @DependsOn("DbItemInsert")
-public class DbOrderInsert {
-    
+public class DbOrderInsert implements DisposableBean, ApplicationListener<ContextClosedEvent> {
+
     private final UserMstRepository userMstRepository;
 
     private final StoreMstRepository storeMstRepository;
@@ -159,5 +162,21 @@ public class DbOrderInsert {
         orderDetailRepository.save(orderDetail);
         Optional<OrderMst> orderMstCompare = orderMstRepository.findById(orderMst.getSeq());
         Optional<OrderDetail> orderDetailCompare = orderDetailRepository.findById(orderDetail.getSeq());
+    }
+
+    /**
+     * 서버 셧다운시 데이터 제거
+     * @throws Exception
+     */
+    @Override
+    public void destroy() throws Exception {
+        System.out.println("DisposableBean 인터페이스 구현 메서드입니다. TestService 'Bean'이 소멸될 때 마다 호출되는 메서드입니다");
+    }
+
+
+    @Override
+    public void onApplicationEvent(ContextClosedEvent event) {
+        System.out.println("ApplicationListener<ContextClosedEvent> 인터페이스 구현 메서드 입니다. '애플리케이션'이 죽었을 때 '한 번' 실행됩니다.");
+        System.out.println("이벤트 발생 시간(timestamp) : " + event.getTimestamp());
     }
 }
