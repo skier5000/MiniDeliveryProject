@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lagn="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout/defaultLayout">
+
+<head th:replace="fragments/head :: headFragment"></head>
+
+<script  th:inline="javascript">
+	/*<![CDATA[*/
+	var message = [[${message}]];
+	alert(message);
+	/*]]>*/
+</script>
+
+<body>
+<div class="wrapper">
+    <!-- header : 왼쪽 상단 관리자 정보 -->
+    <header th:replace="fragments/header :: headerFragment"></header>
+
+    <!-- nav : 좌측 메뉴바 -->
+    <nav th:replace="fragments/nav :: navFragment"></nav>
+
+    <!-- section : content를 감싸주는 영역 -->
+    <section th:replace="fragments/section :: sectionFragment">
+
+    </section>
+</div>
+</body>
+</html>

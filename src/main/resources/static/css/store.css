@@ -1,0 +1,88 @@
+section article {
+    margin-top: 10px;
+}
+
+section ul {
+    list-style: none;
+    margin: 0px;
+    padding: 10px 0px 0px 0px;
+
+}
+
+section li {
+    display: inline;
+    margin: 20px;
+}
+
+section .info input, select {
+    border: 1px solid #ddd;
+}
+
+section .info {
+    height: 50px;
+    background-color: #cae1f9;
+    margin-top: 0px;
+}
+
+section .info ul li button {
+    line-height: 1;
+    width: 100px;
+    padding-right: 20px;
+    margin-right: 10px;
+    float: right;
+}
+
+section .info ul li span{
+    margin-right: 10px;
+}
+
+section .info ul li button span{
+    margin-left: 10px;
+}
+
+section .sub-menu-name {
+    margin-top: 5px;
+    margin-bottom: 10px;
+    font-size: 1.3rem;
+}
+
+section .sub-menu-name span {
+    margin-left: 10px;
+}
+
+section .data-table-article .table, th, td {
+    border: 1px solid lightgray;
+    text-align: center;
+    font-size: 1.1rem;
+    margin-bottom: 0px;
+}
+
+section .data-table-div {
+    width: 100%;
+    height: 420px;
+    overflow: scroll;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    border-left: 1px solid white;
+    margin-top: 10px;
+}
+
+section .sub-menu-detail-name {
+    margin-bottom: 10px;
+}
+
+section .tab-pane {
+    margin: 10px 0px 0px 0px;
+    height: 280px;
+    padding: 0px;
+}
+
+section .data-table-detail-div {
+    width: 100%;
+    height: 240px;
+    overflow: scroll;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    border-left: 1px solid white;
+    margin-top: 10px;
+}

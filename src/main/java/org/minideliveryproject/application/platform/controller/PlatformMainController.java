@@ -1,6 +1,7 @@
 package org.minideliveryproject.application.platform.controller;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.minideliveryproject.application.platform.service.PlatformMainService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,7 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 /**
  * <pre>
- * ID, PW 접속 Main Contoller
+ * 관리자 화면 접근
  * <pre>
  *
  * @author LJB
@@ -28,33 +29,16 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/platform")
+@Slf4j
 public class PlatformMainController {
-    private Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    // Bean
     private final PlatformMainService platformMainService;
 
-//    @Autowired
-//    public PlatformMainController(AccessMainService accessMainService){
-//        this.accessMainService = accessMainService;
-//    }
+    @GetMapping(value = "/")
+    public String gotoMainPage() {
+        log.info("관리자 메인화면 이동");
 
-
-    /**
-     * MainController
-     * Index 메인화면 접근
-     * @param
-     * @return index
-     * @throws Exception
-     */
-    @GetMapping("/platform/platformIndex")
-    public ModelAndView indexAccess() throws Exception {
-        logger.info("AccessMainController::indexAccess called");
-
-        ModelAndView viewPage = new ModelAndView();
-        viewPage.setViewName("index");
-
-        return viewPage;
+        return "/platform/platformIndex";
     }
 
 }

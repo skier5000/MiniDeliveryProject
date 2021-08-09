@@ -12,8 +12,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.util.Optional;
 
 @Slf4j
@@ -42,36 +40,44 @@ public class LoginMainController {
         viewPage.setViewName("/login/login");
 
         // 아이디 체크
-        if(selectUserServiceList.isEmpty()) {  // 아이디가 존재하지않음
+        if (selectUserServiceList.isEmpty()) {  // 아이디가 존재하지않음
             viewPage.addObject("message", "NONID");
             return viewPage;
         } else {  // 아이디가 존재함
             // 패스워드까지 맞으면 (후에 암호화 방식으로)
             realPassword = selectUserServiceList.get().getUserPassword();
 
-            if(realPassword.equals(userForm.getPassword())){
+            if (realPassword.equals(userForm.getPassword())) {
                 accessCd = selectUserServiceList.get().getUserRoleType(); // 접근 권한 코드
                 switch (accessCd) {
-                    case PLATFORM :
-                        viewPage.setViewName("redirect:/customer");
+                    case PLATFORM:
+                        viewPage.setViewName("redirect:/platform/");
                         viewPage.addObject("message", "PLATFORM");
-                        break;
-                    case STORE :
-                        viewPage.setViewName("redirect:/customer");
+                        return viewPage;
+                    case STORE:
+                        viewPage.setViewName("redirect:/store/");
                         viewPage.addObject("message", "STORE");
-                        break;
-                    case CUSTOMER :
-                        viewPage.setViewName("redirect:/customer");
+                        return viewPage;
+                    case CUSTOMER:
+                        viewPage.setViewName("redirect:/customer/");
                         viewPage.addObject("message", "CUSTOMER");
-                        break;
-                    default:
-                        break;
+                        return viewPage;
                 }
             } else {
                 viewPage.addObject("message", "WRONGPASSWORD");
                 return viewPage;
             }
         }
+
+        return viewPage;
+    }
+
+    @GetMapping(value = "/test")
+    public ModelAndView loginTest(@ModelAttribute UserForm userForm) {
+
+        ModelAndView viewPage = new ModelAndView();
+        viewPage.setViewName("/layout/defaultLayout");
+        viewPage.addObject("message", "Test");
 
         return viewPage;
     }

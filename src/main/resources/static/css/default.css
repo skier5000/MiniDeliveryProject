@@ -1,0 +1,122 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap');
+/***************************************************************
+	=====================================================
+		날짜				|	작성자	|	내용
+	=====================================================
+		2021. 07. 22	|	이영우	|	css 작성
+
+*****************************************************************/
+
+/* google font */
+body, span, a, p {font-family: 'Do Hyeon', sans-serif;}
+html, body {width: 100%; height: 100%;}
+
+a, a:hover{color: black; text-decoration: none;}
+
+/* wrapper */
+.wrapper {
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+}
+
+/* header */
+header {
+    float: left;
+    padding-top: 15px;
+    padding-bottom: 10px;
+    font-size: 1.1rem;
+    width: 250px;
+    height: 200px;
+    background: #cae1f9;
+    border-bottom: 2px dotted #b7d8fb;
+}
+
+header .profile {text-align: center;}
+
+header .profile img {width: 120px; border-radius: 70%;}
+
+header .profile p {margin: 10px 0px 10px 0px;}
+
+header span {margin-left: 10px;}
+
+header .dropdown-item {text-align: center;}
+
+header .admin-self-menu {text-align: center;}
+
+header .dropdown {
+    display: inline;
+    cursor: pointer;
+    margin-left: 20px;
+}
+
+header .dropdown-menu {min-width: 0px;}
+
+header .admin-logOut {
+    display: inline;
+    cursor: pointer;
+}
+
+
+/* nav */
+nav {
+    background: #cae1f9;
+    border-right-color: white;
+    clear: both;
+    float: left;
+    width: 250px;
+    height: 100%;
+}
+
+nav .menu {
+    text-decoration: underline;
+    text-align: center;
+    font-size: 2rem;
+    margin-top: 20px;
+    margin-bottom: 25px;
+}
+
+nav .admin-menu-group {background: #cae1f9;}
+
+nav .list-group {
+    list-style: none;
+    margin: 20px 10px 20px 10px;
+    padding: 0px;
+    border-radius: 0px;
+    background: white;
+}
+
+nav .list-group li {cursor: pointer;}
+
+nav .list-group .sub-menu:hover {background-color: #f3f4f7;}
+
+nav .list-group li span{margin-left: 10px;}
+
+nav .list-group .sub-menu {
+    padding: 5px 0px 5px 30px;
+    display: none;
+}
+
+
+/* section */
+section {
+    overflow: hidden;
+    height: 100%;
+    padding: 10px 20px 10px 20px;
+}
+
+
+/* media query */
+
+@media (max-width: 1504px) {
+    .info{
+        display: none;
+    }
+}
+
+@media (max-width: 921px) {
+    .data-table-article, .data-detail-table-article{
+        display: none;
+    }
+}
