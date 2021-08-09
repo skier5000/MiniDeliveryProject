@@ -1,7 +1,10 @@
 package org.minideliveryproject.application.login.repository;
 
 
+import org.minideliveryproject.application.domain.entity.FranchiseMst;
 import org.minideliveryproject.application.domain.entity.UserMst;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
@@ -21,7 +24,8 @@ import java.util.Optional;
  * 2021.06.20.		LJB			최초작성
  * 2021.07.11       LJB         파일명 수정
  */
-public interface AccessMainRepository {
+@Repository
+public interface LoginMainRepository extends JpaRepository<UserMst, Long>{
     public UserMst save(UserMst userMst);
     public Optional<UserMst> findByUserId(String userId);
     public Optional<UserMst> findByUserName(String userName);

@@ -3,11 +3,7 @@ package org.minideliveryproject.application.login.service;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.minideliveryproject.application.domain.entity.UserMst;
-import org.minideliveryproject.application.login.repository.AccessMainRepository;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
+import org.minideliveryproject.application.login.repository.LoginMainRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -33,21 +29,16 @@ import java.util.Optional;
 @Service
 @Transactional
 @RequiredArgsConstructor
-public class AccessMainService {
+public class LoginMainService {
 
-    private final AccessMainRepository accessMainRepository;
-
-//    @Autowired
-//    public AccessMainService(AccessMainRepository accessMainRepository) {
-//        this.accessMainRepository = accessMainRepository;
-//    }
+    private final LoginMainRepository loginMainRepository;
 
     /**
      * 고객 ID에 따른 정보 조회
      */
     public Optional<UserMst> selectUserInfo(String id) {
         log.info("AccessMainService::selectUserInfo called");
-        Optional<UserMst> userList = accessMainRepository.findByUserId(id);
+        Optional<UserMst> userList = loginMainRepository.findByUserId(id);
 
         return userList;
     }
