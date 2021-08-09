@@ -32,7 +32,7 @@ import java.util.Optional;
 @Order
 @Configuration
 @Component("DbUserInsert")
-public class DbUserInsert implements DisposableBean, ApplicationListener<ContextClosedEvent> {
+public class DbUserInsert {
 
     @PersistenceContext
     private final EntityManager em;
@@ -318,18 +318,4 @@ public class DbUserInsert implements DisposableBean, ApplicationListener<Context
         return franchiseMst;
     }
 
-    /**
-     * 서버 셧다운시 데이터 제거
-     * @throws Exception
-     */
-    @Override
-    public void destroy() throws Exception {
-        System.out.println("DisposableBean 인터페이스 구현 메서드입니다. TestService 'Bean'이 소멸될 때 마다 호출되는 메서드입니다");
-    }
-
-    @Override
-    public void onApplicationEvent(ContextClosedEvent event) {
-        System.out.println("ApplicationListener<ContextClosedEvent> 인터페이스 구현 메서드 입니다. '애플리케이션'이 죽었을 때 '한 번' 실행됩니다.");
-        System.out.println("이벤트 발생 시간(timestamp) : " + event.getTimestamp());
-    }
 }
