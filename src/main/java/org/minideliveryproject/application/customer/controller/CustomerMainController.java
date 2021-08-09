@@ -17,7 +17,7 @@ public class CustomerMainController {
 
     @GetMapping(value = "/")
     public String gotoMainPage() {
-        log.info("고객 메인화면 이동");
+        log.info("CustomerMainController::gotoMainPage called");
 
         return "/customer/customerMain";
     }

@@ -16,7 +16,7 @@ public class StoreMainController {
 
     @GetMapping(value = "/")
     public String gotoMainPage() {
-        log.info("관리자 메인화면 이동");
+        log.info("StoreMainController::gotoMainPage called");
 
         return "/store/storeIndex";
     }
