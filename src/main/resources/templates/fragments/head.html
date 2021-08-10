@@ -2,6 +2,9 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:fragment="headFragment">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>
+        <th:block layout:fragment="title">demo</th:block>
+    </title>
     <!-- Font awesome CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
 
@@ -13,16 +16,20 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-    <!-- css -->
+    <!-- Datatable CDN -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
+    <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+
+    <!-- 공통 css -->
     <link rel="stylesheet" th:href="@{/css/default.css}">
 
-    <!-- js -->
+    <!-- 공통 js -->
     <script th:src="@{/js/nav.js}"></script>
 
-    <!--     컨텐츠페이지의 CSS 영역이 들어감 -->
-    <!--     <th:block layout:fragment="css"></th:block> -->
+    <!-- 컨텐츠페이지의 CSS 영역이 들어감 -->
+    <th:block layout:fragment="css"></th:block>
 
-    <!--     컨텐츠페이지의 스크립트 영역이 들어감 -->
-    <!--     <th:block layout:fragment="script"></th:block> -->
+    <!-- 컨텐츠페이지의 스크립트 영역이 들어감 -->
+    <th:block layout:fragment="script"></th:block>
 </head>
 </html>

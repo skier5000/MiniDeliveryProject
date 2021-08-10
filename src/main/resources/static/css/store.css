@@ -50,19 +50,20 @@ section .sub-menu-name span {
     margin-left: 10px;
 }
 
-section .data-table-article .table, th, td {
-    border: 1px solid lightgray;
+section .table, td {
     text-align: center;
     font-size: 1.1rem;
     margin-bottom: 0px;
+    overflow: auto;
+}
+
+section .table td {
+    padding: 8px 10px 8px 10px;
 }
 
 section .data-table-div {
     width: 100%;
-    height: 420px;
-    overflow: scroll;
-    border-top: 1px solid black;
-    border-bottom: 1px solid black;
+    height: auto;
     border-left: 1px solid white;
     margin-top: 10px;
 }
@@ -79,10 +80,52 @@ section .tab-pane {
 
 section .data-table-detail-div {
     width: 100%;
-    height: 240px;
-    overflow: scroll;
-    border-top: 1px solid black;
-    border-bottom: 1px solid black;
+    height: auto;
+    border-bottom: 1px solid lightgray;
     border-left: 1px solid white;
     margin-top: 10px;
 }
+
+section .dataTables_paginate{
+    margin-bottom: 10px;
+}
+
+section table.dataTable.no-footer{
+    border-bottom: 1px solid lightgray;
+}
+
+section table.dataTable thead td, table.dataTable tbody td{
+    border-bottom: 1px solid white;
+}
+
+section .paginate_button.current{
+    background: #cae1f9 !important;
+    border: #cae1f9 !important;
+}
+
+/* media query */
+
+@media (max-width: 1394px) {
+    .btn {display: none;}
+}
+
+@media (max-width: 1244px) {
+    #gugun {display: none;}
+}
+
+@media (max-width: 1071px) {
+    #sido {display: none;}
+}
+
+@media (max-width: 950px) {
+    #storeNm {display: none;}
+}
+
+@media (max-width: 938px) {
+    .data-table-article, .data-detail-table-article {display: none;}
+}
+
+@media (max-width: 938px) {
+    .sub-menu-name, .info {display: none;}
+}
+

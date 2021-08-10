@@ -1,26 +1,25 @@
 package org.minideliveryproject.application.platform.controller;
 
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-import org.apache.tomcat.util.json.JSONParser;
-import org.minideliveryproject.application.domain.entity.FranchiseMst;
 import org.minideliveryproject.application.platform.service.PlatformMainService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 /**
  * <pre>
- * 관리자 화면 접근, 점포관리
+ * ID, PW 접속 Main Contoller
  * <pre>
  *
  * @author LJB
@@ -35,28 +34,69 @@ import java.util.List;
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/platform")
-@Slf4j
 public class PlatformMainController {
+    private Logger logger = LoggerFactory.getLogger(this.getClass());
 
+    // Bean
     private final PlatformMainService platformMainService;
 
-    @GetMapping(value = "/")
-    public String gotoMainPage() {
-        log.info("PlatformMainController::gotoMainPage called");
+//    @Autowired
+//    public PlatformMainController(AccessMainService accessMainService){
+//        this.accessMainService = accessMainService;
+//    }
 
-        return "/platform/platformIndex";
-    }
 
-    @GetMapping(value = "/franchiseList")
-    public ModelAndView selectFranchiseList() {
+    /**
+     * MainController
+     * Index 메인화면 접근
+     * @param
+     * @return index
+     * @throws Exception
+     */
+    @GetMapping("/platform/platformIndex")
+    public ModelAndView indexAccess() throws Exception {
+        logger.info("AccessMainController::indexAccess called");
+
         ModelAndView viewPage = new ModelAndView();
-
-        List<FranchiseMst> franchiseMstList = platformMainService.selectFranchiseAllList();
-        JSONParser dd = new JSONParser((InputStream) franchiseMstList);
-
-        viewPage.setViewName("/platform/platformIndex/selectFranchiseList");
-        viewPage.addObject("franchiseMstList", franchiseMstList);
+        viewPage.setViewName("index");
 
         return viewPage;
     }
+
+
+    @GetMapping("/platformMain")
+    public String adminMain(){
+        return "platform/platformMain";
+    }
+
+    @GetMapping("/storeMgt/franchise")
+    public String franchise(){
+        return "platform/storeMgt/franchise";
+    }
+
+    @GetMapping("/storeMgt/personal")
+    public String personal(){
+        return "platform/storeMgt/personal";
+    }
+
+    @GetMapping("/infoMgt/employee")
+    public String employee(Model model){
+        Map<String, Object> map = new HashMap<>();
+        for(int i=1; i<=55; i++){
+            map.put("no", i);
+            map.put("empNum", "A" + i);
+            map.put("dept", "IT");
+            map.put("job", "사원");
+            map.put("name", "홍길동");
+            map.put("hp", "010-1111-1111");
+            map.put("email", "lee@gamil.com");
+            map.put("inDate", "2021-08-10");
+        }
+
+        model.addAttribute("map", map);
+
+        return "platform/infoMgt/employee";
+    }
+
+
 }
