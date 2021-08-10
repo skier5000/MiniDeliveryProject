@@ -1,20 +1,22 @@
 package org.minideliveryproject.application.platform.controller;
 
+import com.google.gson.Gson;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.minideliveryproject.application.domain.entity.FranchiseMst;
+import org.minideliveryproject.application.domain.entity.StoreMst;
+import org.minideliveryproject.application.domain.entity.UserMst;
+import org.minideliveryproject.application.domain.repository.FranchiseMstRepository;
 import org.minideliveryproject.application.platform.service.PlatformMainService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 
 /**
@@ -34,16 +36,10 @@ import java.util.Map;
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/platform")
+@Slf4j
 public class PlatformMainController {
-    private Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    // Bean
     private final PlatformMainService platformMainService;
-
-//    @Autowired
-//    public PlatformMainController(AccessMainService accessMainService){
-//        this.accessMainService = accessMainService;
-//    }
 
 
     /**
@@ -55,7 +51,7 @@ public class PlatformMainController {
      */
     @GetMapping("/platform/platformIndex")
     public ModelAndView indexAccess() throws Exception {
-        logger.info("AccessMainController::indexAccess called");
+        log.info("AccessMainController::indexAccess called");
 
         ModelAndView viewPage = new ModelAndView();
         viewPage.setViewName("index");
@@ -63,15 +59,39 @@ public class PlatformMainController {
         return viewPage;
     }
 
-
+    /**
+     * 플랫폼 메인화면 접근
+     * @param userInfo
+     * @return
+     */
     @GetMapping("/platformMain")
-    public String adminMain(){
-        return "platform/platformMain";
+    public ModelAndView mainPageAccess(@RequestParam("User") Optional<UserMst> userInfo) {
+        ModelAndView viewPage = new ModelAndView();
+        viewPage.setViewName("platform/platformMain");
+        viewPage.addObject("userInfo", userInfo);
+
+        return viewPage;
     }
 
+    /**
+     * 플랫폼 프랜차이즈 점포 조회 화면 접근
+     * @return
+     */
     @GetMapping("/storeMgt/franchise")
     public String franchise(){
         return "platform/storeMgt/franchise";
+    }
+
+    /**
+     * 프랜차이즈 점포 find All to JSON
+     * @return List<StoreMst>
+     */
+    @ResponseBody
+    @GetMapping("/storeMgt/franchise/search")
+    public List<StoreMst> franchiseAllList() {
+        List<StoreMst> franchiseStoreAllList = platformMainService.selectFranchiseStoreAllList();
+
+        return franchiseStoreAllList;
     }
 
     @GetMapping("/storeMgt/personal")
