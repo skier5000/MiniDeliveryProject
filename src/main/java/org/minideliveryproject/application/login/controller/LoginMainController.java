@@ -49,6 +49,7 @@ public class LoginMainController {
 
             if (realPassword.equals(userForm.getPassword())) {
                 accessCd = selectUserServiceList.get().getUserRoleType(); // 접근 권한 코드
+                viewPage.addObject("User", selectUserServiceList);
                 switch (accessCd) {
                     case PLATFORM:
                         viewPage.setViewName("redirect:/platform/");
