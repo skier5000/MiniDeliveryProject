@@ -1,6 +1,5 @@
 package org.minideliveryproject.application.platform.controller;
 
-import com.google.gson.Gson;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.minideliveryproject.application.domain.entity.FranchiseMst;
