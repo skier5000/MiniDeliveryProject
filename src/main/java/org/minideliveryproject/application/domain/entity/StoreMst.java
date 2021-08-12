@@ -9,6 +9,7 @@ import org.minideliveryproject.application.domain.entity.embeded.StoreType;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 @Getter @Setter
 @Entity
@@ -50,7 +51,7 @@ public class StoreMst {
     private String storeName;
     private String storeImgUrl;
     private String storeTel;
-    private String storeHop;
+    private LocalTime storeHop;          // 영업시간
     private Integer minOrdPrice;      // 최소주문금액
     private LocalDate contDate;       // 계약일자
     private LocalDate contExpDate;    // 계약만료일자
