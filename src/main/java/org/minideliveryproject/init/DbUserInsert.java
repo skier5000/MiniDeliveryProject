@@ -3,10 +3,7 @@ package org.minideliveryproject.init;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.minideliveryproject.application.domain.entity.*;
-import org.minideliveryproject.application.domain.entity.embeded.FoodType;
-import org.minideliveryproject.application.domain.entity.embeded.StoreState;
-import org.minideliveryproject.application.domain.entity.embeded.StoreType;
-import org.minideliveryproject.application.domain.entity.embeded.UserRoleType;
+import org.minideliveryproject.application.domain.entity.embeded.*;
 import org.minideliveryproject.application.domain.repository.*;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.context.ApplicationListener;
@@ -22,6 +19,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Optional;
@@ -39,7 +37,11 @@ public class DbUserInsert {
 
     private final UserMstRepository userMstRepository;
 
+    private final UserMstRepositoryImpl userMstRepositoryImpl;
+
     private final StoreMstRepository storeMstRepository;
+
+    private final StoreMstRepositoryImpl storeMstRepositoryImpl;
 
     private final FranchiseMstRepository franchiseMstRepository;
 
@@ -135,23 +137,29 @@ public class DbUserInsert {
         userMst.setUserRoleType(UserRoleType.STORE);
         userMst.setAddress(new Address("356-12", "천안시", "충남 천안시 서북구 불당26로80", "401-901"));
         userMst.setCommonColumn(new CommonColumn(LocalDateTime.now(), "Test", LocalDateTime.now(), "Test"));
-        em.persist(userMst);
+        userMstRepositoryImpl.save(userMst);
 
         StoreMst storeMst = new StoreMst();
         storeMst.setFranchiseMst(franchiseMst);
         storeMst.setUserMst(userMst);
-        storeMst.setStoreState(StoreState.PREPARING);
-        storeMst.setFoodType(FoodType.CHICKEN);
-        storeMst.setStoreImgUrl("/reocurecs/img/210050_232");
-        storeMst.setMinOrdPrice(24000);
-        storeMst.setStoreName("BBQ불당점");
         storeMst.setStoreType(StoreType.FRANCHISE);
+        storeMst.setFoodType(FoodType.CHICKEN);
+        storeMst.setStoreState(StoreState.PREPARING);
+        storeMst.setAddress(userMst.getAddress());
+        storeMst.setDeleteType(DeleteType.NO);
+        storeMst.setCommonColumn(userMst.getCommonColumn());
+        storeMst.setStoreName("BBQ불당점");
+        storeMst.setStoreImgUrl("/reocurecs/img/210050_232");
+        storeMst.setStoreTel(userMst.getPhoneNumber());   // 향후 가게 전화번호로
+        storeMst.setStoreHop(LocalTime.of(11, 59, 59));
+        storeMst.setMinOrdPrice(10000);
 
-        // when
-        Long saveSeq = storeMstRepository.save(storeMst);
-        em.flush();
-        em.clear();
-        StoreMst findStoreMst = storeMstRepository.findBySeq(saveSeq);
+        storeMst.setContDate(LocalDate.now());
+        storeMst.setContExpDate(LocalDate.of(2023,12,31));
+        storeMst.setContRenewDate(LocalDate.now());
+        storeMst.setContCnt(1);
+
+        storeMstRepositoryImpl.save(storeMst);
     }
 
     @PostConstruct
@@ -171,23 +179,30 @@ public class DbUserInsert {
         userMst.setUserRoleType(UserRoleType.STORE);
         userMst.setAddress(new Address("356-12", "천안시", "충남 천안시 서북구 불당26로80", "401-901"));
         userMst.setCommonColumn(new CommonColumn(LocalDateTime.now(), "Test", LocalDateTime.now(), "Test"));
-        em.persist(userMst);
+        userMstRepositoryImpl.save(userMst);
 
         StoreMst storeMst = new StoreMst();
         storeMst.setFranchiseMst(franchiseMst);
         storeMst.setUserMst(userMst);
-        storeMst.setStoreState(StoreState.PREPARING);
-        storeMst.setFoodType(FoodType.CHICKEN);
-        storeMst.setStoreImgUrl("/reocurecs/img/210050_232");
-        storeMst.setMinOrdPrice(24000);
-        storeMst.setStoreName("Kyochon불당점");
         storeMst.setStoreType(StoreType.FRANCHISE);
+        storeMst.setFoodType(FoodType.CHICKEN);
+        storeMst.setStoreState(StoreState.PREPARING);
+        storeMst.setAddress(userMst.getAddress());
+        storeMst.setDeleteType(DeleteType.NO);
+        storeMst.setCommonColumn(userMst.getCommonColumn());
+        storeMst.setStoreName("Kyochon불당점");
+        storeMst.setStoreImgUrl("/reocurecs/img/210050_232");
+        storeMst.setStoreTel(userMst.getPhoneNumber());
+        storeMst.setStoreHop(LocalTime.of(11, 59, 59));
+        storeMst.setMinOrdPrice(10000);
 
-        // when
-        Long saveSeq = storeMstRepository.save(storeMst);
-        em.flush();
-        em.clear();
-        StoreMst findStoreMst = storeMstRepository.findBySeq(saveSeq);
+        storeMst.setContDate(LocalDate.now());
+        storeMst.setContExpDate(LocalDate.of(2023,12,31));
+        storeMst.setContRenewDate(LocalDate.now());
+        storeMst.setContCnt(1);
+        storeMstRepositoryImpl.save(storeMst);
+
+
     }
 
     @PostConstruct
@@ -209,23 +224,30 @@ public class DbUserInsert {
         userMst.setUserRoleType(UserRoleType.STORE);
         userMst.setAddress(new Address("122-21", "서울특별시", "서울특별시 중구 한강대로 405", "서울역"));
         userMst.setCommonColumn(new CommonColumn(LocalDateTime.now(), "Test", LocalDateTime.now(), "Test"));
-        em.persist(userMst);
+        userMstRepositoryImpl.save(userMst);
 
 
         storeMst.setFranchiseMst(franchiseMst);
         storeMst.setUserMst(userMst);
-        storeMst.setStoreState(StoreState.PREPARING);
-        storeMst.setFoodType(FoodType.CHICKEN);
-        storeMst.setStoreImgUrl("/reocurecs/img/210050_232");
-        storeMst.setMinOrdPrice(24000);
-        storeMst.setStoreName("BBQ서울역점");
         storeMst.setStoreType(StoreType.FRANCHISE);
+        storeMst.setFoodType(FoodType.CHICKEN);
 
-        // when
-        Long saveSeq = storeMstRepository.save(storeMst);
-        em.flush();
-        em.clear();
-        StoreMst findStoreMst = storeMstRepository.findBySeq(saveSeq);
+        storeMst.setStoreState(StoreState.PREPARING);
+        storeMst.setAddress(userMst.getAddress());
+        storeMst.setDeleteType(DeleteType.NO);
+        storeMst.setCommonColumn(userMst.getCommonColumn());
+
+        storeMst.setStoreName("BBQ서울역점");
+        storeMst.setStoreImgUrl("/reocurecs/img/210050_232");
+        storeMst.setStoreTel(userMst.getPhoneNumber());
+        storeMst.setStoreHop(LocalTime.of(11, 59, 59));
+        storeMst.setMinOrdPrice(10000);
+
+        storeMst.setContDate(LocalDate.now());
+        storeMst.setContExpDate(LocalDate.of(2023,12,31));
+        storeMst.setContRenewDate(LocalDate.now());
+        storeMst.setContCnt(1);
+        storeMstRepositoryImpl.save(storeMst);
     }
 
     @PostConstruct
@@ -245,23 +267,29 @@ public class DbUserInsert {
         userMst.setUserRoleType(UserRoleType.STORE);
         userMst.setAddress(new Address("597-8", "대전광역시", "대전 유성구 학하서로121번길 154", "101"));
         userMst.setCommonColumn(new CommonColumn(LocalDateTime.now(), "Test", LocalDateTime.now(), "Test"));
-        em.persist(userMst);
+        userMstRepositoryImpl.save(userMst);
 
         StoreMst storeMst = new StoreMst();
         storeMst.setFranchiseMst(franchiseMst);
         storeMst.setUserMst(userMst);
-        storeMst.setStoreState(StoreState.PREPARING);
-        storeMst.setFoodType(FoodType.SNACK);
-        storeMst.setStoreImgUrl("/reocurecs/img/210050_232");
-        storeMst.setMinOrdPrice(24000);
-        storeMst.setStoreName("바로그집한밭대점");
         storeMst.setStoreType(StoreType.FRANCHISE);
+        storeMst.setFoodType(FoodType.SNACK);
+        storeMst.setStoreState(StoreState.PREPARING);
+        storeMst.setAddress(userMst.getAddress());
+        storeMst.setDeleteType(DeleteType.NO);
+        storeMst.setCommonColumn(userMst.getCommonColumn());
 
-        // when
-        Long saveSeq = storeMstRepository.save(storeMst);
-        em.flush();
-        em.clear();
-        StoreMst findStoreMst = storeMstRepository.findBySeq(saveSeq);
+        storeMst.setStoreName("바로그집한밭대점");
+        storeMst.setStoreImgUrl("/reocurecs/img/210050_232");
+        storeMst.setStoreTel(userMst.getPhoneNumber());
+        storeMst.setStoreHop(LocalTime.of(11, 59, 59));
+        storeMst.setMinOrdPrice(10000);
+
+        storeMst.setContDate(LocalDate.now());
+        storeMst.setContExpDate(LocalDate.of(2023,12,31));
+        storeMst.setContRenewDate(LocalDate.now());
+        storeMst.setContCnt(1);
+        storeMstRepositoryImpl.save(storeMst);
     }
 
     @PostConstruct
@@ -288,18 +316,24 @@ public class DbUserInsert {
 
         storeMst.setFranchiseMst(franchiseMst);
         storeMst.setUserMst(userMst);
-        storeMst.setStoreState(StoreState.PREPARING);
-        storeMst.setFoodType(FoodType.CHICKEN);
-        storeMst.setStoreImgUrl("/reocurecs/img/210050_232");
-        storeMst.setMinOrdPrice(24000);
-        storeMst.setStoreName("BBQ순천점");
         storeMst.setStoreType(StoreType.FRANCHISE);
+        storeMst.setFoodType(FoodType.CHICKEN);
+        storeMst.setStoreState(StoreState.PREPARING);
+        storeMst.setAddress(userMst.getAddress());
+        storeMst.setDeleteType(DeleteType.NO);
+        storeMst.setCommonColumn(userMst.getCommonColumn());
 
-        // when
-        Long saveSeq = storeMstRepository.save(storeMst);
-        em.flush();
-        em.clear();
-        StoreMst findStoreMst = storeMstRepository.findBySeq(saveSeq);
+        storeMst.setStoreName("BBQ순천점");
+        storeMst.setStoreImgUrl("/reocurecs/img/210050_232");
+        storeMst.setStoreTel(userMst.getPhoneNumber());
+        storeMst.setStoreHop(LocalTime.of(11, 59, 59));
+        storeMst.setMinOrdPrice(10000);
+
+        storeMst.setContDate(LocalDate.now());
+        storeMst.setContExpDate(LocalDate.of(2023,12,31));
+        storeMst.setContRenewDate(LocalDate.now());
+        storeMst.setContCnt(1);
+        storeMstRepositoryImpl.save(storeMst);
     }
 
 
@@ -309,7 +343,10 @@ public class DbUserInsert {
         Optional<FranchiseMst> alreadyFranchiseList = franchiseMstRepository.findByFranchiseName(FranchiseName);
         if (alreadyFranchiseList.isEmpty()) {
             franchiseMst.setFranchiseName(FranchiseName);
-            em.persist(franchiseMst);
+            //franchiseMst.setFranchiseIssue("");
+            franchiseMst.setFranchiseRemark("신규생성");
+            franchiseMst.setCommonColumn(new CommonColumn(LocalDateTime.now(), "franchiseCreateTest", LocalDateTime.now(), "franchiseCreateTest"));
+            franchiseMstRepository.save(franchiseMst);
         }
         else {
             franchiseMst = alreadyFranchiseList.get();
