@@ -14,4 +14,38 @@ $(function(){
         $(this).css("background", "white");
         $(this).css("color", "black");
     });
+
+    $("#toggle-nav").click(function(){
+        // $(this).removeClass("fas fa-angle-right fa-lg");
+        // $(this).addClass("fas fa-angle-left fa-lg");
+
+        if($("nav").hasClass("nav-slide")){
+            $("nav").css("left", "-250px");
+            $("nav").removeClass("nav-slide");
+
+            $("section").css("margin-left", "0px");
+            $("#list").css("width", "100%");
+
+            $(".header-menu").css("padding-left", "10px");
+
+            // $(this).removeClass("fas fa-angle-left fa-lg");
+            // $(this).addClass("fas fa-angle-right fa-lg");
+        }else{
+            $("nav").css("left", "250px");
+            $("nav").addClass("nav-slide");
+
+            $("section").css("margin-left", "250px");
+
+            $(".header-menu").css("padding-left", "260px");
+
+            // $(this).removeClass("fas fa-angle-right fa-lg");
+            // $(this).addClass("fas fa-angle-left fa-lg");
+        }
+
+
+
+
+
+    });
+
 });

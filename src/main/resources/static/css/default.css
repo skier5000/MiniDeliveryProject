@@ -14,59 +14,119 @@ html, body {width: 100%; height: 100%;}
 
 a, a:hover{color: black; text-decoration: none;}
 
+
 /* wrapper */
 .wrapper {
     width: 100%;
     height: 100%;
-    overflow: auto;
 }
 
 /* header */
 header {
+    position: fixed;
     float: left;
-    padding-top: 15px;
-    padding-bottom: 10px;
     font-size: 1.1rem;
-    width: 250px;
-    height: 200px;
-    background: #cae1f9;
-    border-bottom: 2px dotted #b7d8fb;
+    width: 100%;
+    height: 40px;
+    /*background: #cae1f9;*/
+    z-index: 1;
 }
 
-header .profile {text-align: center;}
+header .header-menu-bar {
+    /*margin-left: 250px;*/
+    border-bottom: 2px solid #dee2e6;
+    height: 100%;
+    background: white;
+    padding-top: 7px;
+}
 
-header .profile img {width: 120px; border-radius: 70%;}
+header .header-menu {
+    /*margin-left: 10px;*/
+    padding: 11px 10px 10px 260px;
+    display: inline;
+    height: 100%;
+    background: #cae1f9;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
 
-header .profile p {margin: 10px 0px 10px 0px;}
+header #toggle-nav {
+    cursor: pointer;
+}
+
+header .admin-info {
+    float: right;
+    padding-right: 20px;
+}
 
 header span {margin-left: 10px;}
 
 header .dropdown-item {text-align: center;}
 
-header .admin-self-menu {text-align: center;}
+/* nav */
+nav {
+    position: fixed;
+    /*top: 40px;*/
+    background: #cae1f9;
+    clear: both;
+    float: left;
+    width: 250px;
+    height: 100%;
+    border-top: 2px dotted #b7d8fb;
+    left: 250px;
+    margin-left: -250px;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+    overflow: auto;
+    z-index: 1;
+}
 
-header .dropdown {
+/* nav 스크롤바 */
+nav::-webkit-scrollbar { width: 5px; }
+nav::-webkit-scrollbar-track { background-color: #F3F3F3; }
+nav::-webkit-scrollbar-thumb { background-color: #b7d8fb; }
+nav::-webkit-scrollbar-button { display: none; }
+
+nav .profile {
+    height: 270px;
+    border-bottom: 2px dotted #b7d8fb;
+    border-right: 2px dotted #b7d8fb;
+    text-align: center;
+}
+
+nav .admin-info {
+    font-size: 1.2rem;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+nav #profile {
+    border-radius: 50%;
+    width: 180px;
+    height: 160px;
+    margin-top: 20px;
+}
+
+nav .admin-self-menu {
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+nav .dropdown {
     display: inline;
     cursor: pointer;
     margin-left: 20px;
 }
 
-header .dropdown-menu {min-width: 0px;}
+nav .dropdown-menu {min-width: 0px;}
 
-header .admin-logOut {
+nav .admin-logOut {
     display: inline;
     cursor: pointer;
-}
-
-
-/* nav */
-nav {
-    background: #cae1f9;
-    border-right-color: white;
-    clear: both;
-    float: left;
-    width: 250px;
-    height: 100%;
 }
 
 nav .menu {
@@ -77,7 +137,11 @@ nav .menu {
     margin-bottom: 25px;
 }
 
-nav .admin-menu-group {background: #cae1f9;}
+nav .admin-menu-group {
+    border-right: 2px dotted #b7d8fb;
+    background: #cae1f9;
+    height: 100%;
+}
 
 nav .list-group {
     list-style: none;
@@ -102,8 +166,11 @@ nav .list-group .sub-menu {
 /* section */
 section {
     overflow: hidden;
-    /*height: 100%;*/
+    margin-left: 250px;
     padding: 10px 20px 10px 20px;
+    -webkit-transition: all 0.6s ease;
+    -moz-transition: all 0.6s ease;
+    -o-transition: all 0.6s ease;
+    transition: all 0.6s ease;
 }
-
 

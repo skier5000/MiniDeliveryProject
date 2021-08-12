@@ -1,31 +1,48 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<nav th:fragment="navFragment">
+<nav class="nav-slide" th:fragment="navFragment">
+    <div class="profile">
+        <img src="/img/profileImg.png" id="profile" alt="사용자이미지">
+        <p class="admin-info">사용자아이디(이름)</p>
+        <div class="admin-self-menu">
+            <div class="admin-logOut fa-lg"><i class="fas fa-door-open"></i></div>
+            <div class="dropdown fas fa-cog fa-lg" data-toggle="dropdown">
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">내 정보 관리</a>
+                    <a class="dropdown-item" href="#">내 정보 관리</a>
+                    <a class="dropdown-item" href="#">내 정보 관리</a>
+                    <a class="dropdown-item" href="#">내 정보 관리</a>
+                    <a class="dropdown-item" href="#">내 정보 관리</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="admin-menu-group">
         <ul class="list-group">
             <li class="list-group-item far fa-folder"><span>점포 관리</span></li>
-            <li class="sub-menu"><a href="/platform/storeMgt/franchise"><i class="fas fa-ellipsis-h"></i><span>프랜차이즈</span></a></li>
-            <li class="sub-menu"><a href="/platform/storeMgt/personal"><i class="fas fa-ellipsis-h"></i><span>개인</span></a></li>
-            <li class="sub-menu"><a href="#"><i class="fas fa-ellipsis-h"></i><span>주문 관리</span></a></li>
-            <li class="sub-menu"><a href="#"><i class="fas fa-ellipsis-h"></i><span>매출 현황</span></a></li>
-            <li class="sub-menu"><a href="#"><i class="fas fa-ellipsis-h"></i><span>운영 현황</span></a></li>
-            <li class="sub-menu"><a href="#"><i class="fas fa-ellipsis-h"></i><span>계약 관리</span></a></li>
+            <li class="sub-menu"><a href="/platform/storeMgt/franchise"><i class="fas fa-ellipsis-h"></i><span>프랜차이즈 점포</span></a></li>
+            <li class="sub-menu"><a href="/platform/storeMgt/personal"><i class="fas fa-ellipsis-h"></i><span>개인 점포</span></a></li>
+            <li class="sub-menu"><a href="/platform/storeMgt/order"><i class="fas fa-ellipsis-h"></i><span>주문 관리</span></a></li>
+            <li class="sub-menu"><a href="/platform/storeMgt/salesAmount"><i class="fas fa-ellipsis-h"></i><span>매출 관리</span></a></li>
+            <li class="sub-menu"><a href="/platform/storeMgt/shipStatus"><i class="fas fa-ellipsis-h"></i><span>운영 관리</span></a></li>
+            <li class="sub-menu"><a href="/platform/storeMgt/contract"><i class="fas fa-ellipsis-h"></i><span>계약 관리</span></a></li>
         </ul>
         <ul class="list-group">
             <li class="list-group-item far fa-folder"><span>정보 관리</span></li>
             <li class="sub-menu"><a href="/platform/infoMgt/employee"><i class="fas fa-ellipsis-h"></i><span>사원</span></a></li>
-            <li class="sub-menu"><a href="#"><i class="fas fa-ellipsis-h"></i><span>점주</span></a></li>
-            <li class="sub-menu"><a href="#"><i class="fas fa-ellipsis-h"></i><span>고객</span></a></li>
+            <li class="sub-menu"><a href="/platform/infoMgt/store"><i class="fas fa-ellipsis-h"></i><span>점주</span></a></li>
+            <li class="sub-menu"><a href="/platform/infoMgt/user"><i class="fas fa-ellipsis-h"></i><span>고객</span></a></li>
         </ul>
         <ul class="list-group">
             <li class="list-group-item far fa-folder"><span>상품 관리</span></li>
-            <li class="sub-menu"><a href="#"><i class="fas fa-ellipsis-h"></i><span>프랜차이즈</span></a></li>
-            <li class="sub-menu"><a href="#"><i class="fas fa-ellipsis-h"></i><span>개인</span></a></li>
+            <li class="sub-menu"><a href="/platform/prodMgt/franchiseProd"><i class="fas fa-ellipsis-h"></i><span>프랜차이즈 점포</span></a></li>
+            <li class="sub-menu"><a href="/platform/prodMgt/personalProd"><i class="fas fa-ellipsis-h"></i><span>개인 점포</span></a></li>
         </ul>
         <ul class="list-group">
             <li class="list-group-item far fa-folder"><span>공유사항 관리</span></li>
-            <li class="sub-menu"><a href="#"><i class="fas fa-ellipsis-h"></i><span>공유사항</span></a></li>
-            <li class="sub-menu"><a href="#"><i class="fas fa-ellipsis-h"></i><span>점주 건의사항</span></a></li>
+            <li class="sub-menu"><a href="/platform/sharedMgt/shareInfo"><i class="fas fa-ellipsis-h"></i><span>공유사항</span></a></li>
+            <li class="sub-menu"><a href="/platform/sharedMgt/qa"><i class="fas fa-ellipsis-h"></i><span>점주 건의사항</span></a></li>
         </ul>
     </div>
 </nav>

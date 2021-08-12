@@ -41,8 +41,11 @@ section .info ul li button span{
 }
 
 section .sub-menu-name {
-    margin-top: 5px;
+    width: 100%;
+    border-bottom: 1px solid #dee2e6;
+    margin-top: 50px;
     margin-bottom: 10px;
+    padding-bottom: 10px;
     font-size: 1.3rem;
 }
 
@@ -101,6 +104,10 @@ section table.dataTable thead td, table.dataTable tbody td{
 section .paginate_button.current{
     background: #cae1f9 !important;
     border: #cae1f9 !important;
+}
+
+section .paginate_button {
+    border: 1px solid #cae1f9 !important;
 }
 
 /* media query */
