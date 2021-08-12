@@ -3,8 +3,10 @@ package org.minideliveryproject.application.platform.service;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.minideliveryproject.application.domain.entity.FranchiseMst;
+import org.minideliveryproject.application.domain.entity.StoreMst;
 import org.minideliveryproject.application.domain.entity.UserMst;
 import org.minideliveryproject.application.domain.repository.FranchiseMstRepository;
+import org.minideliveryproject.application.domain.repository.StoreMstRepositoryImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,16 +22,20 @@ import java.util.Optional;
 @Service
 public class PlatformMainService {
 
-    private final FranchiseMstRepository franchiseMstRepository;
+    private final StoreMstRepositoryImpl storeMstRepository;
 
     /**
-     * 고객 ID에 따른 정보 조회
+     * 프랜차이즈 점포 find All to JSON
      */
-    public List<FranchiseMst> selectFranchiseAllList() {
+    public List<StoreMst> selectFranchiseStoreAllList() {
         log.info("PlatformMainService::selectFranchiseAllList called");
-        List<FranchiseMst> franchiseAllList = franchiseMstRepository.findAll();
+        List<StoreMst> franchiseStoreAllList = null;
 
-        return franchiseAllList;
+        for (StoreMst storeMst : storeMstRepository.findAll()) {
+            System.out.println("storeMst = " + storeMst);
+        }
+
+        return franchiseStoreAllList;
     }
 
 

@@ -32,7 +32,7 @@ public class DbOrderInsert {
 
     private final UserMstRepository userMstRepository;
 
-    private final StoreMstRepository storeMstRepository;
+    private final StoreMstRepositoryImpl storeMstRepository;
 
     private final OrderMstRepository orderMstRepository;
 
@@ -53,7 +53,7 @@ public class DbOrderInsert {
         /* given */
         // 주문1개
         OrderMst orderMst = new OrderMst();
-        orderMst.setStoreMst(storeMstRepository.findBySeq(2L)); // 바로그집
+        orderMst.setStoreMst(storeMstRepository.findBySeq(1L)); // 바로그집
         orderMst.setUserMst(userMstRepository.findBySeq(13L)); // 나는야고객1000
         orderMst.setCommonColumn(new CommonColumn(LocalDateTime.now(), "Test", LocalDateTime.now(), "Test"));
         orderMst.setPayment(PaymentType.CARD);
@@ -88,7 +88,7 @@ public class DbOrderInsert {
         /* given */
         // 주문1개
         OrderMst orderMst = new OrderMst();
-        orderMst.setStoreMst(storeMstRepository.findBySeq(2L)); // 바로그집
+        orderMst.setStoreMst(storeMstRepository.findByStoreName("바로그집한밭대점")); // 바로그집한밭대점
         orderMst.setUserMst(userMstRepository.findBySeq(13L)); // 나는야고객1002
         orderMst.setCommonColumn(new CommonColumn(LocalDateTime.now(), "Test", LocalDateTime.now(), "Test"));
         orderMst.setPayment(PaymentType.NAVERPAY);

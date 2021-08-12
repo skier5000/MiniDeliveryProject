@@ -10,4 +10,6 @@ import java.util.List;
 public interface StoreMstRepositoryImpl extends JpaRepository<StoreMst, Long> {
 
     public StoreMst findBySeq(Long seq);                         // 아이템 seq 조회
+    public StoreMst findByStoreName(String storeName);
+
 }
