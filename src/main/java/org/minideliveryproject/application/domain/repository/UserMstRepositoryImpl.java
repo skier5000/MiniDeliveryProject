@@ -12,6 +12,6 @@ import java.util.Optional;
 public interface UserMstRepositoryImpl extends JpaRepository<UserMst, Long> {
     public Optional<UserMst> findBySeq(Long seq);             // 유저 sequence 조회
     public Optional<UserMst> findByUserId(String userId);     // 유저 id 조회
-    public Optional<UserMst> findByUserName(String userName); // 유저 name 조회
+    public UserMst findByUserName(String userName); // 유저 name 조회
 
 }

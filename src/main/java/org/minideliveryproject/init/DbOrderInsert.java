@@ -3,6 +3,7 @@ package org.minideliveryproject.init;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.minideliveryproject.application.domain.entity.CommonColumn;
+import org.minideliveryproject.application.domain.entity.ItemMst;
 import org.minideliveryproject.application.domain.entity.OrderDetail;
 import org.minideliveryproject.application.domain.entity.OrderMst;
 import org.minideliveryproject.application.domain.entity.embeded.PaymentType;
@@ -40,6 +41,8 @@ public class DbOrderInsert {
 
     private final OrderDetailRepository orderDetailRepository;
 
+    private final UserMstRepositoryImpl userMstRepositoryImpl;
+
 
     /**
      * Order Insert
@@ -53,8 +56,8 @@ public class DbOrderInsert {
         /* given */
         // 주문1개
         OrderMst orderMst = new OrderMst();
-        orderMst.setStoreMst(storeMstRepository.findBySeq(1L)); // 바로그집
-        orderMst.setUserMst(userMstRepository.findBySeq(13L)); // 나는야고객1000
+        orderMst.setStoreMst(storeMstRepository.findByStoreName("바로그집한밭대점")); // 바로그집
+        orderMst.setUserMst(userMstRepositoryImpl.findByUserName("나는야고객1000")); // 나는야고객1000
         orderMst.setCommonColumn(new CommonColumn(LocalDateTime.now(), "Test", LocalDateTime.now(), "Test"));
         orderMst.setPayment(PaymentType.CARD);
         orderMst.setOrderDate(LocalDateTime.now());
@@ -67,7 +70,8 @@ public class DbOrderInsert {
         orderDetail.setItemQuantity(1);
         orderDetail.setItemPrice(2000);
         orderDetail.setOrderMst(orderMst);
-        orderDetail.setItemMst(itemMstRepository.findBySeq(68L)); //일반김밥
+        Optional<ItemMst> findByItemName = itemMstRepository.findByItemName("일반김밥");
+        orderDetail.setItemMst(findByItemName.get()); //일반김밥
 
         orderDetailList.add(orderDetail);
         orderMst.setOrderDetailList(orderDetailList);
@@ -75,8 +79,6 @@ public class DbOrderInsert {
         /* when */
         orderMstRepository.save(orderMst);
         orderDetailRepository.save(orderDetail);
-        Optional<OrderMst> orderMstCompare = orderMstRepository.findById(orderMst.getSeq());
-        Optional<OrderDetail> orderDetailCompare = orderDetailRepository.findById(orderDetail.getSeq());
     }
 
     /**
@@ -103,21 +105,24 @@ public class DbOrderInsert {
         orderDetail1.setItemQuantity(1);
         orderDetail1.setItemPrice(3500);
         orderDetail1.setOrderMst(orderMst);
-        orderDetail1.setItemMst(itemMstRepository.findBySeq(57L)); // 불고기김밥
+        Optional<ItemMst> findByItemName1 = itemMstRepository.findByItemName("불고기김밥");
+        orderDetail1.setItemMst(findByItemName1.get()); // 불고기김밥
         orderDetailList.add(orderDetail1);
 
         OrderDetail orderDetail2 = new OrderDetail();
         orderDetail2.setItemQuantity(1);
         orderDetail2.setItemPrice(3500);
         orderDetail2.setOrderMst(orderMst);
-        orderDetail2.setItemMst(itemMstRepository.findBySeq(69L)); // 참치김밥
+        Optional<ItemMst> findByItemName2 = itemMstRepository.findByItemName("참치김밥");
+        orderDetail2.setItemMst(findByItemName2.get()); // 참치김밥
         orderDetailList.add(orderDetail2);
 
         OrderDetail orderDetail3 = new OrderDetail();
         orderDetail3.setItemQuantity(1);
         orderDetail3.setItemPrice(3000);
         orderDetail3.setOrderMst(orderMst);
-        orderDetail3.setItemMst(itemMstRepository.findBySeq(70L)); // 치즈김밥
+        Optional<ItemMst> findByItemName3 = itemMstRepository.findByItemName("치즈김밥");
+        orderDetail3.setItemMst(findByItemName3.get()); // 치즈김밥
         orderDetailList.add(orderDetail3);
 
 
@@ -126,7 +131,6 @@ public class DbOrderInsert {
         /* when */
         orderMstRepository.save(orderMst);
         orderDetailRepository.saveAll(orderDetailList);
-        Optional<OrderMst> orderMstCompare = orderMstRepository.findById(orderMst.getSeq());
     }
 
     /**
@@ -146,13 +150,14 @@ public class DbOrderInsert {
         orderMst.setTotalPrice(18000);
         orderMst.setRequests("조심히 배달 부탁드려요~");
 
-        // 불고기, 참치, 치즈 김밥 각 1개씩
+        // 살살치킨
         List<OrderDetail> orderDetailList = new ArrayList<>();
         OrderDetail orderDetail = new OrderDetail();
         orderDetail.setItemQuantity(1);
         orderDetail.setItemPrice(18000);
         orderDetail.setOrderMst(orderMst);
-        orderDetail.setItemMst(itemMstRepository.findBySeq(54L)); // 살살치킨
+        Optional<ItemMst> findByItemName = itemMstRepository.findByItemName("살살치킨");
+        orderDetail.setItemMst(findByItemName.get()); // 살살치킨
 
         orderDetailList.add(orderDetail);
         orderMst.setOrderDetailList(orderDetailList);

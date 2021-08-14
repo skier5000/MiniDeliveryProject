@@ -15,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpSession;
 import java.util.*;
 
 
@@ -40,46 +41,19 @@ public class PlatformMainController {
 
     private final PlatformMainService platformMainService;
 
-
-    /**
-     * MainController
-     * Index 메인화면 접근
-     * @param
-     * @return index
-     * @throws Exception
-     */
-    @GetMapping("/platform/platformIndex")
-    public ModelAndView indexAccess() throws Exception {
-        log.info("AccessMainController::indexAccess called");
-
-        ModelAndView viewPage = new ModelAndView();
-        viewPage.setViewName("index");
-
-        return viewPage;
-    }
-
     /**
      * 플랫폼 메인화면 접근
-     * @param userInfo
      * @return
      */
-    @GetMapping("/platformMain")
-    public ModelAndView mainPageAccess(@RequestParam("User") Optional<UserMst> userInfo) {
+    @GetMapping("/")
+    public ModelAndView mainPageAccess(HttpSession session) {
         ModelAndView viewPage = new ModelAndView();
         viewPage.setViewName("platform/platformMain");
-        viewPage.addObject("userInfo", userInfo);
+        viewPage.addObject("userName", session.getAttribute("userName"));
 
         return viewPage;
     }
 
-    /**
-     * 플랫폼 프랜차이즈 점포 조회 화면 접근
-     * @return
-     */
-    @GetMapping("/storeMgt/franchise")
-    public String franchise(){
-        return "platform/storeMgt/franchise";
-    }
 
     /**
      * 프랜차이즈 점포 find All to JSON
@@ -115,6 +89,11 @@ public class PlatformMainController {
         model.addAttribute("map", map);
 
         return "platform/infoMgt/employee";
+    }
+
+    @GetMapping("prodMgt/franchiseProd")
+    public String test() {
+        return "platform/prodMgt/franchiseProd";
     }
 
 

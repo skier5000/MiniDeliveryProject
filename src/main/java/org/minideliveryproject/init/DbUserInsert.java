@@ -39,8 +39,6 @@ public class DbUserInsert {
 
     private final UserMstRepositoryImpl userMstRepositoryImpl;
 
-    private final StoreMstRepository storeMstRepository;
-
     private final StoreMstRepositoryImpl storeMstRepositoryImpl;
 
     private final FranchiseMstRepository franchiseMstRepository;
@@ -73,16 +71,6 @@ public class DbUserInsert {
             Long userSeq = userMstRepository.save(userMst);
             hm.put(userSeq, userMst);
         }
-
-        // Iterator 돌면서 값 체크
-        Iterator<Long> iteratorHm = hm.keySet().iterator();
-        while(iteratorHm.hasNext()){
-            Long key = iteratorHm.next();
-
-            UserMst keyValue = hm.get(key); // 해시맵에 넣은 값
-            UserMst findUser = userMstRepository.findBySeq(key); // 그 키값으로 찾은 값
-
-        }
     }
 
     @PostConstruct
@@ -109,15 +97,6 @@ public class DbUserInsert {
             hm.put(userSeq, userMst);
         }
 
-        // Iterator 돌면서 값 체크
-        Iterator<Long> iteratorHm = hm.keySet().iterator();
-        while(iteratorHm.hasNext()){
-            Long key = iteratorHm.next();
-
-            UserMst keyValue = hm.get(key); // 해시맵에 넣은 값
-            UserMst findUser = userMstRepository.findBySeq(key); // 그 키값으로 찾은 값
-
-        }
     }
 
     @PostConstruct
@@ -334,6 +313,130 @@ public class DbUserInsert {
         storeMst.setContRenewDate(LocalDate.now());
         storeMst.setContCnt(1);
         storeMstRepositoryImpl.save(storeMst);
+    }
+
+    @PostConstruct
+    @Bean
+    public void 개인점포이영우() {
+        // 개인점포이영우 이영우치킨집
+        // given
+        StoreMst storeMst = new StoreMst();
+        UserMst userMst = new UserMst();
+
+        userMst.setUserId("YOUNGWOOCHICKENHOUSE1001");
+        userMst.setUserPassword("YOUNGWOOCHICKENHOUSE1001");
+        userMst.setUserName("이영우치킨집");
+        userMst.setPhoneNumber("010-2278-0985");
+        userMst.setEmail("YoungWoo@github.com");
+        userMst.setJoinDate(LocalDate.now());
+        userMst.setUserRoleType(UserRoleType.STORE);
+        userMst.setAddress(new Address("96-3", "대전광역시", "대전광역시 유성구 유성대로 901", "105"));
+        userMst.setCommonColumn(new CommonColumn(LocalDateTime.now(), "PrivateTest", LocalDateTime.now(), "PrivateTest"));
+        userMstRepositoryImpl.save(userMst);
+
+
+        storeMst.setUserMst(userMst);
+        storeMst.setStoreType(StoreType.PRIVATE);
+        storeMst.setFoodType(FoodType.CHICKEN);
+        storeMst.setStoreState(StoreState.PREPARING);
+        storeMst.setAddress(userMst.getAddress());
+        storeMst.setDeleteType(DeleteType.NO);
+        storeMst.setCommonColumn(userMst.getCommonColumn());
+
+        storeMst.setStoreName("이영우치킨집");
+        storeMst.setStoreImgUrl("/reocurecs/img/???");
+        storeMst.setStoreTel(userMst.getPhoneNumber());
+        storeMst.setStoreHop(LocalTime.of(11, 59, 59));
+        storeMst.setMinOrdPrice(10000);
+
+        storeMst.setContDate(LocalDate.now());
+        storeMst.setContExpDate(LocalDate.of(2023,12,31));
+        storeMst.setContRenewDate(LocalDate.now());
+        storeMst.setContCnt(1);
+        storeMstRepositoryImpl.save(storeMst);
+        
+    }
+
+    @PostConstruct
+    @Bean
+    public void 개인점포이준범() {
+        // 개인점포이준범 이준범피자집
+        StoreMst storeMst = new StoreMst();
+        UserMst userMst = new UserMst();
+
+        userMst.setUserId("LEEJUNBEOMPIZZA1001");
+        userMst.setUserPassword("LEEJUNBEOMPIZZA1001");
+        userMst.setUserName("이준범피자집");
+        userMst.setPhoneNumber("010-7443-5484");
+        userMst.setEmail("JunbeomLee@github.com");
+        userMst.setJoinDate(LocalDate.now());
+        userMst.setUserRoleType(UserRoleType.STORE);
+        userMst.setAddress(new Address("356-12", "천안시", "충남 천안시 서북구 불당26로77", "102-2703"));
+        userMst.setCommonColumn(new CommonColumn(LocalDateTime.now(), "PrivateTest", LocalDateTime.now(), "PrivateTest"));
+        userMstRepositoryImpl.save(userMst);
+
+
+        storeMst.setUserMst(userMst);
+        storeMst.setStoreType(StoreType.PRIVATE);
+        storeMst.setFoodType(FoodType.PIZZA);
+        storeMst.setStoreState(StoreState.PREPARING);
+        storeMst.setAddress(userMst.getAddress());
+        storeMst.setDeleteType(DeleteType.NO);
+        storeMst.setCommonColumn(userMst.getCommonColumn());
+
+        storeMst.setStoreName("이준범피자집");
+        storeMst.setStoreImgUrl("/reocurecs/img/???");
+        storeMst.setStoreTel(userMst.getPhoneNumber());
+        storeMst.setStoreHop(LocalTime.of(11, 59, 59));
+        storeMst.setMinOrdPrice(10000);
+
+        storeMst.setContDate(LocalDate.now());
+        storeMst.setContExpDate(LocalDate.of(2023,12,31));
+        storeMst.setContRenewDate(LocalDate.now());
+        storeMst.setContCnt(1);
+        storeMstRepositoryImpl.save(storeMst);
+
+    }
+
+    @PostConstruct
+    @Bean
+    public void 개인점포한상우() {
+        // 개인점포한상우 한상우보쌈집
+        StoreMst storeMst = new StoreMst();
+        UserMst userMst = new UserMst();
+
+        userMst.setUserId("SANGWOOHANBOSSAM1001");
+        userMst.setUserPassword("SANGWOOHANBOSSAM1001");
+        userMst.setUserName("한상우보쌈집");
+        userMst.setPhoneNumber("010-9556-9925");
+        userMst.setEmail("SangWooHan@github.com");
+        userMst.setJoinDate(LocalDate.now());
+        userMst.setUserRoleType(UserRoleType.STORE);
+        userMst.setAddress(new Address("356-12", "천안시", "충남 천안시 서북구 두정15로11", "101-1001"));
+        userMst.setCommonColumn(new CommonColumn(LocalDateTime.now(), "PrivateTest", LocalDateTime.now(), "PrivateTest"));
+        userMstRepositoryImpl.save(userMst);
+
+
+        storeMst.setUserMst(userMst);
+        storeMst.setStoreType(StoreType.PRIVATE);
+        storeMst.setFoodType(FoodType.BOSSAM);
+        storeMst.setStoreState(StoreState.PREPARING);
+        storeMst.setAddress(userMst.getAddress());
+        storeMst.setDeleteType(DeleteType.NO);
+        storeMst.setCommonColumn(userMst.getCommonColumn());
+
+        storeMst.setStoreName("한상우보쌈집");
+        storeMst.setStoreImgUrl("/reocurecs/img/???");
+        storeMst.setStoreTel(userMst.getPhoneNumber());
+        storeMst.setStoreHop(LocalTime.of(11, 59, 59));
+        storeMst.setMinOrdPrice(10000);
+
+        storeMst.setContDate(LocalDate.now());
+        storeMst.setContExpDate(LocalDate.of(2023,12,31));
+        storeMst.setContRenewDate(LocalDate.now());
+        storeMst.setContCnt(1);
+        storeMstRepositoryImpl.save(storeMst);
+
     }
 
 

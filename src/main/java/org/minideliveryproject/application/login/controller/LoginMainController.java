@@ -10,8 +10,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpSession;
 import java.util.Optional;
 
 @Slf4j
@@ -28,7 +30,8 @@ public class LoginMainController {
     }
 
     @PostMapping(value = "/login")
-    public ModelAndView loginProcess(@ModelAttribute UserForm userForm) {
+    @ResponseBody
+    public ModelAndView loginProcess(@ModelAttribute UserForm userForm, HttpSession session) {
         log.info("LoginMainController::gotoLoginPage called");
 
         String realPassword;
@@ -47,21 +50,24 @@ public class LoginMainController {
             // 패스워드까지 맞으면 (후에 암호화 방식으로)
             realPassword = selectUserServiceList.get().getUserPassword();
 
+            // 세션값 설정
+            session.setAttribute("userId", selectUserServiceList.get().getUserId());
+            session.setAttribute("userName", selectUserServiceList.get().getUserName());
+            // 세션 유지시간 설정(초단위) 60 * 30 = 30분
+            session.setMaxInactiveInterval(30*60);
+
             if (realPassword.equals(userForm.getPassword())) {
                 accessCd = selectUserServiceList.get().getUserRoleType(); // 접근 권한 코드
                 viewPage.addObject("User", selectUserServiceList);
                 switch (accessCd) {
                     case PLATFORM:
                         viewPage.setViewName("redirect:/platform/");
-                        viewPage.addObject("message", "PLATFORM");
                         return viewPage;
                     case STORE:
                         viewPage.setViewName("redirect:/store/");
-                        viewPage.addObject("message", "STORE");
                         return viewPage;
                     case CUSTOMER:
                         viewPage.setViewName("redirect:/customer/");
-                        viewPage.addObject("message", "CUSTOMER");
                         return viewPage;
                 }
             } else {

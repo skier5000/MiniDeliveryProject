@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.minideliveryproject.application.domain.entity.CommonColumn;
 import org.minideliveryproject.application.domain.entity.FranchiseMst;
 import org.minideliveryproject.application.domain.entity.ItemMst;
+import org.minideliveryproject.application.domain.entity.StoreMst;
 import org.minideliveryproject.application.domain.repository.*;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
@@ -39,6 +40,8 @@ public class DbItemInsert {
 
     private final ItemMstRepository itemMstRepository;
 
+    private final StoreMstRepositoryImpl storeMstRepository;
+
     /**
      * Item Insert
      */
@@ -60,9 +63,7 @@ public class DbItemInsert {
             itemMst.setItemCategory("MainMenu");
             itemMst.setCommonColumn(new CommonColumn(LocalDateTime.now(), "Test", LocalDateTime.now(), "Test"));
 
-            // 프랜차이즈 세팅 (BBQ) → 후에는 이름이 아닌 SEQ 로 받아야하니까 findBySeq
-            //itemMst.setFranchiseMst(franchiseMstRepository.findByFranchiseName("BBQ").get());
-            itemMst.setFranchiseMst(franchiseMstRepository.findBySeq(3L).get());
+            itemMst.setFranchiseMst(franchiseMstRepository.findByFranchiseName("BBQ").get());
 
             // 아이템 중복 체크
             if(itemDuplicateCheck(itemMst, itemMstRepository, franchiseMstRepository).equals("EXIST"))
@@ -90,10 +91,7 @@ public class DbItemInsert {
         itemMst.setItemCategory("MainMenu");
         itemMst.setCommonColumn(new CommonColumn(LocalDateTime.now(), "Test", LocalDateTime.now(), "Test"));
 
-        // 프랜차이즈 세팅 (교촌) → 후에는 이름이 아닌 SEQ 로 받아야하니까 findBySeq
-        itemMst.setFranchiseMst(franchiseMstRepository.findBySeq(1L).get());
-//        em.find(FranchiseMst.class, 1L);
-//        em.createQuery("select m From Member m WHere m.name :=username").setParameter("HSW").getResultList();
+        itemMst.setFranchiseMst(franchiseMstRepository.findByFranchiseName("Kyochon").get());
 
         // 아이템 중복 체크
         if(itemDuplicateCheck(itemMst, itemMstRepository, franchiseMstRepository).equals("EXIST"))
@@ -115,8 +113,7 @@ public class DbItemInsert {
         itemMst.setItemCategory("MainMenu");
         itemMst.setCommonColumn(new CommonColumn(LocalDateTime.now(), "Test", LocalDateTime.now(), "Test"));
 
-        // 프랜차이즈 세팅 (교촌) → 후에는 이름이 아닌 SEQ 로 받아야하니까 findBySeq
-        itemMst.setFranchiseMst(franchiseMstRepository.findBySeq(1L).get());
+        itemMst.setFranchiseMst(franchiseMstRepository.findByFranchiseName("Kyochon").get());
 
         // 아이템 중복 체크
         if(itemDuplicateCheck(itemMst, itemMstRepository, franchiseMstRepository).equals("EXIST"))
@@ -138,8 +135,7 @@ public class DbItemInsert {
         itemMst.setItemCategory("MainMenu");
         itemMst.setCommonColumn(new CommonColumn(LocalDateTime.now(), "Test", LocalDateTime.now(), "Test"));
 
-        // 프랜차이즈 세팅 (교촌) → 후에는 이름이 아닌 SEQ 로 받아야하니까 findBySeq
-        itemMst.setFranchiseMst(franchiseMstRepository.findBySeq(1L).get());
+        itemMst.setFranchiseMst(franchiseMstRepository.findByFranchiseName("Kyochon").get());
 
         // 아이템 중복 체크
         if(itemDuplicateCheck(itemMst, itemMstRepository, franchiseMstRepository).equals("EXIST"))
@@ -161,8 +157,7 @@ public class DbItemInsert {
         itemMst.setItemCategory("MainMenu");
         itemMst.setCommonColumn(new CommonColumn(LocalDateTime.now(), "Test", LocalDateTime.now(), "Test"));
 
-        // 프랜차이즈 세팅 (교촌) → 후에는 이름이 아닌 SEQ 로 받아야하니까 findBySeq
-        itemMst.setFranchiseMst(franchiseMstRepository.findBySeq(1L).get());
+        itemMst.setFranchiseMst(franchiseMstRepository.findByFranchiseName("Kyochon").get());
 
         // 아이템 중복 체크
         if(itemDuplicateCheck(itemMst, itemMstRepository, franchiseMstRepository).equals("EXIST"))
@@ -184,8 +179,7 @@ public class DbItemInsert {
         itemMst.setItemCategory("MainMenu");
         itemMst.setCommonColumn(new CommonColumn(LocalDateTime.now(), "Test", LocalDateTime.now(), "Test"));
 
-        // 프랜차이즈 세팅 (교촌) → 후에는 이름이 아닌 SEQ 로 받아야하니까 findBySeq
-        itemMst.setFranchiseMst(franchiseMstRepository.findBySeq(2L).get());
+        itemMst.setFranchiseMst(franchiseMstRepository.findByFranchiseName("OhThisHouse").get());
 
         // 아이템 중복 체크
         if(itemDuplicateCheck(itemMst, itemMstRepository, franchiseMstRepository).equals("EXIST"))
@@ -207,8 +201,7 @@ public class DbItemInsert {
         itemMst.setItemCategory("MainMenu");
         itemMst.setCommonColumn(new CommonColumn(LocalDateTime.now(), "Test", LocalDateTime.now(), "Test"));
 
-        // 프랜차이즈 세팅 (교촌) → 후에는 이름이 아닌 SEQ 로 받아야하니까 findBySeq
-        itemMst.setFranchiseMst(franchiseMstRepository.findBySeq(2L).get());
+        itemMst.setFranchiseMst(franchiseMstRepository.findByFranchiseName("OhThisHouse").get());
 
         // 아이템 중복 체크
         if(itemDuplicateCheck(itemMst, itemMstRepository, franchiseMstRepository).equals("EXIST"))
@@ -230,8 +223,7 @@ public class DbItemInsert {
         itemMst.setItemCategory("MainMenu");
         itemMst.setCommonColumn(new CommonColumn(LocalDateTime.now(), "Test", LocalDateTime.now(), "Test"));
 
-        // 프랜차이즈 세팅 (교촌) → 후에는 이름이 아닌 SEQ 로 받아야하니까 findBySeq
-        itemMst.setFranchiseMst(franchiseMstRepository.findBySeq(2L).get());
+        itemMst.setFranchiseMst(franchiseMstRepository.findByFranchiseName("OhThisHouse").get());
 
         // 아이템 중복 체크
         if(itemDuplicateCheck(itemMst, itemMstRepository, franchiseMstRepository).equals("EXIST"))
@@ -253,8 +245,7 @@ public class DbItemInsert {
         itemMst.setItemCategory("MainMenu");
         itemMst.setCommonColumn(new CommonColumn(LocalDateTime.now(), "Test", LocalDateTime.now(), "Test"));
 
-        // 프랜차이즈 세팅 (교촌) → 후에는 이름이 아닌 SEQ 로 받아야하니까 findBySeq
-        itemMst.setFranchiseMst(franchiseMstRepository.findBySeq(2L).get());
+        itemMst.setFranchiseMst(franchiseMstRepository.findByFranchiseName("OhThisHouse").get());
 
         // 아이템 중복 체크
         if(itemDuplicateCheck(itemMst, itemMstRepository, franchiseMstRepository).equals("EXIST"))
@@ -263,6 +254,114 @@ public class DbItemInsert {
         /* when */
         ItemMst savedItemMst = itemMstRepository.save(itemMst);   // save 저장
     }
+
+    @PostConstruct
+    @Bean
+    public void 아이템등록이영우치킨집() {
+        List<ItemMst> itemMstList = new ArrayList<>();
+
+        // 이영우 후라이드
+        ItemMst itemMst1 = new ItemMst();
+        itemMst1.setItemName("이영우후라이드치킨");
+        itemMst1.setItemPrice(10000);
+        itemMst1.setItemCategory("MainMenu");
+        itemMst1.setCommonColumn(new CommonColumn(LocalDateTime.now(), "PrivateTest", LocalDateTime.now(), "PrivateTest"));
+        itemMst1.setStoreMst(storeMstRepository.findByStoreName("이영우치킨집"));
+        itemMstList.add(itemMst1);
+
+        // 이영우 양념
+        ItemMst itemMst2 = new ItemMst();
+        itemMst2.setItemName("이영우양념치킨");
+        itemMst2.setItemPrice(11000);
+        itemMst2.setItemCategory("MainMenu");
+        itemMst2.setCommonColumn(new CommonColumn(LocalDateTime.now(), "PrivateTest", LocalDateTime.now(), "PrivateTest"));
+        itemMst2.setStoreMst(storeMstRepository.findByStoreName("이영우치킨집"));
+        itemMstList.add(itemMst2);
+
+        // 이영우 간장
+        ItemMst itemMst3 = new ItemMst();
+        itemMst3.setItemName("이영우간장치킨");
+        itemMst3.setItemPrice(11000);
+        itemMst3.setItemCategory("MainMenu");
+        itemMst3.setCommonColumn(new CommonColumn(LocalDateTime.now(), "PrivateTest", LocalDateTime.now(), "PrivateTest"));
+        itemMst3.setStoreMst(storeMstRepository.findByStoreName("이영우치킨집"));
+        itemMstList.add(itemMst3);
+
+        itemMstRepository.saveAll(itemMstList);   // save 저장
+    }
+
+    @PostConstruct
+    @Bean
+    public void 아이템등록이준범피자집() {
+        List<ItemMst> itemMstList = new ArrayList<>();
+
+        // 이영우 후라이드
+        ItemMst itemMst1 = new ItemMst();
+        itemMst1.setItemName("이준범콤비네이션피자");
+        itemMst1.setItemPrice(18000);
+        itemMst1.setItemCategory("MainMenu");
+        itemMst1.setCommonColumn(new CommonColumn(LocalDateTime.now(), "PrivateTest", LocalDateTime.now(), "PrivateTest"));
+        itemMst1.setStoreMst(storeMstRepository.findByStoreName("이준범피자집"));
+        itemMstList.add(itemMst1);
+
+        // 이영우 양념
+        ItemMst itemMst2 = new ItemMst();
+        itemMst2.setItemName("이준범페퍼로니피자");
+        itemMst2.setItemPrice(18000);
+        itemMst2.setItemCategory("MainMenu");
+        itemMst2.setCommonColumn(new CommonColumn(LocalDateTime.now(), "PrivateTest", LocalDateTime.now(), "PrivateTest"));
+        itemMst2.setStoreMst(storeMstRepository.findByStoreName("이준범피자집"));
+        itemMstList.add(itemMst2);
+
+        // 이영우 간장
+        ItemMst itemMst3 = new ItemMst();
+        itemMst3.setItemName("이준범시그니처피자");
+        itemMst3.setItemPrice(20000);
+        itemMst3.setItemCategory("MainMenu");
+        itemMst3.setCommonColumn(new CommonColumn(LocalDateTime.now(), "PrivateTest", LocalDateTime.now(), "PrivateTest"));
+        itemMst3.setStoreMst(storeMstRepository.findByStoreName("이준범피자집"));
+        itemMstList.add(itemMst3);
+
+        itemMstRepository.saveAll(itemMstList);   // save 저장
+    }
+
+    @PostConstruct
+    @Bean
+    public void 아이템등록한상우보쌈집() {
+        List<ItemMst> itemMstList = new ArrayList<>();
+
+        // 한상우 메인보쌈
+        ItemMst itemMst1 = new ItemMst();
+        itemMst1.setItemName("한상우메인보쌈");
+        itemMst1.setItemPrice(18000);
+        itemMst1.setItemCategory("MainMenu");
+        itemMst1.setCommonColumn(new CommonColumn(LocalDateTime.now(), "PrivateTest", LocalDateTime.now(), "PrivateTest"));
+        itemMst1.setStoreMst(storeMstRepository.findByStoreName("한상우보쌈집"));
+        itemMstList.add(itemMst1);
+
+        // 한상우 메인족발
+        ItemMst itemMst2 = new ItemMst();
+        itemMst2.setItemName("한상우메인족발");
+        itemMst2.setItemPrice(18000);
+        itemMst2.setItemCategory("MainMenu");
+        itemMst2.setCommonColumn(new CommonColumn(LocalDateTime.now(), "PrivateTest", LocalDateTime.now(), "PrivateTest"));
+        itemMst2.setStoreMst(storeMstRepository.findByStoreName("한상우보쌈집"));
+        itemMstList.add(itemMst2);
+
+        // 한상우 반반족발세트
+        ItemMst itemMst3 = new ItemMst();
+        itemMst3.setItemName("한상우반반족발세트");
+        itemMst3.setItemPrice(20000);
+        itemMst3.setItemCategory("MainMenu");
+        itemMst3.setCommonColumn(new CommonColumn(LocalDateTime.now(), "PrivateTest", LocalDateTime.now(), "PrivateTest"));
+        itemMst3.setStoreMst(storeMstRepository.findByStoreName("한상우보쌈집"));
+        itemMstList.add(itemMst3);
+
+        itemMstRepository.saveAll(itemMstList);   // save 저장
+    }
+
+
+
 
 
     /**
@@ -281,3 +380,9 @@ public class DbItemInsert {
     }
 
 }
+
+/**
+ * 프랜차이즈 점포는 itemMst에 STORE_MST_SEQ 를 가질 필요가 없음
+ */
+//        StoreMst storeMstValue = storeMstRepository.findByStoreName("바로그집한밭대점");
+//        itemMst.setStoreMst(storeMstValue);

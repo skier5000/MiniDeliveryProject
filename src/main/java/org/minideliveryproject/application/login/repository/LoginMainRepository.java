@@ -28,6 +28,5 @@ import java.util.Optional;
 public interface LoginMainRepository extends JpaRepository<UserMst, Long>{
     public UserMst save(UserMst userMst);
     public Optional<UserMst> findByUserId(String userId);
-    public Optional<UserMst> findByUserName(String userName);
     public List<UserMst> findAll();
 }
