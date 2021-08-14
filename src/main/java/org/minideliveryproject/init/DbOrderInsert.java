@@ -91,7 +91,7 @@ public class DbOrderInsert {
         // 주문1개
         OrderMst orderMst = new OrderMst();
         orderMst.setStoreMst(storeMstRepository.findByStoreName("바로그집한밭대점")); // 바로그집한밭대점
-        orderMst.setUserMst(userMstRepository.findBySeq(13L)); // 나는야고객1002
+        orderMst.setUserMst(userMstRepositoryImpl.findByUserName("나는야고객1002")); // 나는야고객1002
         orderMst.setCommonColumn(new CommonColumn(LocalDateTime.now(), "Test", LocalDateTime.now(), "Test"));
         orderMst.setPayment(PaymentType.NAVERPAY);
         orderMst.setOrderDate(LocalDateTime.now());
@@ -142,8 +142,8 @@ public class DbOrderInsert {
         /* given */
         // 주문1개
         OrderMst orderMst = new OrderMst();
-        orderMst.setStoreMst(storeMstRepository.findBySeq(1L)); // 교촌치킨
-        orderMst.setUserMst(userMstRepository.findBySeq(14L)); // 나는야고객1001
+        orderMst.setStoreMst(storeMstRepository.findByStoreName("BBQ불당점")); // 교촌치킨
+        orderMst.setUserMst(userMstRepositoryImpl.findByUserName("나는야고객1001")); // 나는야고객1001
         orderMst.setCommonColumn(new CommonColumn(LocalDateTime.now(), "Test", LocalDateTime.now(), "Test"));
         orderMst.setPayment(PaymentType.KAKAOPAY);
         orderMst.setOrderDate(LocalDateTime.now());
@@ -165,7 +165,5 @@ public class DbOrderInsert {
         /* when */
         orderMstRepository.save(orderMst);
         orderDetailRepository.save(orderDetail);
-        Optional<OrderMst> orderMstCompare = orderMstRepository.findById(orderMst.getSeq());
-        Optional<OrderDetail> orderDetailCompare = orderDetailRepository.findById(orderDetail.getSeq());
     }
 }
