@@ -16,15 +16,14 @@
   <article class="info">
     <form id="frm">
       <ul>
-        <li><span>기간</span><input type="date" name="startDate"> ~ <input type="date" name="endDate"></li>
-        <li id="storeNm"><span>점포명</span><input type="text" name="firstSearch"></li>
-        <!--        <li><span>점포명</span><input type="text" name="twiceSearch"></li>-->
-        <li id="sido"><span>시/도</span>
+        <li class="personalCode"><span>개인점포 코드</span><input type="search" name="personalCode"></li>
+        <li class="personalNm"><span>개인점포명</span><input type="search" name="personalNm"></li>
+        <li class="sido"><span>시/도</span>
           <select name="sido">
             <option></option>
-            <option>대전</option>
-            <option>서울</option>
-            <option>부산</option>
+            <option>대전광역시</option>
+            <option>서울특별시</option>
+            <option>부산광역시</option>
           </select>
         </li>
         <li id="gugun"><span>구/군</span>
@@ -41,7 +40,7 @@
     </form>
   </article>
   <article class="data-table-article">
-    <div class="sub-menu-detail-name"><span>▶ 전체 점포 정보</span></div>
+    <div class="sub-menu-detail-name"><span>▶ 개인 점포 목록</span></div>
     <div class="data-table-div">
       <table id="list" class="table">
         <colgroup>

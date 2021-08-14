@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lagn="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="~{layout/defaultLayout}">
+
+<th:block layout:fragment="title">관리자 | 상품 관리 | 프랜차이즈 점포</th:block>
+
+<!--franchise 고유 css 추가-->
+<th:block layout:fragment="css">
+    <link rel="stylesheet" th:href="@{/css/prod.css}">
+</th:block>
+
+<th:block layout:fragment="content">
+    <div class="sub-menu-name fas fa-home"><span>프랜차이즈 상품 조회</span></div>
+    <article class="info">
+        <form id="frm">
+            <ul>
+                <li class="franchiseCode"><span>프랜차이즈 코드</span><input type="search" name="franchiseCode"></li>
+                <li class="franchiseNm"><span>프랜차이즈 점포명</span><input type="search" name="franchiseNm"></li>
+                <li class="item-category"><span>상품구분</span>
+                    <select name="itemCategory">
+                        <option></option>
+                        <option>치킨</option>
+                        <option>피자</option>
+                        <option>초밥</option>
+                    </select>
+                </li>
+                <li class="franchiseNm"><span>프랜차이즈 상품명</span><input type="search" name="franchiseNm"></li>
+                <li><button type="submit" class="btn btn-primary fab fa-sistrix" onclick=""><span>조회</span></button></li>
+            </ul>
+        </form>
+    </article>
+    <article class="data-table-article">
+        <div class="row sub-menu-detail-name ">
+            <div class="col-md-6"><span>▶ 프렌차이즈 상품 목록</span></div>
+            <div class="col-md-6">
+                <button type="button" class="btn btn-primary" id="btnInsert" style="float: right; width: 70px; font-size: 1.1rem;">등록</button>
+            </div>
+        </div>
+        <div class="data-table-div">
+            <table id="list" class="table">
+                <colgroup>
+                    <col width="80px">
+                    <col width="100px">
+                    <col width="auto">
+                    <col width="200px">
+                    <col width="100px">
+                    <col width="150px">
+                    <col width="150px">
+                </colgroup>
+                <thead>
+                <tr>
+                    <td>번호</td>
+                    <td>점포코드</td>
+                    <td>점포명</td>
+                    <td>상품타입</td>
+                    <td>상품코드</td>
+                    <td>상품명</td>
+                    <td>가격</td>
+                </tr>
+                </thead>
+                <tbody>
+                <!-- 상품 목록 데이터 출력 시작 -->
+                <tr th:each="num :  ${#numbers.sequence(1, 100)}">
+                    <td>1</td>
+                    <td>A001</td>
+                    <td>피자나라 치킨공주</td>
+                    <td>치킨</td>
+                    <td>C001</td>
+                    <td><input type="text" name="" value="피치세트"></td>
+                    <td><input type="text" name="" value="19,000"></td>
+                </tr>
+                <!-- 상품 목록 데이터 출력 끝 -->
+                </tbody>
+            </table>
+        </div>
+    </article>
+    <article class="data-detail-table-article">
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link active" data-toggle="tab" href="#detail1">상세조회</a>
+            </li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane active" id="detail1">
+                <div class="sub-menu-detail-name"><span>▶ 상세조회</span></div>
+                <div class="data-table-detail-div">
+                    <table class="table">
+                        <colgroup>
+                            <col width="80px">
+                            <col width="100px">
+                            <col width="auto">
+                            <col width="200px">
+                            <col width="100px">
+                            <col width="150px">
+                            <col width="150px">
+                        </colgroup>
+                        <thead>
+                        <tr>
+                            <td>번호</td>
+                            <td>점포코드</td>
+                            <td>점포명</td>
+                            <td>상품타입</td>
+                            <td>상품코드</td>
+                            <td>상품명</td>
+                            <td>가격</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <!-- 개인 점포 상세정보 데이터 출력 시작 -->
+                        <tr>
+                            <td>1</td>
+                            <td>A001</td>
+                            <td>피자나라 치킨공주</td>
+                            <td>치킨</td>
+                            <td>C001</td>
+                            <td><input type="text">피치세트</td>
+                            <td>19,000</td>
+                        </tr>
+                        <!-- 개인 점포 상세정보 데이터 출력 끝 -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </article>
+</th:block>
+
+<th:block layout:fragment="script">
+    <script type="text/javascript">
+        $(function(){
+
+            var lang_kor = {
+                "paginate" : {
+                    "next" : "▶",
+                    "last" : "▶▶",
+                    "previous" : "◀",
+                    "first" : "◀◀"
+                }
+            };
+
+            $("#list").DataTable({
+                // 표시 건수기능 숨기기
+                lengthChange: false,
+                // 검색 기능 숨기기
+                searching: false,
+                // 정보 표시 숨기기
+                info: false,
+                // 기본 표시 건수를 10으로 설정
+                displayLength: 10,
+                // 페이징 타입 설정
+                pagingType : "full_numbers",
+                // 건수 표시 한글 적용
+                language :lang_kor
+
+            });
+
+            // 테이블 자체 수정 로직
+            $(".table input").attr("readonly", true);
+
+            $("input").dblclick(function (){
+                $(this).attr("readonly", false);
+                $("#btnUpdate").css("display", "block");
+            });
+
+            $(".dataTables_wrapper .dataTables_paginate").append("<div class='buttons' style='float: right'><button type=\"button\" class=\"btn btn-success\" id=\"btnUpdate\" style=\"float: right; width: 70px; font-size: 1.1rem; display: none\">수정</button></div>");
+
+        });
+    </script>
+</th:block>
+</html>

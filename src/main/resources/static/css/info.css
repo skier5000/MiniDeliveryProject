@@ -27,7 +27,7 @@ section .info {
 section .info ul li button {
     line-height: 1;
     width: 100px;
-    height: 30px;
+    padding-right: 20px;
     margin-right: 10px;
     float: right;
 }
@@ -53,11 +53,6 @@ section .sub-menu-name span {
     margin-left: 10px;
 }
 
-section .sub-menu-detail-name span{
-    font-size: 1.2rem;
-}
-
-
 section .table, td {
     text-align: center;
     font-size: 1.1rem;
@@ -78,6 +73,10 @@ section .data-table-div {
 
 section .sub-menu-detail-name {
     margin-bottom: 10px;
+}
+
+section .sub-menu-detail-name span{
+    font-size: 1.2rem;
 }
 
 section .tab-pane {
@@ -120,29 +119,7 @@ section .dataTables_wrapper .dataTables_paginate {
     text-align: center;
 }
 
-/* media query */
-
-@media (max-width: 1394px) {
-    .btn {display: none;}
-}
-
-@media (max-width: 1244px) {
-    #gugun {display: none;}
-}
-
-@media (max-width: 1071px) {
-    #sido {display: none;}
-}
-
-@media (max-width: 950px) {
-    #storeNm {display: none;}
-}
-
-@media (max-width: 938px) {
-    .data-table-article, .data-detail-table-article {display: none;}
-}
-
-@media (max-width: 938px) {
-    .sub-menu-name, .info {display: none;}
+@media (max-width: 942px) {
+    .dataTables_paginate {display: none;}
 }
 

@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lagn="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="~{layout/defaultLayout}">
+
+<th:block layout:fragment="title">관리자 | 점포 관리 | 점포 계약 관리</th:block>
+
+<!--franchise 고유 css 추가-->
+<th:block layout:fragment="css">
+    <link rel="stylesheet" th:href="@{/css/store.css}">
+</th:block>
+
+<th:block layout:fragment="content">
+    <div class="sub-menu-name fas fa-home"><span>계약 점포 조회</span></div>
+    <article class="info">
+        <form id="frm">
+            <ul>
+                <li class="contract">
+                    <span>계약시작일자</span><input type="date" name="startContract">&nbsp;
+                    <span>계약종료일자</span><input type="date" name="endContract">
+                </li>
+                <li class="storeCheck">
+                    <input type="checkbox" name="franchiseChk" id="franchiseChk" value="franchise" style="margin-right: 5px;"><span>프랜차이즈</span>
+                    <input type="checkbox" name="personalChk" id="personalChk" value="personal" style="margin-right: 5px;"><span>개인</span>
+                </li>
+                <li class="storeCode"><span>점포코드</span><input type="search" name="storeCode"></li>
+                <li class="storeNm"><span>점포명</span><input type="search" name="storeNm"></li>
+                <li class="area"><span>지역</span>
+                    <select name="area">
+                        <option></option>
+                        <option>대전광역시</option>
+                        <option>서울특별시</option>
+                        <option>부산광역시</option>
+                    </select>
+                </li>
+                <li><button type="submit" class="btn btn-primary fab fa-sistrix" onclick=""><span>조회</span></button></li>
+            </ul>
+        </form>
+    </article>
+    <article class="data-table-article">
+        <div class="sub-menu-detail-name"><span>▶ 전체 계약 점포 목록</span></div>
+        <div class="data-table-div">
+            <table id="list" class="table">
+                <colgroup>
+                    <col width="80px">
+                    <col width="100px">
+                    <col width="100px">
+                    <col width="auto">
+                    <col width="100px">
+                    <col width="200px">
+                    <col width="200px">
+                    <col width="200px">
+                    <col width="150px">
+                </colgroup>
+                <thead>
+                <tr>
+                    <td>번호</td>
+                    <td>점포구분</td>
+                    <td>점포코드</td>
+                    <td>점포명</td>
+                    <td>지역</td>
+                    <td>계약시작일자</td>
+                    <td>계약종료일자</td>
+                    <td>재계약일자</td>
+                    <td>전화번호</td>
+                </tr>
+                </thead>
+                <tbody>
+                <!-- 계약 점포 목록 데이터 출력 시작 -->
+                <tr th:each="num :  ${#numbers.sequence(1, 115)}">
+                    <td>1</td>
+                    <td>프랜차이즈</td>
+                    <td>A001</td>
+                    <td>BBQ 대전유성점</td>
+                    <td>대전광역시</td>
+                    <td>2019-08-12</td>
+                    <td>2020-08-12</td>
+                    <td>2021-08-12</td>
+                    <td>042-111-1111</td>
+                </tr>
+                <!-- 계약 점포 목록 데이터 출력 끝 -->
+                </tbody>
+            </table>
+        </div>
+    </article>
+    <article class="data-detail-table-article">
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link active" data-toggle="tab" href="#detail1">상세조회</a>
+            </li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane active" id="detail1">
+                <div class="sub-menu-detail-name"><span>▶ 상세조회</span></div>
+                <div class="data-table-detail-div">
+                    <table class="table">
+                        <colgroup>
+                            <col width="80px">
+                            <col width="100px">
+                            <col width="100px">
+                            <col width="auto">
+                            <col width="100px">
+                            <col width="200px">
+                            <col width="200px">
+                            <col width="200px">
+                            <col width="150px">
+                        </colgroup>
+                        <thead>
+                        <tr>
+                            <td>번호</td>
+                            <td>점포구분</td>
+                            <td>점포코드</td>
+                            <td>점포명</td>
+                            <td>지역</td>
+                            <td>계약시작일자</td>
+                            <td>계약종료일자</td>
+                            <td>재계약일자</td>
+                            <td>전화번호</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <!-- 개인 점포 상세정보 데이터 출력 시작 -->
+                        <tr>
+                            <td>1</td>
+                            <td>프랜차이즈</td>
+                            <td>A001</td>
+                            <td>BBQ 대전유성점</td>
+                            <td>대전광역시</td>
+                            <td>2019-08-12</td>
+                            <td>2020-08-12</td>
+                            <td>2021-08-12</td>
+                            <td>042-111-1111</td>
+                        </tr>
+                        <!-- 개인 점포 상세정보 데이터 출력 끝 -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </article>
+</th:block>
+
+<th:block layout:fragment="script">
+    <script type="text/javascript">
+        $(function(){
+
+            var lang_kor = {
+                "paginate" : {
+                    "next" : "▶",
+                    "last" : "▶▶",
+                    "previous" : "◀",
+                    "first" : "◀◀"
+                }
+            };
+
+            $("#list").DataTable({
+                // 표시 건수기능 숨기기
+                lengthChange: false,
+                // 검색 기능 숨기기
+                searching: false,
+                // 정보 표시 숨기기
+                info: false,
+                // 기본 표시 건수를 10으로 설정
+                displayLength: 10,
+                // 페이징 타입 설정
+                pagingType : "full_numbers",
+                // 건수 표시 한글 적용
+                language :lang_kor
+
+            });
+
+
+        });
+    </script>
+</th:block>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lagn="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="~{layout/defaultLayout}">
+
+<th:block layout:fragment="title">관리자 | 정보 관리 | 사원 관리</th:block>
+
+<!--franchise 고유 css 추가-->
+<th:block layout:fragment="css">
+    <link rel="stylesheet" th:href="@{/css/info.css}">
+</th:block>
+
+<th:block layout:fragment="content">
+    <div class="sub-menu-name fas fa-home"><span>사원 조회</span></div>
+    <article class="data-table-article">
+        <div class="sub-menu-detail-name"><span>▶ 전체 사원 목록</span></div>
+        <div class="data-table-div">
+            <table id="list" class="table">
+                <colgroup>
+                    <col width="80px">
+                    <col width="100px">
+                    <col width="80px">
+                    <col width="80px">
+                    <col width="auto">
+                    <col width="150px">
+                    <col width="150px">
+                    <col width="150px">
+                </colgroup>
+                <thead>
+                <tr>
+                    <td>번호</td>
+                    <td>사원코드</td>
+                    <td>소속</td>
+                    <td>직급</td>
+                    <td>이름</td>
+                    <td>연락처</td>
+                    <td>이메일</td>
+                    <td>입사일자</td>
+                </tr>
+                </thead>
+                <tbody>
+                <!-- 사원 목록 데이터 출력 시작 -->
+                <tr th:each="num :  ${#numbers.sequence(1, 115)}">
+                    <td>1</td>
+                    <td>A001</td>
+                    <td>IT</td>
+                    <td>사원</td>
+                    <td>이영우</td>
+                    <td>010-2278-0985</td>
+                    <td>lee@gmail.com</td>
+                    <td>2021-08-10</td>
+                </tr>
+                <!-- 사원 목록 데이터 출력 끝 -->
+                </tbody>
+            </table>
+        </div>
+    </article>
+</th:block>
+
+<th:block layout:fragment="script">
+    <script type="text/javascript">
+        $(function(){
+            var lang_kor = {
+                "decimal" : "",
+                "emptyTable" : "데이터가 없습니다.",
+                "info" : "_START_ - _END_ (총 _TOTAL_ 명)",
+                "infoEmpty" : "0명",
+                "infoFiltered" : "(전체 _MAX_ 명 중 검색결과)",
+                "infoPostFix" : "",
+                "thousands" : ",",
+                "lengthMenu" : "_MENU_ 명씩 보기",
+                "loadingRecords" : "로딩중...",
+                "processing" : "처리중...",
+                "search" : "검색 ",
+                "zeroRecords" : "검색된 데이터가 없습니다.",
+                "paginate" : {
+                    "next" : "▶",
+                    "last" : "▶▶",
+                    "previous" : "◀",
+                    "first" : "◀◀"
+                }
+            };
+
+            $("#list").DataTable(
+                {
+                    // 페이징 타입 설정
+                    pagingType : "full_numbers",
+                    // 건수 표시 한글 적용
+                    language :lang_kor
+                }
+            );
+
+
+        });
+    </script>
+</th:block>
+</html>

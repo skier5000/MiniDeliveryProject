@@ -174,3 +174,7 @@ section {
     transition: all 0.6s ease;
 }
 
+/* button */
+.btn {
+    padding: 0px;
+}
