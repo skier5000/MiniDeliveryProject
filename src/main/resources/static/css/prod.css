@@ -69,6 +69,16 @@ section .table td input{
     border: none;
 }
 
+section .table td select{
+    text-align: center;
+    border: none;
+}
+
+section .updateCategory:hover, .updateProdName:hover, .updateProdPrice:hover{
+    cursor: pointer;
+    background: #cae1f9;
+}
+
 section .data-table-div {
     width: 100%;
     height: auto;
@@ -82,6 +92,13 @@ section .sub-menu-detail-name {
 
 section .sub-menu-detail-name span{
     font-size: 1.2rem;
+}
+
+section #btnDelete, #btnInsert, #btnUpdate {
+    float: right;
+    width: 70px;
+    font-size: 1.1rem;
+    margin-left: 5px;
 }
 
 section .tab-pane {

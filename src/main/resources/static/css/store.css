@@ -57,7 +57,6 @@ section .sub-menu-detail-name span{
     font-size: 1.2rem;
 }
 
-
 section .table, td {
     text-align: center;
     font-size: 1.1rem;
@@ -78,6 +77,13 @@ section .data-table-div {
 
 section .sub-menu-detail-name {
     margin-bottom: 10px;
+}
+
+section #btnDelete, #btnInsert, #btnUpdate {
+    float: right;
+    width: 70px;
+    font-size: 1.1rem;
+    margin-left: 5px;
 }
 
 section .tab-pane {

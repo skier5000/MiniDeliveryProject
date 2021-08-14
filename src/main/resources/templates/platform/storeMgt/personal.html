@@ -40,7 +40,14 @@
     </form>
   </article>
   <article class="data-table-article">
-    <div class="sub-menu-detail-name"><span>▶ 개인 점포 목록</span></div>
+    <div class="row sub-menu-detail-name ">
+      <div class="col-md-6"><span>▶ 개인 점포 목록</span></div>
+      <div class="col-md-6">
+        <button type="button" class="btn btn-danger" id="btnDelete">삭제</button>
+        <button type="button" class="btn btn-success" id="btnUpdate">수정</button>
+        <button type="button" class="btn btn-primary" id="btnInsert">등록</button>
+      </div>
+    </div>
     <div class="data-table-div">
       <table id="list" class="table">
         <colgroup>

@@ -4,7 +4,7 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorator="~{layout/defaultLayout}">
 
-<th:block layout:fragment="title">관리자 | 상품 관리 | 개인 점포</th:block>
+<th:block layout:fragment="title">관리자 | 상품 관리 | 프랜차이즈 점포</th:block>
 
 <!--franchise 고유 css 추가-->
 <th:block layout:fragment="css">
@@ -12,12 +12,12 @@
 </th:block>
 
 <th:block layout:fragment="content">
-    <div class="sub-menu-name fas fa-home"><span>개인 점포 상품 조회</span></div>
+    <div class="sub-menu-name fas fa-home"><span>개인점포 상품 조회</span></div>
     <article class="info">
         <form id="frm">
             <ul>
-                <li class="franchiseCode"><span>개인 점포 코드</span><input type="search" name="franchiseCode"></li>
-                <li class="franchiseNm"><span>개인 점포명</span><input type="search" name="franchiseNm"></li>
+                <li class="franchiseCode"><span>개인점포 코드</span><input type="search" name="franchiseCode"></li>
+                <li class="franchiseNm"><span>개인점포 점포명</span><input type="search" name="franchiseNm"></li>
                 <li class="item-category"><span>상품구분</span>
                     <select name="itemCategory">
                         <option></option>
@@ -26,17 +26,25 @@
                         <option>초밥</option>
                     </select>
                 </li>
-                <li class="franchiseNm"><span>개인 점포 상품명</span><input type="search" name="franchiseNm"></li>
+                <li class="franchiseNm"><span>개인점포 상품명</span><input type="search" name="franchiseNm"></li>
                 <li><button type="submit" class="btn btn-primary fab fa-sistrix" onclick=""><span>조회</span></button></li>
             </ul>
         </form>
     </article>
     <article class="data-table-article">
-        <div class="sub-menu-detail-name"><span>▶ 개인 점포 상품 목록</span></div>
+        <div class="row sub-menu-detail-name ">
+            <div class="col-md-6"><span>▶ 개인점포 상품 목록</span></div>
+            <div class="col-md-6">
+                <button type="button" class="btn btn-danger" id="btnDelete">삭제</button>
+                <button type="button" class="btn btn-success" id="btnUpdate">수정</button>
+                <button type="button" class="btn btn-primary" id="btnInsert">등록</button>
+            </div>
+        </div>
         <div class="data-table-div">
             <table id="list" class="table">
                 <colgroup>
                     <col width="80px">
+                    <col width="50px">
                     <col width="100px">
                     <col width="auto">
                     <col width="200px">
@@ -47,10 +55,11 @@
                 <thead>
                 <tr>
                     <td>번호</td>
+                    <td></td>
                     <td>점포코드</td>
                     <td>점포명</td>
-                    <td>상품타입</td>
                     <td>상품코드</td>
+                    <td>상품타입</td>
                     <td>상품명</td>
                     <td>가격</td>
                 </tr>
@@ -59,12 +68,22 @@
                 <!-- 상품 목록 데이터 출력 시작 -->
                 <tr th:each="num :  ${#numbers.sequence(1, 100)}">
                     <td>1</td>
+                    <td>
+                        <input type="checkbox" name="">
+                    </td>
                     <td>A001</td>
                     <td>피자나라 치킨공주</td>
-                    <td>치킨</td>
                     <td>C001</td>
-                    <td>피치세트</td>
-                    <td>19,000</td>
+                    <td class="updateCategory">
+                        <span style="cursor: pointer">치킨</span>
+                        <select name="" style="display: none;">
+                            <option name="">치킨</option>
+                            <option name="">피자</option>
+                            <option name="">초밥</option>
+                        </select>
+                    </td>
+                    <td><input class="updateProdName" type="text" name="" value="피치세트"></td>
+                    <td><input class="updateProdPrice" type="text" name="" value="19,000"></td>
                 </tr>
                 <!-- 상품 목록 데이터 출력 끝 -->
                 </tbody>
@@ -84,6 +103,7 @@
                     <table class="table">
                         <colgroup>
                             <col width="80px">
+                            <col width="50px">
                             <col width="100px">
                             <col width="auto">
                             <col width="200px">
@@ -94,6 +114,7 @@
                         <thead>
                         <tr>
                             <td>번호</td>
+                            <td></td>
                             <td>점포코드</td>
                             <td>점포명</td>
                             <td>상품타입</td>
@@ -104,15 +125,7 @@
                         </thead>
                         <tbody>
                         <!-- 개인 점포 상세정보 데이터 출력 시작 -->
-                        <tr>
-                            <td>1</td>
-                            <td>A001</td>
-                            <td>피자나라 치킨공주</td>
-                            <td>치킨</td>
-                            <td>C001</td>
-                            <td>피치세트</td>
-                            <td>19,000</td>
-                        </tr>
+
                         <!-- 개인 점포 상세정보 데이터 출력 끝 -->
                         </tbody>
                     </table>
@@ -151,6 +164,17 @@
 
             });
 
+            // 테이블 자체 수정 로직
+            $(".table input").attr("readonly", true);
+
+            $(".table input").click(function (){
+                $(this).attr("readonly", false);
+            });
+
+            $(".table .updateCategory").click(function (){
+                $(this).children("span").css("display", "none");
+                $(this).children("select").css("display", "inline-block");
+            });
 
         });
     </script>

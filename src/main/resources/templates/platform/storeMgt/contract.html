@@ -39,11 +39,19 @@
         </form>
     </article>
     <article class="data-table-article">
-        <div class="sub-menu-detail-name"><span>▶ 전체 계약 점포 목록</span></div>
+        <div class="row sub-menu-detail-name ">
+            <div class="col-md-6"><span>▶ 전체 계약 점포 목록</span></div>
+            <div class="col-md-6">
+                <button type="button" class="btn btn-danger" id="btnDelete">삭제</button>
+                <button type="button" class="btn btn-success" id="btnUpdate">수정</button>
+                <button type="button" class="btn btn-primary" id="btnInsert">등록</button>
+            </div>
+        </div>
         <div class="data-table-div">
             <table id="list" class="table">
                 <colgroup>
                     <col width="80px">
+                    <col width="50px">
                     <col width="100px">
                     <col width="100px">
                     <col width="auto">
@@ -56,6 +64,7 @@
                 <thead>
                 <tr>
                     <td>번호</td>
+                    <td></td>
                     <td>점포구분</td>
                     <td>점포코드</td>
                     <td>점포명</td>
@@ -70,6 +79,7 @@
                 <!-- 계약 점포 목록 데이터 출력 시작 -->
                 <tr th:each="num :  ${#numbers.sequence(1, 115)}">
                     <td>1</td>
+                    <td><input type="checkbox"></td>
                     <td>프랜차이즈</td>
                     <td>A001</td>
                     <td>BBQ 대전유성점</td>
@@ -121,17 +131,6 @@
                         </thead>
                         <tbody>
                         <!-- 개인 점포 상세정보 데이터 출력 시작 -->
-                        <tr>
-                            <td>1</td>
-                            <td>프랜차이즈</td>
-                            <td>A001</td>
-                            <td>BBQ 대전유성점</td>
-                            <td>대전광역시</td>
-                            <td>2019-08-12</td>
-                            <td>2020-08-12</td>
-                            <td>2021-08-12</td>
-                            <td>042-111-1111</td>
-                        </tr>
                         <!-- 개인 점포 상세정보 데이터 출력 끝 -->
                         </tbody>
                     </table>

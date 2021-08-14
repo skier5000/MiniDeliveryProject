@@ -17,13 +17,16 @@
         <div class="row sub-menu-detail-name ">
             <div class="col-md-6"><span>▶ 공유사항 목록</span></div>
             <div class="col-md-6">
-                <button type="button" class="btn btn-primary" id="btnInsert" style="float: right; width: 70px; font-size: 1.1rem;">등록</button>
+                <button type="button" class="btn btn-danger" id="btnDelete">삭제</button>
+                <button type="button" class="btn btn-success" id="btnUpdate">수정</button>
+                <button type="button" class="btn btn-primary" id="btnInsert">등록</button>
             </div>
         </div>
         <div class="data-table-div">
             <table id="list" class="table">
                 <colgroup>
                     <col width="80px">
+                    <col width="50px">
                     <col width="auto">
                     <col width="150px">
                     <col width="150px">
@@ -32,6 +35,7 @@
                 <thead>
                 <tr>
                     <td>번호</td>
+                    <td></td>
                     <td>제목</td>
                     <td>작성자</td>
                     <td>작성일</td>
@@ -42,6 +46,7 @@
                 <!-- 사원 목록 데이터 출력 시작 -->
                 <tr th:each="num :  ${#numbers.sequence(1, 115)}">
                     <td>1</td>
+                    <td><input type="checkbox"></td>
                     <td>[공지]공지사항입니다</td>
                     <td>관리자</td>
                     <td>2021-08-14</td>
