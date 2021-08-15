@@ -55,18 +55,6 @@ public class PlatformMainController {
     }
 
 
-    /**
-     * 프랜차이즈 점포 find All to JSON
-     * @return List<StoreMst>
-     */
-    @ResponseBody
-    @GetMapping("/storeMgt/franchise/search")
-    public List<StoreMst> franchiseAllList() {
-        List<StoreMst> franchiseStoreAllList = platformMainService.selectFranchiseStoreAllList();
-
-        return franchiseStoreAllList;
-    }
-
     @GetMapping("/storeMgt/personal")
     public String personal(){
         return "platform/storeMgt/personal";
