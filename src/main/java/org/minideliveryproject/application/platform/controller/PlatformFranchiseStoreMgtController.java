@@ -29,18 +29,17 @@ import java.util.List;
 @Controller
 @RequiredArgsConstructor
 @Slf4j
-@RequestMapping("/platform/storeMgt")
+@RequestMapping("/platform/storeMgt/franchise")
 public class PlatformFranchiseStoreMgtController {
 
     private final PlatformMainService platformMainService;
 
     /**
      * 플랫폼 > 점포관리 > 프랜차이즈 점포
-     * /platform/storeMgt/franchise
      * @return
      */
-    @GetMapping("/franchise")
-    public String storeMgtFranchise(){
+    @GetMapping(value = "/")
+    public String indexStoreMgtFranchise(){
         return "platform/storeMgt/franchise";
     }
 
@@ -54,7 +53,7 @@ public class PlatformFranchiseStoreMgtController {
      * @return
      */
     @ResponseBody
-    @GetMapping("/franchise/search")
+    @GetMapping("/search")
     public List<StoreMst> franchiseSearch(
             @RequestParam(value = "franchiseCode", required = false) String franchiseCode,
             @RequestParam(value = "franchiseStoreName", required = false) String franchiseStoreName,
@@ -71,7 +70,7 @@ public class PlatformFranchiseStoreMgtController {
      * 플랫폼 > 점포관리 > 프랜차이즈 점포
      * 등록버튼
      */
-    @PostMapping("/franchise/create")
+    @PostMapping("/create")
     public List<StoreMst> franchiseCreate(
             @RequestParam(value = "createFranchiseStoreList", required = true) List<StoreMst> createFranchiseStoreList
     ) {
@@ -88,7 +87,7 @@ public class PlatformFranchiseStoreMgtController {
      * @param updateFranchiseStoreList
      * @return
      */
-    @PatchMapping("/franchise/update")
+    @PatchMapping("/update")
     public List<StoreMst> franchiseUpdate(
             @RequestParam(value = "updateFranchiseStoreList", required = true) List<StoreMst> updateFranchiseStoreList
     ) {
@@ -103,7 +102,7 @@ public class PlatformFranchiseStoreMgtController {
      * DELETE_TYPE = NO 수정
      * 삭제버튼
      */
-    @PatchMapping("/franchise/delete")
+    @PatchMapping("/delete")
     public List<StoreMst> franchiseDelete(
             @RequestParam(value = "deleteFranchiseStoreList", required = true) List<StoreMst> deleteFranchiseStoreList
     ) {
