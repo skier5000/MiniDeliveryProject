@@ -35,7 +35,7 @@
             <option>동구</option>
           </select>
         </li>
-        <li><button type="submit" class="btn btn-primary fab fa-sistrix" onclick=""><span>조회</span></button></li>
+        <li><button type="submit" class="btn btn-primary fab fa-sistrix" th:onclick="javascript:franchiseSearch();"><span>조회</span></button></li>
       </ul>
     </form>
   </article>
@@ -161,8 +161,28 @@
 
       });
 
-
     });
+
+
+    /*
+     * ajax 함수 호출(기존 화면에서 ajax 호출)
+     */
+    function franchiseSearch() {
+        alert("franchiseSearch called");
+        $.ajax({
+              url:'/platform/storeMgt/franchise/search'
+            , method : 'GET'
+            , cache : 'false'
+            , dataType : 'json'
+            , contentType : 'application/json'
+            , success : function(data){
+                // 서버로부터 받은 데이터 변수 저장
+                alert("success");
+                var stringData = JSON.stringify(data);
+                alert(stringData);
+            }
+        })
+    };
   </script>
 </th:block>
 </html>
