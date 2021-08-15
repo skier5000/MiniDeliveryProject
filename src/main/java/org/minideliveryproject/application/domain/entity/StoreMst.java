@@ -12,7 +12,8 @@ import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-@Getter @Setter
+@Getter
+@Setter
 @Entity
 public class StoreMst {
 
