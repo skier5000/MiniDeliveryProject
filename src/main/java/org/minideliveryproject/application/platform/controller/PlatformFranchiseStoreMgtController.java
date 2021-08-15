@@ -30,7 +30,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @Slf4j
 @RequestMapping("/platform/storeMgt")
-public class PlatformStoreMgtController {
+public class PlatformFranchiseStoreMgtController {
 
     private final PlatformMainService platformMainService;
 
