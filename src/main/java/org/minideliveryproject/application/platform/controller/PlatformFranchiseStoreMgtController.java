@@ -2,11 +2,11 @@ package org.minideliveryproject.application.platform.controller;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.minideliveryproject.application.domain.entity.Address;
 import org.minideliveryproject.application.domain.entity.StoreMst;
-import org.minideliveryproject.application.platform.service.PlatformMainService;
+import org.minideliveryproject.application.platform.service.PlatformFranchiseStoreService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
@@ -32,7 +32,7 @@ import java.util.List;
 @RequestMapping("/platform/storeMgt/franchise")
 public class PlatformFranchiseStoreMgtController {
 
-    private final PlatformMainService platformMainService;
+    private final PlatformFranchiseStoreService platformFranchiseStoreService;
 
     /**
      * 플랫폼 > 점포관리 > 프랜차이즈 점포
@@ -46,22 +46,20 @@ public class PlatformFranchiseStoreMgtController {
     /**
      * 플랫폼 > 점포관리 > 프랜차이즈 점포
      * 조회버튼
-     * @param franchiseCode
+     * @param franchiseStoreCode
      * @param franchiseStoreName
      * @param franchiseStoreCity
-     * @param gugun
      * @return
      */
     @ResponseBody
     @GetMapping("/search")
     public List<StoreMst> franchiseSearch(
-            @RequestParam(value = "franchiseCode", required = false) String franchiseCode,
+            @RequestParam(value = "franchiseStoreCode", required = false) Long franchiseStoreCode,
             @RequestParam(value = "franchiseStoreName", required = false) String franchiseStoreName,
-            @RequestParam(value = "franchiseStoreCity", required = false) String franchiseStoreCity,
-            @RequestParam(value = "gugun", required = false) String gugun
+            @RequestParam(value = "franchiseStoreCity", required = false) Address franchiseStoreCity
     ) {
-        log.info("PlatformStoreMgtController::franchiseSearch called");
-        List<StoreMst> franchiseStoreSearchList = platformMainService.selectFranchiseStoreAllList();
+        log.info("PlatformFranchiseStoreMgtController::franchiseSearch called");
+        List<StoreMst> franchiseStoreSearchList = platformFranchiseStoreService.selectFranchiseStoreList(franchiseStoreCode, franchiseStoreName, franchiseStoreCity);
 
         return franchiseStoreSearchList;
     }
@@ -74,8 +72,8 @@ public class PlatformFranchiseStoreMgtController {
     public List<StoreMst> franchiseCreate(
             @RequestParam(value = "createFranchiseStoreList", required = true) List<StoreMst> createFranchiseStoreList
     ) {
-        log.info("PlatformStoreMgtController::franchiseCreate called");
-        List<StoreMst> franchiseStoreAllList = platformMainService.createFranchiseStoreAllList(createFranchiseStoreList);
+        log.info("PlatformFranchiseStoreMgtController::franchiseCreate called");
+        List<StoreMst> franchiseStoreAllList = platformFranchiseStoreService.createFranchiseStoreAllList(createFranchiseStoreList);
 
         return franchiseStoreAllList;
     }
@@ -91,8 +89,8 @@ public class PlatformFranchiseStoreMgtController {
     public List<StoreMst> franchiseUpdate(
             @RequestParam(value = "updateFranchiseStoreList", required = true) List<StoreMst> updateFranchiseStoreList
     ) {
-        log.info("PlatformStoreMgtController::franchiseUpdate called");
-        platformMainService.updateFranchiseStoreAllList(updateFranchiseStoreList);
+        log.info("PlatformFranchiseStoreMgtController::franchiseUpdate called");
+        platformFranchiseStoreService.updateFranchiseStoreAllList(updateFranchiseStoreList);
 
         return updateFranchiseStoreList;
     }
@@ -106,8 +104,8 @@ public class PlatformFranchiseStoreMgtController {
     public List<StoreMst> franchiseDelete(
             @RequestParam(value = "deleteFranchiseStoreList", required = true) List<StoreMst> deleteFranchiseStoreList
     ) {
-        log.info("PlatformStoreMgtController::franchiseDelete called");
-        platformMainService.deleteFranchiseStoreAllList(deleteFranchiseStoreList);
+        log.info("PlatformFranchiseStoreMgtController::franchiseDelete called");
+        platformFranchiseStoreService.deleteFranchiseStoreAllList(deleteFranchiseStoreList);
 
         return deleteFranchiseStoreList;
     }
