@@ -2,14 +2,6 @@ package org.minideliveryproject.application.platform.controller;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.minideliveryproject.application.domain.entity.FranchiseMst;
-import org.minideliveryproject.application.domain.entity.StoreMst;
-import org.minideliveryproject.application.domain.entity.UserMst;
-import org.minideliveryproject.application.domain.repository.FranchiseMstRepository;
-import org.minideliveryproject.application.platform.service.PlatformMainService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -38,8 +30,6 @@ import java.util.*;
 @RequestMapping("/platform")
 @Slf4j
 public class PlatformMainController {
-
-    private final PlatformMainService platformMainService;
 
     /**
      * 플랫폼 메인화면 접근
