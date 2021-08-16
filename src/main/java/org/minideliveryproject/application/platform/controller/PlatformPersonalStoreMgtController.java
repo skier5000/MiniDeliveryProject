@@ -55,7 +55,7 @@ public class PlatformPersonalStoreMgtController {
      */
     @PostMapping("/create")
     public Integer personalCreate(
-            @RequestParam(value = "createPersonalStoreList", required = true) List<StoreMst> createPersonalStoreList
+            @RequestParam(value = "createPersonalStoreList", required = true) StoreMst createPersonalStoreList
     ) {
         log.info("PlatformPersonalStoreMgtController::personalCreate called");
 
