@@ -2,6 +2,7 @@ package org.minideliveryproject.application.platform.service;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.minideliveryproject.application.domain.entity.Address;
 import org.minideliveryproject.application.domain.entity.FranchiseMst;
 import org.minideliveryproject.application.domain.entity.StoreMst;
 import org.minideliveryproject.application.domain.entity.UserMst;
@@ -23,7 +24,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 @Slf4j
 @Service
-public class PlatformMainService {
+public class PlatformFranchiseStoreService {
 
     private final StoreMstRepositoryImpl storeMstRepository;
     private final FranchiseMstRepository franchiseMstRepository;
@@ -35,14 +36,39 @@ public class PlatformMainService {
      * @param
      * @return
      */
-    public List<StoreMst> selectFranchiseStoreAllList() {
+    public List<StoreMst> selectFranchiseStoreList(
+            Long franchiseStoreCode, String franchiseStoreName, Address franchiseStoreCity
+    ) {
         log.info("PlatformMainService::selectFranchiseAllList called");
         List<StoreMst> franchiseStoreAllList = storeMstRepository.findAll();
         List<StoreMst> franchiseSearchList = new ArrayList<>();
 
-        for (int i = 0; i < franchiseStoreAllList.size(); i++) {
-            if (franchiseStoreAllList.get(i).getFranchiseMst() != null)
-                franchiseSearchList.add(franchiseStoreAllList.get(i));
+        if (franchiseStoreCode == null && franchiseStoreName == null && franchiseStoreCity == null) {  // 전체 search
+            for (int i = 0; i < franchiseStoreAllList.size(); i++) {
+                if (franchiseStoreAllList.get(i).getFranchiseMst() != null)
+                    franchiseSearchList.add(franchiseStoreAllList.get(i));
+            }
+
+            return franchiseSearchList;
+        }
+        else {
+            if (franchiseStoreCode != null && franchiseStoreName == null && franchiseStoreCity == null) {   // 가게코드 검색
+                StoreMst franchiseStoreCodeFindBySeq = storeMstRepository.findBySeq(franchiseStoreCode);
+                franchiseSearchList.add(franchiseStoreCodeFindBySeq);
+                return franchiseSearchList;
+            } else if (franchiseStoreCode == null && franchiseStoreName != null && franchiseStoreCity == null) {   // 가게이름 검색   ->   LIKE 검색으로
+                return storeMstRepository.findByStoreNameLike(franchiseStoreName);
+            } else if (franchiseStoreCode == null && franchiseStoreName == null && franchiseStoreCity != null) {   // 가게 시/도 검색   ->   Address 타입에서 수정이 일어나야함
+//                return (List<StoreMst>) storeMstRepository.findByAddress(franchiseStoreCity.getCity());
+            } else if (franchiseStoreCode != null && franchiseStoreName != null && franchiseStoreCity == null) {   // 가게코드, 가게이름 검색
+
+            } else if (franchiseStoreCode != null && franchiseStoreName == null && franchiseStoreCity != null) {   // 가게코드, 가게시/도 검색
+
+            } else if (franchiseStoreCode == null && franchiseStoreName != null && franchiseStoreCity != null) {   // 가게이름, 가게시/도 검색
+
+            } else {   // 전부 검색
+
+            }
         }
 
         return franchiseSearchList;
