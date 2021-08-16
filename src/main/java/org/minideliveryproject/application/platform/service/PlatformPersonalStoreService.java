@@ -31,7 +31,7 @@ public class PlatformPersonalStoreService {
      * @param
      * @return
      */
-    public List<StoreMst> selectPersonalStoreList(Long personalStoreCode, String personalStoreName, Address personalStoreCity) {
+    public List<StoreMst> selectPersonalStoreList(Long personalStoreCode, String personalStoreName, String personalStoreCity) {
         log.info("PlatformPersonalStoreService::selectPersonalStoreList called");
         List<StoreMst> personalStoreAllList = storeMstRepository.findAll();
         List<StoreMst> personalStoreSearchList = new ArrayList<>();
@@ -43,24 +43,31 @@ public class PlatformPersonalStoreService {
             }
             return personalStoreSearchList;
         } else {
-            if (personalStoreCode != null && personalStoreName == null && personalStoreCity == null) {   // 가게코드 검색
+            if (personalStoreCode != null) {
+                // 가게코드 검색
                 personalStoreSearchList.add(storeMstRepository.findBySeq(personalStoreCode));
                 return personalStoreSearchList;
-            } else if (personalStoreCode == null && personalStoreName != null && personalStoreCity == null) {   // 가게이름 검색   ->   LIKE 검색으로
+            } else if (personalStoreCode == null && personalStoreName != null && personalStoreCity == null) {
+                // 가게이름 검색   ->   LIKE 검색
                 return storeMstRepository.findByStoreNameLike(personalStoreName);
-            } else if (personalStoreCode == null && personalStoreName == null && personalStoreCity != null) {   // 가게 시/도 검색   ->   Address 타입에서 수정이 일어나야함
-//                return (List<StoreMst>) storeMstRepository.findByAddress(personalStoreCity.getCity());
-            } else if (personalStoreCode != null && personalStoreName != null && personalStoreCity == null) {   // 가게코드, 가게이름 검색
-//                return storeMstRepository.findByStoreNameStoreMst(personalStoreName, personalStoreCode.toString());
-            } else if (personalStoreCode != null && personalStoreName == null && personalStoreCity != null) {   // 가게코드, 가게시/도 검색
-
-            } else if (personalStoreCode == null && personalStoreName != null && personalStoreCity != null) {   // 가게이름, 가게시/도 검색
-
-            } else {   // 전부 검색
-
+            } else if (personalStoreCode == null && personalStoreName == null && personalStoreCity != null) {
+                // 가게 시/도 검색
+                for (int i = 0; i < personalStoreAllList.size(); i++) {
+                    if (personalStoreAllList.get(i).getAddress().getCity().equals(personalStoreCity))
+                        personalStoreSearchList.add(personalStoreAllList.get(i));
+                }
+                return personalStoreSearchList;
+            } else if (personalStoreCode == null && personalStoreName != null && personalStoreCity != null) {
+                // 가게이름, 가게시/도 검색
+                List<StoreMst> byStoreNameLike = storeMstRepository.findByStoreNameLike(personalStoreName);
+                for (int i = 0; i < byStoreNameLike.size(); i++) {
+                    if (byStoreNameLike.get(i).getAddress().getCity().equals(personalStoreCity)) {
+                        personalStoreSearchList.add(byStoreNameLike.get(i));
+                        return personalStoreSearchList;
+                    }
+                }
             }
         }
-
         return personalStoreSearchList;
     }
 
@@ -87,7 +94,7 @@ public class PlatformPersonalStoreService {
      * @return
      */
     public List<StoreMst> updatePersonalStoreAllList(List<StoreMst> updateFranchiseStoreList) {
-        log.info("PlatformMainService::updateFranchiseStoreAllList called");
+        log.info("PlatformMainService::updatepersonalStoreAllList called");
 
         // STORE_MST, FRANCHISE_MST, USER_MST 저장
         storeMstRepository.saveAll(updateFranchiseStoreList);
@@ -105,7 +112,7 @@ public class PlatformPersonalStoreService {
      * 삭제버튼
      */
     public List<StoreMst> deletePersonalStoreAllList(List<StoreMst> deleteFranchiseStoreList) {
-        log.info("PlatformMainService::deleteFranchiseStoreAllList called");
+        log.info("PlatformMainService::deletepersonalStoreAllList called");
 
         for (int i = 0; i < deleteFranchiseStoreList.size(); i++) {
             List<StoreMst> deleteStoreList = deleteFranchiseStoreList;

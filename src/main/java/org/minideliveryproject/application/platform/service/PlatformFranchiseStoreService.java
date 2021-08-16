@@ -52,22 +52,28 @@ public class PlatformFranchiseStoreService {
             return franchiseSearchList;
         }
         else {
-            if (franchiseStoreCode != null && franchiseStoreName == null && franchiseStoreCity == null) {   // 가게코드 검색
-                StoreMst franchiseStoreCodeFindBySeq = storeMstRepository.findBySeq(franchiseStoreCode);
-                franchiseSearchList.add(franchiseStoreCodeFindBySeq);
+            if (franchiseStoreCode != null) {   // 가게코드 검색
+                franchiseSearchList.add(storeMstRepository.findBySeq(franchiseStoreCode));
                 return franchiseSearchList;
-            } else if (franchiseStoreCode == null && franchiseStoreName != null && franchiseStoreCity == null) {   // 가게이름 검색   ->   LIKE 검색
+            } else if (franchiseStoreCode == null && franchiseStoreName != null && franchiseStoreCity == null) {
+                // 가게이름 검색   ->   LIKE 검색
                 return storeMstRepository.findByStoreNameLike(franchiseStoreName);
-            } else if (franchiseStoreCode == null && franchiseStoreName == null && franchiseStoreCity != null) {   // 가게 시/도 검색   ->   Address 타입에서 수정이 일어나야함
-//                return (List<StoreMst>) storeMstRepository.findByAddress(franchiseStoreCity.getCity());
-            } else if (franchiseStoreCode != null && franchiseStoreName != null && franchiseStoreCity == null) {   // 가게코드, 가게이름 검색
-
-            } else if (franchiseStoreCode != null && franchiseStoreName == null && franchiseStoreCity != null) {   // 가게코드, 가게시/도 검색
-
-            } else if (franchiseStoreCode == null && franchiseStoreName != null && franchiseStoreCity != null) {   // 가게이름, 가게시/도 검색
-
-            } else {   // 전부 검색
-
+            } else if (franchiseStoreCode == null && franchiseStoreName == null && franchiseStoreCity != null) {
+                // 가게 시/도 검색
+                for (int i = 0; i < franchiseStoreAllList.size(); i++) {
+                    if (franchiseStoreAllList.get(i).getAddress().getCity().equals(franchiseStoreCity))
+                        franchiseSearchList.add(franchiseStoreAllList.get(i));
+                }
+                return franchiseSearchList;
+            } else if (franchiseStoreCode == null && franchiseStoreName != null && franchiseStoreCity != null) {
+                // 가게이름, 가게시/도 검색
+                List<StoreMst> byStoreNameLike = storeMstRepository.findByStoreNameLike(franchiseStoreName);
+                for (int i = 0; i < byStoreNameLike.size(); i++) {
+                    if (byStoreNameLike.get(i).getAddress().getCity().equals(franchiseStoreCity)) {
+                        franchiseSearchList.add(byStoreNameLike.get(i));
+                        return franchiseSearchList;
+                    }
+                }
             }
         }
 

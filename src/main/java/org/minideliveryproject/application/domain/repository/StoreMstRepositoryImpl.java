@@ -13,7 +13,6 @@ public interface StoreMstRepositoryImpl extends JpaRepository<StoreMst, Long> {
 
     public StoreMst findBySeq(Long seq);                         // 아이템 seq 조회
     public StoreMst findByStoreName(String storeName);
-    public StoreMst findByAddress(String address);
 
     @Query("SELECT sm FROM StoreMst sm WHERE sm.storeName LIKE %?1%")
     public List<StoreMst> findByStoreNameLike(String storeName);

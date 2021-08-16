@@ -41,7 +41,7 @@ public class PlatformPersonalStoreMgtController {
     public List<StoreMst> personalStoreSearch(
             @RequestParam(value = "personalStoreCode", required = false) Long personalStoreCode,
             @RequestParam(value = "personalStoreName", required = false) String personalStoreName,
-            @RequestParam(value = "personalStoreCity", required = false) Address personalStoreCity
+            @RequestParam(value = "personalStoreCity", required = false) String personalStoreCity
     ) {
         log.info("PlatformPersonalStoreMgtController::personalStoreSearch called");
         List<StoreMst> personalStoreSearchList = platformPersonalStoreService.selectPersonalStoreList(personalStoreCode, personalStoreName, personalStoreCity);
