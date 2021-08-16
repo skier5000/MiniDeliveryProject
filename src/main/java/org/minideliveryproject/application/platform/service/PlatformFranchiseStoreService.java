@@ -56,7 +56,7 @@ public class PlatformFranchiseStoreService {
                 StoreMst franchiseStoreCodeFindBySeq = storeMstRepository.findBySeq(franchiseStoreCode);
                 franchiseSearchList.add(franchiseStoreCodeFindBySeq);
                 return franchiseSearchList;
-            } else if (franchiseStoreCode == null && franchiseStoreName != null && franchiseStoreCity == null) {   // 가게이름 검색   ->   LIKE 검색으로
+            } else if (franchiseStoreCode == null && franchiseStoreName != null && franchiseStoreCity == null) {   // 가게이름 검색   ->   LIKE 검색
                 return storeMstRepository.findByStoreNameLike(franchiseStoreName);
             } else if (franchiseStoreCode == null && franchiseStoreName == null && franchiseStoreCity != null) {   // 가게 시/도 검색   ->   Address 타입에서 수정이 일어나야함
 //                return (List<StoreMst>) storeMstRepository.findByAddress(franchiseStoreCity.getCity());
