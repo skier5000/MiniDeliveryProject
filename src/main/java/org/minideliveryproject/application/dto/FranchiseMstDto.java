@@ -7,7 +7,7 @@ import lombok.Setter;
 @Setter
 public class FranchiseMstDto {
 
-    private Long seq;
+    private long seq;
 
     private String franchiseName;     // 프랜차이즈 명
     private String franchiseIssue;    // 프랜차이즈 이슈사항

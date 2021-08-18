@@ -2,6 +2,7 @@ package org.minideliveryproject.application.dto;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.minideliveryproject.application.domain.entity.OrderMst;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -13,7 +14,7 @@ public class OrderMstDto {
 
     private Long seq;
 
-    private StoreMstDto storeMstDto;
+    private String storeMstDto;
 
     private UserMstDto userMstDto;
 
@@ -26,5 +27,6 @@ public class OrderMstDto {
     private LocalDateTime orderDate;
     private Integer totalPrice;
     private String requests;
+
 
 }

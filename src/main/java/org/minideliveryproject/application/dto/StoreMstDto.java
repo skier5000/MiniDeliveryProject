@@ -2,6 +2,7 @@ package org.minideliveryproject.application.dto;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.minideliveryproject.application.domain.entity.OrderMst;
 
 import java.time.LocalDate;
 import java.time.LocalTime;

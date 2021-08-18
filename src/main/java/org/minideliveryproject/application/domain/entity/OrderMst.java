@@ -2,6 +2,7 @@ package org.minideliveryproject.application.domain.entity;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.minideliveryproject.application.domain.entity.embeded.DeleteType;
 import org.minideliveryproject.application.domain.entity.embeded.PaymentType;
 
 import javax.persistence.*;
@@ -29,6 +30,9 @@ public class OrderMst {
 
     @OneToMany(mappedBy = "orderMst")
     private List<OrderDetail> orderDetailList = new ArrayList<>();
+
+    @Enumerated(EnumType.STRING)
+    private DeleteType deleteType;
 
     @Embedded
     private CommonColumn commonColumn;
