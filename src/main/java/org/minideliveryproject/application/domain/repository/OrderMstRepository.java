@@ -35,4 +35,11 @@ public interface OrderMstRepository extends JpaRepository<OrderMst, Long> {
             "        WHERE 1=1"
             , nativeQuery = true)
     public <S extends OrderMst> Iterable<S> testFindByOrderMstSearchDto();
+
+    @Query(nativeQuery = true, value =
+            "SELECT ORDER_MST_SEQ" +
+            "     , COUNT(*) AS CNT" +
+            "  FROM ORDER_MST" +
+            " GROUP BY ORDER_MST_SEQ")
+    public <S extends OrderMst> Iterable<S> testFindByOrderMstSearchDto2();
 }
