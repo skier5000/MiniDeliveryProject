@@ -33,6 +33,8 @@ public class PlatformOrderService {
         List<OrderMst> orderMstAllList = orderMstRepository.findAll();
         List<OrderMstDto> orderMstDtoList = new ArrayList<>();
 
+        Iterable<OrderMst> orderMsts = orderMstRepository.testFindByOrderMstSearchDto();
+
         for (int i = 0; i < orderMstAllList.size(); i++) {
             orderMstAllList.get(i);
         }
