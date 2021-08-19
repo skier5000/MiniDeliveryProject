@@ -8,7 +8,7 @@ group = 'org'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '11'
 
-def querydslVersion = '4.3.1' // 2021.08.19 QueryDSL 추가
+//def querydslVersion = '4.3.1' // 2021.08.19 QueryDSL 추가
 
 configurations {
 	compileOnly {
@@ -33,12 +33,12 @@ dependencies {
 	developmentOnly("org.springframework.boot:spring-boot-devtools")
 
 	// Querydsl 2021.08.19 QueryDSL 추가
-	implementation group: 'com.querydsl', name: 'querydsl-jpa', version: querydslVersion
-	implementation group: 'com.querydsl', name: 'querydsl-apt', version: querydslVersion
-	implementation group: 'com.querydsl', name: 'querydsl-core', version: querydslVersion
-
-	annotationProcessor group: 'com.querydsl', name: 'querydsl-apt', version: querydslVersion
-	annotationProcessor group: 'com.querydsl', name: 'querydsl-apt', version: querydslVersion, classifier: 'jpa'
+//	implementation group: 'com.querydsl', name: 'querydsl-jpa', version: querydslVersion
+//	implementation group: 'com.querydsl', name: 'querydsl-apt', version: querydslVersion
+//	implementation group: 'com.querydsl', name: 'querydsl-core', version: querydslVersion
+//
+//	annotationProcessor group: 'com.querydsl', name: 'querydsl-apt', version: querydslVersion
+//	annotationProcessor group: 'com.querydsl', name: 'querydsl-apt', version: querydslVersion, classifier: 'jpa'
 }
 
 test {
