@@ -6,6 +6,7 @@ import org.minideliveryproject.application.domain.entity.CommonColumn;
 import org.minideliveryproject.application.domain.entity.ItemMst;
 import org.minideliveryproject.application.domain.entity.OrderDetail;
 import org.minideliveryproject.application.domain.entity.OrderMst;
+import org.minideliveryproject.application.domain.entity.embeded.DeleteType;
 import org.minideliveryproject.application.domain.entity.embeded.PaymentType;
 import org.minideliveryproject.application.domain.repository.*;
 import org.springframework.beans.factory.DisposableBean;
@@ -59,6 +60,7 @@ public class DbOrderInsert {
         orderMst.setStoreMst(storeMstRepository.findByStoreName("바로그집한밭대점")); // 바로그집
         orderMst.setUserMst(userMstRepositoryImpl.findByUserName("나는야고객1000")); // 나는야고객1000
         orderMst.setCommonColumn(new CommonColumn(LocalDateTime.now(), "Test", LocalDateTime.now(), "Test"));
+        orderMst.setDeleteType(DeleteType.NO);
         orderMst.setPayment(PaymentType.CARD);
         orderMst.setOrderDate(LocalDateTime.now());
         orderMst.setTotalPrice(2000);
@@ -93,6 +95,7 @@ public class DbOrderInsert {
         orderMst.setStoreMst(storeMstRepository.findByStoreName("바로그집한밭대점")); // 바로그집한밭대점
         orderMst.setUserMst(userMstRepositoryImpl.findByUserName("나는야고객1002")); // 나는야고객1002
         orderMst.setCommonColumn(new CommonColumn(LocalDateTime.now(), "Test", LocalDateTime.now(), "Test"));
+        orderMst.setDeleteType(DeleteType.NO);
         orderMst.setPayment(PaymentType.NAVERPAY);
         orderMst.setOrderDate(LocalDateTime.now());
         orderMst.setTotalPrice(10000);
@@ -145,6 +148,7 @@ public class DbOrderInsert {
         orderMst.setStoreMst(storeMstRepository.findByStoreName("BBQ불당점")); // 교촌치킨
         orderMst.setUserMst(userMstRepositoryImpl.findByUserName("나는야고객1001")); // 나는야고객1001
         orderMst.setCommonColumn(new CommonColumn(LocalDateTime.now(), "Test", LocalDateTime.now(), "Test"));
+        orderMst.setDeleteType(DeleteType.NO);
         orderMst.setPayment(PaymentType.KAKAOPAY);
         orderMst.setOrderDate(LocalDateTime.now());
         orderMst.setTotalPrice(18000);

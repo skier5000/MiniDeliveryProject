@@ -75,14 +75,14 @@ public class PlatformPersonalStoreService {
      * 플랫폼 > 점포관리 > 개인 점포
      * 등록버튼
      */
-    public Integer createPersonalStoreAllList(List<StoreMst> createPersonalStoreList) {
+    public Integer createPersonalStoreAllList(StoreMst createPersonalStoreList) {
         log.info("PlatformPersonalStoreService::createPersonalStoreAllList called");
 
-        if (storeMstRepository.findByStoreName(createPersonalStoreList.get(0).getStoreName()) != null) { // 해당 Store 이름이 있으면
+        if (storeMstRepository.findByStoreName(createPersonalStoreList.getStoreName()) != null) { // 해당 Store 이름이 있으면
             return 0;  // 화면 반환 코드
         } else {
             // STORE_MST 저장
-            storeMstRepository.saveAll(createPersonalStoreList);
+            storeMstRepository.save(createPersonalStoreList);
             return 1;  // 화면 반환 코드
         }
     }
