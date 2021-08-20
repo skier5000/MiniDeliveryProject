@@ -1,0 +1,22 @@
+section{font-size: 1.2rem;}
+
+p {margin: 0px;}
+
+.insert-div {
+    margin-top: 50px;
+}
+
+.card {background: #cae1f9}
+
+.card-body {
+    border-left: 1px solid #dddddd;
+    border-right: 1px solid #dddddd;
+    border-bottom: 1px solid #dddddd;
+}
+
+.btn {
+    width: 70px;
+    font-size: 1.1rem;
+}
+
+.card-footer {overflow: hidden}

@@ -16,18 +16,16 @@
     <article class="info">
         <form id="frm">
             <ul>
-                <li class="franchiseCode"><span>프랜차이즈 코드</span><input type="search" name="franchiseCode"></li>
-                <li class="franchiseNm"><span>프랜차이즈 점포명</span><input type="search" name="franchiseNm"></li>
-                <li class="item-category"><span>상품구분</span>
+                <li class="franchiseStoreCodeSearch"><span>프랜차이즈 코드</span><input type="search" name="franchiseStoreCode"></li>
+                <li class="franchiseStoreNameSearch"><span>프랜차이즈 점포명</span><input type="search" name="franchiseStoreName"></li>
+                <li class="franchiseItemCodeSearch"><span>상품코드</span><input type="search" name="franchiseItemCode"></li>
+                <li class="itemCategorySearch"><span>상품구분</span>
                     <select name="itemCategory">
                         <option></option>
-                        <option>치킨</option>
-                        <option>피자</option>
-                        <option>초밥</option>
                     </select>
                 </li>
-                <li class="franchiseNm"><span>프랜차이즈 상품명</span><input type="search" name="franchiseNm"></li>
-                <li><button type="submit" class="btn btn-primary fab fa-sistrix" onclick=""><span>조회</span></button></li>
+                <li class="franchiseItemNameSearch"><span>프랜차이즈 상품명</span><input type="search" name="franchiseItemName"></li>
+                <li><button type="button" id="btnSearch" class="btn btn-primary fab fa-sistrix" onclick=""><span>조회</span></button></li>
             </ul>
         </form>
     </article>
@@ -37,28 +35,26 @@
             <div class="col-md-6">
                 <button type="button" class="btn btn-danger" id="btnDelete">삭제</button>
                 <button type="button" class="btn btn-success" id="btnUpdate">수정</button>
-                <button type="button" class="btn btn-primary" id="btnInsert">등록</button>
+                <button type="button" class="btn btn-primary" id="btnInsert" onclick="javascript:location.href='/platform/prodMgt/franchiseProd/create'">등록</button>
             </div>
         </div>
         <div class="data-table-div">
             <table id="list" class="table">
                 <colgroup>
-                    <col width="80px">
+                    <col width="100px">
                     <col width="50px">
                     <col width="100px">
                     <col width="auto">
-                    <col width="200px">
                     <col width="100px">
                     <col width="150px">
                     <col width="150px">
                 </colgroup>
                 <thead>
                 <tr>
-                    <td>번호</td>
+                    <td>상품코드</td>
                     <td></td>
                     <td>점포코드</td>
                     <td>점포명</td>
-                    <td>상품코드</td>
                     <td>상품타입</td>
                     <td>상품명</td>
                     <td>가격</td>
@@ -66,14 +62,13 @@
                 </thead>
                 <tbody>
                 <!-- 상품 목록 데이터 출력 시작 -->
-                <tr th:each="num :  ${#numbers.sequence(1, 100)}">
-                    <td>1</td>
+                <tr>
+                    <td>상품코드</td>
                     <td>
                         <input type="checkbox" name="">
                     </td>
-                    <td>A001</td>
-                    <td>피자나라 치킨공주</td>
-                    <td>C001</td>
+                    <td>점포코드</td>
+                    <td>점포명</td>
                     <td class="updateCategory">
                         <span style="cursor: pointer">치킨</span>
                         <select name="" style="display: none;">
@@ -176,6 +171,22 @@
                 $(this).children("select").css("display", "inline-block");
             });
 
+            $("#btnSearch").click(function (){
+                $.ajax({
+                    url : "/platform/prodMgt/franchiseProd/search"
+                    , type : "get"
+                    , data : $("#frm").serialize()
+                    , dataType : "json"
+                    , success : function (data) {
+                        alert("성공");
+                        console.log(data);
+                    }
+                    , error : function (xhr) {
+                        alert("실패");
+                        console.log(xhr)
+                    }
+                });
+            });
         });
     </script>
 </th:block>

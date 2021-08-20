@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lagn="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="~{layout/defaultLayout}">
+
+<th:block layout:fragment="title">관리자 | 상품 관리 | 프랜차이즈 상품 | 상품 등록</th:block>
+
+<!--franchise 고유 css 추가-->
+<th:block layout:fragment="css">
+    <link rel="stylesheet" th:href="@{/css/insert.css}">
+</th:block>
+
+<th:block layout:fragment="content">
+<div class="insert-div">
+    <div class="card card-primary">
+        <div class="card-header">
+            <p class="card-little">프랜차이즈 상품 등록</p>
+        </div>
+    </div>
+    <div class="card-body">
+        <form method="post" action="/platform/prodMgt/franchiseProdInsert">
+            <div class="form-group">
+                <label for="franchiseNm">점포명</label>
+                <select class="form-control" id="franchiseNm">
+                    <option></option>
+                    <option value="">피자나라 치킨공주</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="itemCategory">상품타입</label>
+                <select class="form-control" id="itemCategory">
+                    <option></option>
+                    <option value="">치킨</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="itemName">상품명</label>
+                <input class="form-control" type="text" id="itemName" name="itemName" placeholder="상품이름을 입력하세요">
+            </div>
+            <div class="form-group">
+                <label for="itemPrice">상품가격</label>
+                <input class="form-control" type="number" id="itemPrice" name="itemPrice" placeholder="상품가격을 입력하세요">
+            </div>
+            <div class="card-footer">
+                <div style="float: right; display: inline">
+                    <button type="submit" class="btn btn-primary">등록</button>
+                    <button type="button" class="btn btn-danger">취소</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+</th:block>

@@ -1,8 +1,10 @@
 package org.minideliveryproject.application.domain.repository;
 
+import org.minideliveryproject.application.domain.entity.FranchiseMst;
 import org.minideliveryproject.application.domain.entity.ItemMst;
 import org.minideliveryproject.application.domain.entity.StoreMst;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -15,4 +17,8 @@ public interface ItemMstRepository extends JpaRepository<ItemMst, Long> {
     public ItemMst findBySeq(Long seq);                           // 아이템 seq 조회
     public Optional<ItemMst> findByItemName(String itemName);           // 아이템 명 조회
     public Optional<ItemMst> findByItemCategory(String itemCategory);   // 아이템 카테고리 조회
+
+    // 아이템 마스터의 franchiseMst.seq와 프랜차이즈 마스터의 seq를 비교하여 프랜차이즈 점포명 조회
+    @Query("SELECT fm.franchiseName FROM FranchiseMst fm, ItemMst im WHERE fm.seq = im.franchiseMst.seq AND im.franchiseMst.seq = ?1")
+    public List<ItemMst> findByStoreName(Long seq);
 }
