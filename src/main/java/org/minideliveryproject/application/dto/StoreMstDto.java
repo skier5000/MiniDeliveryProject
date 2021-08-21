@@ -15,29 +15,42 @@ import java.util.Date;
 public class StoreMstDto {
 
     private long seq;
-    private String addressBasic;
-    private String addressDetail;
-    private String city;
-    private String zipcode;
     private Integer contCnt;
-    private Date contDate;
-    private Date contExpDate;
-    private Date contRenewDate;
+    private LocalDate contDate;
+    private LocalDate contExpDate;
+    private LocalDate contRenewDate;
     private String deleteType;
     private String foodType;
     private Integer MinOrdPrice;
-    private Date storeHop;
+    private LocalTime storeHop;
     private String storeImgUrl;
     private String storeName;
     private String storeState;
     private String storeTel;
     private String storeType;
-    private Long userMstSeq;
 
+    // UserMst
+    private Long userMstSeq;
+    private String userId;
+    private String userName;
+    private String phoneNumber;
+    private String email;
+
+    // FranchiseMst
     private Long franchiseMstSeq;
     private String franchiseName;     // 프랜차이즈 명
     private String franchiseIssue;    // 프랜차이즈 이슈사항
     private String franchiseRemark;   // 프랜차이즈 비고
 
-    private CommonColumnDto commonColumnDto;
+    // Address
+    private String addressBasic;
+    private String addressDetail;
+    private String city;
+    private String zipcode;
+
+    // CommonColumn
+    private Timestamp insDate;
+    private String insUser;
+    private Timestamp updDate;
+    private String updUser;
 }
