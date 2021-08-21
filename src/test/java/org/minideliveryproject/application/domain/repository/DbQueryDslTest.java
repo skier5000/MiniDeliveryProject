@@ -1,6 +1,5 @@
 package org.minideliveryproject.application.domain.repository;
 
-import com.querydsl.jpa.impl.JPAQueryFactory;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,7 +15,7 @@ public class DbQueryDslTest {
 
     EntityManagerFactory emf = Persistence.createEntityManagerFactory("com.baeldung.querydsl.intro");
     EntityManager em = emf.createEntityManager();
-    JPAQueryFactory queryFactory = new JPAQueryFactory(em);
+//    JPAQueryFactory queryFactory = new JPAQueryFactory(em);
 
     /*
 QueryDSL 테스트
