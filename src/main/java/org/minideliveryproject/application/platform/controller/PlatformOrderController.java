@@ -54,4 +54,19 @@ public class PlatformOrderController {
 
         return orderMstList;
     }
+
+    @ResponseBody
+    @GetMapping("/test")
+    public List<StoreMst> orderMstT(
+            @RequestParam(value = "startContract", required = false) String startContract,
+            @RequestParam(value = "endContract", required = false) String endContract,
+            @RequestParam(value = "storeCode", required = false) Long storeCode,
+            @RequestParam(value = "storeNm", required = false) String storeNm
+    ) {
+        log.info("PlatformOrderController::orderMstSearch called");
+        List<StoreMst> orderMstList = platformOrderService.testOrderMstList(startContract, endContract, storeCode, storeNm);
+
+
+        return orderMstList;
+    }
 }
