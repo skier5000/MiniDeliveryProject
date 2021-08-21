@@ -32,6 +32,13 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	developmentOnly("org.springframework.boot:spring-boot-devtools")
 
+
+	// ModelMapper
+	// jpa를 사용할때 entity class를 사용하는데
+	// 이 entity는 다른 entity들과 관계맵핑이 되어 있기 때문에 이 객체를 client에 바로 response 해주게 되면 관계있는 모든 entity에 대한 쿼리를 날리게 되므로 ModelMapper 사용
+	implementation group: 'org.modelmapper', name: 'modelmapper', version: '2.1.1'
+
+
 	// Querydsl 2021.08.19 QueryDSL 추가
 //	implementation group: 'com.querydsl', name: 'querydsl-jpa', version: querydslVersion
 //	implementation group: 'com.querydsl', name: 'querydsl-apt', version: querydslVersion
