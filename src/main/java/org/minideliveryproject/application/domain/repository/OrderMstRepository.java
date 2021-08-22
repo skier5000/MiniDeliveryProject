@@ -19,15 +19,15 @@ public interface OrderMstRepository extends JpaRepository<OrderMst, Long> {
 
     public Optional<OrderMst> findByPayment(PaymentType paymentType);
 
-    @Query(nativeQuery = true, value = "" +
-            "SELECT sm.STORE_TYPE AS STORE_TYPE" +
-            "     , om.STORE_MST_SEQ AS STORE_MST_SEQ" +
-            "     , sm.STORE_NAME AS STORE_NAME" +
-            "     , sm.STORE_TEL AS STORE_TEL" +
-            "     , sm.CONT_RENEW_DATE AS CONT_DATE" +
-            "     , COUNT(om.STORE_MST_SEQ) AS ALL_ORDER" +
-            "     , COUNT(CASE WHEN sm.DELETE_TYPE= 'NO' THEN 1 END) AS ALL_ORDER_DELETE_NO" +
-            "     , COUNT(CASE WHEN sm.DELETE_TYPE= 'YES' THEN 1 END) AS ALL_ORDER_DELETE_YES" +
+    @Query(nativeQuery = true, value =
+            "SELECT sm.STORE_TYPE AS storeType" +
+            "     , TO_CHAR(om.STORE_MST_SEQ) AS storeMstSeq" +
+            "     , sm.STORE_NAME AS storeName" +
+            "     , sm.STORE_TEL AS storeTel" +
+            "     , TO_CHAR(sm.CONT_RENEW_DATE, 'YYYYMMDD') AS contRenewDate" +
+            "     , TO_CHAR(COUNT(om.STORE_MST_SEQ)) AS allOrder" +
+            "     , TO_CHAR(COUNT(CASE WHEN sm.DELETE_TYPE= 'NO' THEN 1 END)) AS allOrderDeleteNo" +
+            "     , TO_CHAR(COUNT(CASE WHEN sm.DELETE_TYPE= 'YES' THEN 1 END)) AS allOrderDeleteYes" +
             "  FROM ORDER_MST om" +
             "    INNER JOIN ORDER_DETAIL od" +
             "        ON om.ORDER_MST_SEQ = od.ORDER_MST_SEQ" +
@@ -38,14 +38,14 @@ public interface OrderMstRepository extends JpaRepository<OrderMst, Long> {
             "   AND sm.STORE_NAME LIKE %?3%"+
             " GROUP BY om.STORE_MST_SEQ"
     )
-    public List<OrderMstDto> findByStartEndStoreNm(String startContract, String endContract, String storeNm);
+    public List<Object[]> findByStartEndStoreNm(String startContract, String endContract, String storeNm);
 
     @Query(nativeQuery = true, value = "" +
-            "SELECT sm.STORE_TYPE AS STORE_TYPE" +
-            "     , om.STORE_MST_SEQ AS STORE_MST_SEQ" +
-            "     , sm.STORE_NAME AS STORE_NAME" +
-            "     , sm.STORE_TEL AS STORE_TEL" +
-            "     , sm.CONT_RENEW_DATE AS CONT_DATE" +
+            "SELECT sm.STORE_TYPE" +
+            "     , om.STORE_MST_SEQ" +
+            "     , sm.STORE_NAME" +
+            "     , sm.STORE_TEL" +
+            "     , sm.CONT_RENEW_DATE" +
             "     , COUNT(om.STORE_MST_SEQ) AS ALL_ORDER" +
             "     , COUNT(CASE WHEN sm.DELETE_TYPE= 'NO' THEN 1 END) AS ALL_ORDER_DELETE_NO" +
             "     , COUNT(CASE WHEN sm.DELETE_TYPE= 'YES' THEN 1 END) AS ALL_ORDER_DELETE_YES" +
