@@ -34,14 +34,39 @@ public class PlatformOrderService {
         List<OrderMstDto> orderMstDtoList = new ArrayList<>();
 
         if (storeCode == null) { // store code == null
-            List<OrderMstDto> findByStartEndStoreNm = orderMstRepository.findByStartEndStoreNm(startContract, endContract, storeNm);
-            for (OrderMstDto orderMstDto : findByStartEndStoreNm) {
+            // 파라미터
+            // 날짜는 테스트용도
+            startContract = "20210801";
+            endContract = "20210830";
+            if (storeNm == null)
+                storeNm = "";
+
+            List<Object[]> findByStartEndStoreNm = orderMstRepository.findByStartEndStoreNm(startContract, endContract, storeNm);
+            for (int i = 0; i < findByStartEndStoreNm.size(); i++) {
+                OrderMstDto orderMstDto = new OrderMstDto();
+                orderMstDto.setStoreType((String) findByStartEndStoreNm.get(i)[0]);
+                orderMstDto.setStoreMstSeq(Integer.parseInt((String) findByStartEndStoreNm.get(i)[1]));
+                orderMstDto.setStoreName((String) findByStartEndStoreNm.get(i)[2]);
+                orderMstDto.setStoreTel((String) findByStartEndStoreNm.get(i)[3]);
+                orderMstDto.setContRenewDate((String) findByStartEndStoreNm.get(i)[4]);
+                orderMstDto.setAllOrder(Integer.parseInt((String) findByStartEndStoreNm.get(i)[5]));
+                orderMstDto.setAllOrderDeleteNo(Integer.parseInt((String) findByStartEndStoreNm.get(i)[6]));
+                orderMstDto.setAllOrderDeleteYes(Integer.parseInt((String) findByStartEndStoreNm.get(i)[7]));
                 orderMstDtoList.add(orderMstDto);
             }
             return orderMstDtoList;
         } else {  // store code != null
-            List<OrderMstDto> findByStoreCode = orderMstRepository.findByStoreCode(storeCode);
-            for (OrderMstDto orderMstDto : findByStoreCode) {
+            List<Object[]> findByStoreCode = orderMstRepository.findByStoreCode(storeCode);
+            for (int i = 0; i < findByStoreCode.size(); i++) {
+                OrderMstDto orderMstDto = new OrderMstDto();
+                orderMstDto.setStoreType((String) findByStoreCode.get(i)[0]);
+                orderMstDto.setStoreMstSeq(Integer.parseInt((String) findByStoreCode.get(i)[1]));
+                orderMstDto.setStoreName((String) findByStoreCode.get(i)[2]);
+                orderMstDto.setStoreTel((String) findByStoreCode.get(i)[3]);
+                orderMstDto.setContRenewDate((String) findByStoreCode.get(i)[4]);
+                orderMstDto.setAllOrder(Integer.parseInt((String) findByStoreCode.get(i)[5]));
+                orderMstDto.setAllOrderDeleteNo(Integer.parseInt((String) findByStoreCode.get(i)[6]));
+                orderMstDto.setAllOrderDeleteYes(Integer.parseInt((String) findByStoreCode.get(i)[7]));
                 orderMstDtoList.add(orderMstDto);
             }
             return orderMstDtoList;
