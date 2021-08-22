@@ -2,9 +2,13 @@ package org.minideliveryproject.application.dto;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.minideliveryproject.application.domain.entity.OrderMst;
+import org.minideliveryproject.application.domain.entity.*;
+import org.minideliveryproject.application.domain.entity.embeded.DeleteType;
+import org.minideliveryproject.application.domain.entity.embeded.PaymentType;
 
+import javax.persistence.*;
 import java.sql.Timestamp;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,16 +17,30 @@ import java.util.List;
 @Setter
 public class OrderMstDto{
 
-    private int orderMstSeq;
+    private long seq;
 
     private String deleteType;
-    private Timestamp orderDate;
+    private LocalDateTime orderDate;
     private String payment;
     private String requests;
     private Integer totalPrice;
     private Long storeMstSeq;
     private Long userMstSeq;
 
-    private CommonColumnDto commonColumnDto;
+    // CommonColumn
+    private LocalDateTime insDate;
+    private String insUser;
+    private LocalDateTime updDate;
+    private String updUser;
+
+    // GroupBy Column (findByStartEndStoreNm)
+    private String storeType;
+    private String storeName;
+    private String storeTel;
+    private LocalDate contDate;
+
+    private int allOrder;           // 주문(건수)
+    private int allOrderDeleteNo;   // 주문취소(건수)
+    private int allOrderDeleteYes;  // 결제(건수)
 
 }
