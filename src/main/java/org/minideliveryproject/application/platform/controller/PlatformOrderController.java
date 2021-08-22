@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.minideliveryproject.application.domain.entity.OrderMst;
 import org.minideliveryproject.application.domain.entity.StoreMst;
+import org.minideliveryproject.application.dto.OrderMstDto;
 import org.minideliveryproject.application.platform.service.PlatformOrderService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -42,17 +43,16 @@ public class PlatformOrderController {
      */
     @ResponseBody
     @GetMapping("/search")
-    public List<OrderMst> orderMstSearch(
+    public List<OrderMstDto> orderMstSearch(
             @RequestParam(value = "startContract", required = false) String startContract,
             @RequestParam(value = "endContract", required = false) String endContract,
             @RequestParam(value = "storeCode", required = false) Long storeCode,
             @RequestParam(value = "storeNm", required = false) String storeNm
     ) {
         log.info("PlatformOrderController::orderMstSearch called");
-        List<OrderMst> orderMstList = platformOrderService.selectOrderMstList(startContract, endContract, storeCode, storeNm);
+        List<OrderMstDto> orderMstDtoList = platformOrderService.selectOrderMstList(startContract, endContract, storeCode, storeNm);
 
-
-        return orderMstList;
+        return orderMstDtoList;
     }
 
     @ResponseBody
