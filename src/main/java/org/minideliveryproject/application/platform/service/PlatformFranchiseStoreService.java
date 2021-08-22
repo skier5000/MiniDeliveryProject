@@ -10,6 +10,8 @@ import org.minideliveryproject.application.domain.entity.embeded.DeleteType;
 import org.minideliveryproject.application.domain.repository.FranchiseMstRepository;
 import org.minideliveryproject.application.domain.repository.StoreMstRepositoryImpl;
 import org.minideliveryproject.application.domain.repository.UserMstRepositoryImpl;
+import org.minideliveryproject.application.dto.StoreMstDto;
+import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,33 +38,35 @@ public class PlatformFranchiseStoreService {
      * @param
      * @return
      */
-    public List<StoreMst> selectFranchiseStoreList(
+    public List<StoreMstDto> selectFranchiseStoreList(
             Long franchiseStoreCode, String franchiseStoreName, Address franchiseStoreCity
     ) {
         log.info("PlatformMainService::selectFranchiseAllList called");
         List<StoreMst> franchiseStoreAllList = storeMstRepository.findAll();
-        List<StoreMst> franchiseSearchList = new ArrayList<>();
+        ModelMapper modelMapper = new ModelMapper();
+        List<StoreMstDto> franchiseSearchList = new ArrayList<>();
 
         if (franchiseStoreCode == null && franchiseStoreName == null && franchiseStoreCity == null) {  // 전체 search
             for (int i = 0; i < franchiseStoreAllList.size(); i++) {
                 if (franchiseStoreAllList.get(i).getFranchiseMst() != null)
-                    franchiseSearchList.add(franchiseStoreAllList.get(i));
+                    franchiseSearchList.add(modelMapper.map(franchiseStoreAllList.get(i), StoreMstDto.class));
             }
 
             return franchiseSearchList;
         }
         else {
             if (franchiseStoreCode != null) {   // 가게코드 검색
-                franchiseSearchList.add(storeMstRepository.findBySeq(franchiseStoreCode));
+                franchiseSearchList.add(modelMapper.map(storeMstRepository.findBySeq(franchiseStoreCode), StoreMstDto.class));
                 return franchiseSearchList;
             } else if (franchiseStoreCode == null && franchiseStoreName != null && franchiseStoreCity == null) {
                 // 가게이름 검색   ->   LIKE 검색
-                return storeMstRepository.findByStoreNameLike(franchiseStoreName);
+                franchiseSearchList.add(modelMapper.map(storeMstRepository.findByStoreNameLike(franchiseStoreName), StoreMstDto.class));
+                return franchiseSearchList;
             } else if (franchiseStoreCode == null && franchiseStoreName == null && franchiseStoreCity != null) {
                 // 가게 시/도 검색
                 for (int i = 0; i < franchiseStoreAllList.size(); i++) {
                     if (franchiseStoreAllList.get(i).getAddress().getCity().equals(franchiseStoreCity))
-                        franchiseSearchList.add(franchiseStoreAllList.get(i));
+                        franchiseSearchList.add(modelMapper.map(franchiseStoreAllList.get(i), StoreMstDto.class));
                 }
                 return franchiseSearchList;
             } else if (franchiseStoreCode == null && franchiseStoreName != null && franchiseStoreCity != null) {
@@ -70,7 +74,7 @@ public class PlatformFranchiseStoreService {
                 List<StoreMst> byStoreNameLike = storeMstRepository.findByStoreNameLike(franchiseStoreName);
                 for (int i = 0; i < byStoreNameLike.size(); i++) {
                     if (byStoreNameLike.get(i).getAddress().getCity().equals(franchiseStoreCity)) {
-                        franchiseSearchList.add(byStoreNameLike.get(i));
+                        franchiseSearchList.add(modelMapper.map(byStoreNameLike.get(i), StoreMstDto.class));
                         return franchiseSearchList;
                     }
                 }
@@ -84,8 +88,10 @@ public class PlatformFranchiseStoreService {
      * 플랫폼 > 점포관리 > 프랜차이즈 점포
      * 등록버튼
      */
-    public List<StoreMst> createFranchiseStoreAllList(List<StoreMst> createFranchiseStoreList) {
+    public List<StoreMstDto> createFranchiseStoreAllList(List<StoreMst> createFranchiseStoreList) {
         log.info("PlatformMainService::createFranchiseStoreAllList called");
+        ModelMapper modelMapper = new ModelMapper();
+        List<StoreMstDto> franchiseSearchList = new ArrayList<>();
 
         // STORE_MST, FRANCHISE_MST, USER_MST 저장
         storeMstRepository.saveAll(createFranchiseStoreList);
@@ -93,8 +99,11 @@ public class PlatformFranchiseStoreService {
             franchiseMstRepository.save(createFranchiseStoreList.get(i).getFranchiseMst());
             userMstRepository.save(createFranchiseStoreList.get(i).getUserMst());
         }
+        for (int i = 0; i < createFranchiseStoreList.size(); i++) {
+            franchiseSearchList.add(modelMapper.map(createFranchiseStoreList.get(i), StoreMstDto.class));
+        }
 
-        return createFranchiseStoreList;
+        return franchiseSearchList;
     }
 
     /**

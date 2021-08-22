@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.minideliveryproject.application.domain.entity.Address;
 import org.minideliveryproject.application.domain.entity.StoreMst;
+import org.minideliveryproject.application.dto.StoreMstDto;
 import org.minideliveryproject.application.platform.service.PlatformFranchiseStoreService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -53,13 +54,13 @@ public class PlatformFranchiseStoreMgtController {
      */
     @ResponseBody
     @GetMapping("/search")
-    public List<StoreMst> franchiseSearch(
+    public List<StoreMstDto> franchiseSearch(
             @RequestParam(value = "franchiseStoreCode", required = false) Long franchiseStoreCode,
             @RequestParam(value = "franchiseStoreName", required = false) String franchiseStoreName,
             @RequestParam(value = "franchiseStoreCity", required = false) Address franchiseStoreCity
     ) {
         log.info("PlatformFranchiseStoreMgtController::franchiseSearch called");
-        List<StoreMst> franchiseStoreSearchList = platformFranchiseStoreService.selectFranchiseStoreList(franchiseStoreCode, franchiseStoreName, franchiseStoreCity);
+        List<StoreMstDto> franchiseStoreSearchList = platformFranchiseStoreService.selectFranchiseStoreList(franchiseStoreCode, franchiseStoreName, franchiseStoreCity);
 
         return franchiseStoreSearchList;
     }
@@ -69,11 +70,11 @@ public class PlatformFranchiseStoreMgtController {
      * 등록버튼
      */
     @PostMapping("/create")
-    public List<StoreMst> franchiseCreate(
+    public List<StoreMstDto> franchiseCreate(
             @RequestParam(value = "createFranchiseStoreList", required = true) List<StoreMst> createFranchiseStoreList
     ) {
         log.info("PlatformFranchiseStoreMgtController::franchiseCreate called");
-        List<StoreMst> franchiseStoreAllList = platformFranchiseStoreService.createFranchiseStoreAllList(createFranchiseStoreList);
+        List<StoreMstDto> franchiseStoreAllList = platformFranchiseStoreService.createFranchiseStoreAllList(createFranchiseStoreList);
 
         return franchiseStoreAllList;
     }

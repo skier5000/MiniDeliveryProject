@@ -30,7 +30,6 @@ public class PlatformOrderService {
 
     public List<OrderMstDto> selectOrderMstList(String startContract, String endContract, Long storeCode, String storeNm) {
         log.info("PlatformOrderService::selectPersonalStoreList called");
-        ModelMapper modelMapper = new ModelMapper();
         List<OrderMstDto> orderMstDtoList = new ArrayList<>();
 
         if (storeCode == null) { // store code == null
