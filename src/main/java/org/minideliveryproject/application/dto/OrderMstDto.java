@@ -15,7 +15,7 @@ import java.util.List;
 
 @Getter
 @Setter
-public class OrderMstDto{
+public class OrderMstDto {
 
     private long seq;
 
@@ -24,7 +24,6 @@ public class OrderMstDto{
     private String payment;
     private String requests;
     private Integer totalPrice;
-    private Long storeMstSeq;
     private Long userMstSeq;
 
     // CommonColumn
@@ -35,12 +34,11 @@ public class OrderMstDto{
 
     // GroupBy Column (findByStartEndStoreNm)
     private String storeType;
+    private int storeMstSeq;
     private String storeName;
     private String storeTel;
-    private LocalDate contDate;
-
+    private String contRenewDate;
     private int allOrder;           // 주문(건수)
     private int allOrderDeleteNo;   // 주문취소(건수)
     private int allOrderDeleteYes;  // 결제(건수)
-
 }
