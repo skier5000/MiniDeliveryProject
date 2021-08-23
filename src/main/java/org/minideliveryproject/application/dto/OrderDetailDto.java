@@ -3,6 +3,7 @@ package org.minideliveryproject.application.dto;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.math.BigInteger;
 import java.sql.Timestamp;
 import java.time.LocalDate;
 
@@ -10,29 +11,17 @@ import java.time.LocalDate;
 @Setter
 public class OrderDetailDto {
 
-    private long seq;
+    // findOrderDetailListByStoreMstSeq
+    private BigInteger orderMstSeq;
 
-    private ItemMstDto itemMstDto;
-
-    private Integer itemQuantity;    // 수량
-    private Integer itemPrice;       // 가격
-
-    // itemMst
-    private int itemMstSeq;
-
-    // orderMst
-    private int orderMstSeq;
-
-//    private String deleteType;
-//    private LocalDate orderDate;
-//    private String payment;
-//    private String requests;
-//    private Integer totalPrice;
-
-    // CommonColumn
-    private Timestamp insDate;
-    private String insUser;
-    private Timestamp updDate;
-    private String updUser;
-
+    private String storeName;
+    private BigInteger storeMstSeq;
+    private Timestamp orderDate;
+    private String itemName;
+    private BigInteger itemMstSeq;
+    private Integer itemQuantity;
+    private Integer itemPrice;
+    private String requests;
+    private String payment;
+    private BigInteger userMstSeq;
 }

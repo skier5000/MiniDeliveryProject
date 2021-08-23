@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.minideliveryproject.application.domain.entity.OrderMst;
 import org.minideliveryproject.application.domain.entity.StoreMst;
+import org.minideliveryproject.application.dto.OrderDetailDto;
 import org.minideliveryproject.application.dto.OrderMstDto;
 import org.minideliveryproject.application.platform.service.PlatformOrderService;
 import org.springframework.stereotype.Controller;
@@ -55,18 +56,22 @@ public class PlatformOrderController {
         return orderMstDtoList;
     }
 
+
+    /**
+     * 플랫폼 > 점포관리 > 주문관리
+     * 오더 디테일 조회
+     * @return
+     */
     @ResponseBody
-    @GetMapping("/test")
-    public List<StoreMst> orderMstT(
-            @RequestParam(value = "startContract", required = false) String startContract,
-            @RequestParam(value = "endContract", required = false) String endContract,
-            @RequestParam(value = "storeCode", required = false) Long storeCode,
-            @RequestParam(value = "storeNm", required = false) String storeNm
+    @GetMapping("/searchDetail")
+    public List<OrderDetailDto> orderDetailSearch(
+            @RequestParam(value = "storeMstSeq", required = true) Long storeMstSeq
     ) {
-        log.info("PlatformOrderController::orderMstSearch called");
-        List<StoreMst> orderMstList = platformOrderService.testOrderMstList(startContract, endContract, storeCode, storeNm);
+        log.info("PlatformOrderController::orderDetailSearch called");
+        List<OrderDetailDto> orderDetailDtoList = platformOrderService.selectOrderDetailList(storeMstSeq);
 
-
-        return orderMstList;
+        return orderDetailDtoList;
     }
+
+
 }
