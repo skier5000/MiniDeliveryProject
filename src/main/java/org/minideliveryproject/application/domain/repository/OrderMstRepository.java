@@ -58,7 +58,7 @@ public interface OrderMstRepository extends JpaRepository<OrderMst, Long> {
             "   AND sm.STORE_MST_SEQ = ?1" +
             " GROUP BY om.STORE_MST_SEQ"
     )
-    public List<Object[]> findByStoreCode(Long storeCode);
+    public List<Object[]> findByStoreCodeJoin(Long storeCode);
 
 
 //    @Query(value = "SELECT om.ORDER_MST_SEQ" +
