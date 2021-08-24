@@ -68,7 +68,7 @@ public class PlatformOrderService {
             }
             return orderMstDtoList;
         } else {  // store code != null
-            List<Object[]> findByStoreCode = orderMstRepository.findByStoreCode(storeCode);
+            List<Object[]> findByStoreCode = orderMstRepository.findByStoreCodeJoin(storeCode);
             for (int i = 0; i < findByStoreCode.size(); i++) {
                 OrderMstDto orderMstDto = new OrderMstDto();
                 orderMstDto.setStoreType((String) findByStoreCode.get(i)[0]);
