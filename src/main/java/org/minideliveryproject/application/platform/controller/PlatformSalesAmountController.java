@@ -2,7 +2,6 @@ package org.minideliveryproject.application.platform.controller;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.minideliveryproject.application.dto.OrderMstDto;
 import org.minideliveryproject.application.platform.service.PlatformSalesAmountService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,18 +26,36 @@ public class PlatformSalesAmountController {
      */
     @GetMapping(value = "/")
     public String indexStoreMgtSalesAmount() {
+        log.info("PlatformSalesAmountController::indexStoreMgtSalesAmount called");
         return "platform/storeMgt/salesAmount";
     }
 
 
     @ResponseBody
     @GetMapping("/search")
-    public void orderMstSearch(
+    public void salesAmountMstSearch(
             @RequestParam(value = "startContract", required = false) String startContract,
             @RequestParam(value = "endContract", required = false) String endContract,
             @RequestParam(value = "storeCode", required = false) Long storeCode,
             @RequestParam(value = "storeNm", required = false) String storeNm
     ) {
-        log.info("PlatformOrderController::orderMstSearch called");
+        log.info("PlatformSalesAmountController::salesAmountMstSearch called");
+
+//        List<OrderMstDto> orderMstDtoList = platformOrderService.selectOrderMstList(startContract, endContract, storeCode, storeNm);
+//
+//        return orderMstDtoList;
     }
+
+    @ResponseBody
+    @GetMapping("/search")
+    public void salesAmountDetailSearch(
+            @RequestParam(value = "storeMstSeq", required = true) Long storeMstSeq
+    ) {
+        log.info("PlatformSalesAmountController::orderMstSearch called");
+
+//        List<OrderDetailDto> orderDetailDtoList = platformOrderService.selectOrderDetailList(storeMstSeq);
+//
+//        return orderDetailDtoList;
+    }
+
 }
