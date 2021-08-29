@@ -2,6 +2,7 @@ package org.minideliveryproject.application.platform.controller;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.minideliveryproject.application.platform.dto.SalesAmountDto;
 import org.minideliveryproject.application.platform.service.PlatformSalesAmountService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -33,7 +34,7 @@ public class PlatformSalesAmountController {
 
     @ResponseBody
     @GetMapping("/search")
-    public void salesAmountMstSearch(
+    public List<SalesAmountDto> salesAmountMstSearch(
             @RequestParam(value = "startContract", required = false) String startContract,
             @RequestParam(value = "endContract", required = false) String endContract,
             @RequestParam(value = "storeCode", required = false) Long storeCode,
@@ -41,21 +42,23 @@ public class PlatformSalesAmountController {
     ) {
         log.info("PlatformSalesAmountController::salesAmountMstSearch called");
 
-//        List<OrderMstDto> orderMstDtoList = platformOrderService.selectOrderMstList(startContract, endContract, storeCode, storeNm);
-//
-//        return orderMstDtoList;
+        List<SalesAmountDto> salesAmountDtoMstList = platformSalesAmountService.selectSalesAmountMstList(startContract, endContract, storeCode, storeNm);
+
+        return salesAmountDtoMstList;
     }
 
     @ResponseBody
-    @GetMapping("/search")
-    public void salesAmountDetailSearch(
+    @GetMapping("/DetailSearch")
+    public List<SalesAmountDto> salesAmountDetailSearch(
+            @RequestParam(value = "startContract", required = false) String startContract,
+            @RequestParam(value = "endContract", required = false) String endContract,
             @RequestParam(value = "storeMstSeq", required = true) Long storeMstSeq
     ) {
         log.info("PlatformSalesAmountController::orderMstSearch called");
 
-//        List<OrderDetailDto> orderDetailDtoList = platformOrderService.selectOrderDetailList(storeMstSeq);
-//
-//        return orderDetailDtoList;
+        List<SalesAmountDto> salesAmountDtoDetailList = platformSalesAmountService.selectSalesAmountDetailList(startContract, endContract, storeMstSeq);
+
+        return salesAmountDtoDetailList;
     }
 
 }
