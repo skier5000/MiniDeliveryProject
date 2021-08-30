@@ -36,10 +36,10 @@ public class PlatformMainController {
      * @return
      */
     @GetMapping("/")
-    public ModelAndView mainPageAccess(HttpSession session) {
+    public ModelAndView mainPageAccess(/*HttpSession session*/) {
         ModelAndView viewPage = new ModelAndView();
         viewPage.setViewName("platform/platformMain");
-        viewPage.addObject("userName", session.getAttribute("userName"));
+        //viewPage.addObject("userName", session.getAttribute("userName"));
 
         return viewPage;
     }
