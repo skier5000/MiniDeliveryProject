@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 
@@ -40,6 +41,7 @@ public class PlatformStoreStatusController {
         return "platform/storeMgt/storeStatus";
     }
 
+    @ResponseBody
     @GetMapping("/search")
     public List<StoreMstDto> storeStatusMstSearch (
             @RequestParam(value = "storeType", required = false) String storeType,
