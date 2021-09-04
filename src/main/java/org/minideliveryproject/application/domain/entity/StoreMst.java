@@ -22,12 +22,10 @@ public class StoreMst {
     @Column(name = "store_mst_seq")
     private Long seq;
 
-    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "franchise_mst_seq")
     private FranchiseMst franchiseMst;
 
-    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_mst_seq")
     private UserMst userMst;
