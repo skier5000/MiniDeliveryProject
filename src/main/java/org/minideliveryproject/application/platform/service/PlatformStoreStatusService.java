@@ -84,6 +84,23 @@ public class PlatformStoreStatusService {
         return storeStatusMstList;
     }
 
+    public List<StoreMstDto> selectStoreStatusDetailList (String storeMstSeq) {
+        log.info("PlatformStoreStatusService::selectStoreStatusDetailList called");
+        ArrayList<StoreMstDto> storeStatusDetailList = new ArrayList<>();
+        ModelMapper modelMapper = new ModelMapper();
+
+        try {
+            StoreMst bySeq = storeMstRepository.findBySeq(Long.valueOf(storeMstSeq));
+            storeStatusDetailList.add(modelMapper.map(bySeq, StoreMstDto.class));
+        } catch (Exception e) {
+            if (storeMstSeq == null)
+                System.out.println("마스터 정보 수신 에러");
+            else
+                System.out.println("기타 에러");
+        }
+
+        return storeStatusDetailList;
+    }
 
 
 }

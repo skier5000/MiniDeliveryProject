@@ -56,4 +56,17 @@ public class PlatformStoreStatusController {
         return storeStatusMstList;
     }
 
+    @ResponseBody
+    @GetMapping("/searchDetail")
+    public List<StoreMstDto> storeStatusDetailSearch (
+            @RequestParam(value = "storeMstSeq", required = true) String storeMstSeq
+    ) {
+        log.info("PlatformStoreStatusController::storeStatusDetailSearch called");
+
+        List<StoreMstDto> storeStatusDetailList = platformStoreStatusService.selectStoreStatusDetailList(storeMstSeq);
+
+        return storeStatusDetailList;
+    }
+
+
 }
