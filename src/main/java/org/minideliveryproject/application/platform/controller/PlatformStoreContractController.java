@@ -4,6 +4,8 @@ package org.minideliveryproject.application.platform.controller;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.minideliveryproject.application.dto.StoreMstDto;
+import org.minideliveryproject.application.platform.dto.StoreContractMstDto;
+import org.minideliveryproject.application.platform.service.PlatformStoreContractService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,25 +34,29 @@ import java.util.List;
 @RequestMapping("/platform/storeMgt/contract")
 public class PlatformStoreContractController {
 
+    private final PlatformStoreContractService platformStoreContractService;
+
     @GetMapping("/")
     public String indexStoreMgtStoreContract() {
         log.info("PlatformStoreContractController::indexStoreMgtStoreContract called");
         return "platform/storeMgt/contract";
     }
 
-//    @ResponseBody
-//    @GetMapping("/search")
-//    public List<StoreMstDto> storeStatusMstSearch (
-//            @RequestParam(value = "storeType", required = false) String storeType,
-//            @RequestParam(value = "storeMstSeq", required = false) Long storeMstSeq,
-//            @RequestParam(value = "storeName", required = false) String storeName,
-//            @RequestParam(value = "storeState", required = false) String storeState
-//    ) {
-//        log.info("PlatformStoreStatusController::storeStatusMstSearch called");
-//
-//        List<StoreMstDto> storeStatusMstList = platformStoreStatusService.selectStoreStatusMstList(storeType, storeMstSeq, storeName, storeState);
-//
-//        return storeStatusMstList;
-//    }
+    @ResponseBody
+    @GetMapping("/search")
+    public List<StoreContractMstDto> storeContractMstSearch (
+            @RequestParam(value = "startDate", required = false) String startDate,
+            @RequestParam(value = "endDate", required = false) String endDate,
+            @RequestParam(value = "storeType", required = false) String storeType,
+            @RequestParam(value = "storeCode", required = false) Long storeCode,
+            @RequestParam(value = "storeNm", required = false) String storeNm,
+            @RequestParam(value = "city", required = false) String city
+    ) {
+        log.info("PlatformStoreStatusController::storeContractMstSearch called");
+
+        List<StoreContractMstDto> storeContractMstList = platformStoreContractService.selectStoreContractMstList(startDate, endDate, storeType, storeCode, storeNm, city);
+
+        return storeContractMstList;
+    }
 
 }
