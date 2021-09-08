@@ -3,6 +3,7 @@ package org.minideliveryproject.application.platform.controller;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.minideliveryproject.application.domain.entity.embeded.DeleteType;
 import org.minideliveryproject.application.dto.StoreMstDto;
 import org.minideliveryproject.application.platform.dto.StoreContractMstDto;
 import org.minideliveryproject.application.platform.service.PlatformStoreContractService;
@@ -44,7 +45,7 @@ public class PlatformStoreContractController {
 
     @ResponseBody
     @GetMapping("/search")
-    public List<StoreContractMstDto> storeContractMstSearch (
+    public List<StoreContractMstDto> storeContractMstSearch(
             @RequestParam(value = "startDate", required = false) String startDate,
             @RequestParam(value = "endDate", required = false) String endDate,
             @RequestParam(value = "storeType", required = false) String storeType,
@@ -52,11 +53,57 @@ public class PlatformStoreContractController {
             @RequestParam(value = "storeNm", required = false) String storeNm,
             @RequestParam(value = "city", required = false) String city
     ) {
-        log.info("PlatformStoreStatusController::storeContractMstSearch called");
+        log.info("PlatformStoreContractController::storeContractMstSearch called");
 
         List<StoreContractMstDto> storeContractMstList = platformStoreContractService.selectStoreContractMstList(startDate, endDate, storeType, storeCode, storeNm, city);
 
         return storeContractMstList;
     }
+
+    @ResponseBody
+    @GetMapping("/createOrUpdate")
+    public StoreMstDto storeContractMstCreateOrUpdate(
+            @RequestParam(value = "storeMstDto", required = true) StoreMstDto storeMstDto,
+            @RequestParam(value = "createOrUpdate", required = true) String createOrUpdate
+            ) {
+
+        log.info("PlatformStoreContractController::storeContractMstCreateOrUpdate called");
+
+        StoreMstDto storeMstDtoReturnList = new StoreMstDto();
+
+        if (createOrUpdate.equals("create")) {
+            storeMstDtoReturnList = platformStoreContractService.storeContractMstCreate(storeMstDto);
+        } else if (createOrUpdate.equals("update")) {
+            storeMstDtoReturnList = platformStoreContractService.storeContractMstUpdate(storeMstDto);
+        } else {
+            if (createOrUpdate.equals("") || createOrUpdate == null) {
+                System.out.println("createOrUpdate Error = " + createOrUpdate);
+            }
+        }
+
+        if (storeMstDtoReturnList.getStoreName().equals("ERROR")) {
+            System.out.println("에러");
+            return storeMstDtoReturnList;
+        }
+
+        return storeMstDtoReturnList;
+    }
+
+    @ResponseBody
+    @GetMapping("/delete")
+    public String storeContractMstDelete(
+            @RequestParam(value = "storeMstDto", required = true) StoreMstDto storeMstDto
+    ) {
+        log.info("PlatformStoreContractController::storeContractMstDelete called");
+        StoreMstDto storeMstDtoReturnList = new StoreMstDto();
+        storeMstDtoReturnList = platformStoreContractService.storeContractMstDelete(storeMstDto);
+
+        if (storeMstDtoReturnList.getDeleteType().equals(DeleteType.YES)) {
+            return "OK";
+        } else {
+            return "FAIL";
+        }
+    }
+
 
 }

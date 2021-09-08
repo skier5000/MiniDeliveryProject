@@ -13,11 +13,8 @@ import org.springframework.transaction.annotation.Transactional;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @Transactional
 @Slf4j
@@ -110,6 +107,65 @@ public class PlatformStoreContractService {
 
         return storeContractMstList;
 
+    }
+
+
+    public StoreMstDto storeContractMstCreate(StoreMstDto storeMstDto) {
+        log.info("PlatformStoreContractService::storeContractMstCreate called");
+        StoreMstDto storeMstDtoReturnList = new StoreMstDto();
+
+        // 공통 Save
+        storeMstDtoReturnList.setStoreType(storeMstDto.getStoreType());
+        storeMstDtoReturnList.setStoreName(storeMstDto.getStoreName());
+        storeMstDtoReturnList.setCity(storeMstDto.getCity());
+
+        // 해당 점포명이 존재하면 신규계약이 아닌 재계약
+        StoreMst byStoreName = storeMstRepository.findByStoreName(storeMstDto.getStoreName());
+        if (byStoreName != null) {
+            LocalDate thisDate = LocalDate.now();
+            LocalDate contExpDate = byStoreName.getContExpDate();
+
+            // 점포명이 존재하는데 계약 만료되었으면 재계약으로 해결
+            if (contExpDate.isBefore(thisDate)) {
+                storeMstDto.setContRenewDate(thisDate);
+                storeMstDto.setContCnt(byStoreName.getContCnt() + 1);
+            } else {
+                System.out.println("이미 존재하는 점포입니다.");
+                StoreMstDto error = new StoreMstDto();
+                error.setStoreName("ERROR");
+                return error;
+            }
+
+        } else {
+            storeMstDto.setContDate(LocalDate.now());
+            storeMstDto.setContRenewDate(LocalDate.now());
+            storeMstDto.setContExpDate(LocalDate.now().plusYears(3));
+        }
+
+        return storeMstDtoReturnList;
+    }
+
+
+    public StoreMstDto storeContractMstUpdate(StoreMstDto storeMstDto) {
+        log.info("PlatformStoreContractService::storeContractMstUpdate called");
+        StoreMstDto storeMstDtoReturnList = new StoreMstDto();
+
+        // 바뀐 항목들만 update
+
+
+
+        return storeMstDtoReturnList;
+    }
+
+    public StoreMstDto storeContractMstDelete(StoreMstDto storeMstDto) {
+        log.info("PlatformStoreContractService::storeContractMstDelete called");
+        StoreMstDto storeMstDtoReturnList = new StoreMstDto();
+
+        if (true) {
+            return "OK";
+        } else {
+            return "FAIL";
+        }
     }
 
 }
