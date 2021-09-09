@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -91,17 +92,19 @@ public class PlatformStoreContractController {
 
     @ResponseBody
     @GetMapping("/delete")
-    public String storeContractMstDelete(
+    public HashMap<StoreMstDto, String> storeContractMstDelete(
             @RequestParam(value = "storeMstDto", required = true) StoreMstDto storeMstDto
     ) {
         log.info("PlatformStoreContractController::storeContractMstDelete called");
-        StoreMstDto storeMstDtoReturnList = new StoreMstDto();
-        storeMstDtoReturnList = platformStoreContractService.storeContractMstDelete(storeMstDto);
+        StoreMstDto storeMstDtoReturnList = platformStoreContractService.storeContractMstDelete(storeMstDto);
+        HashMap<StoreMstDto, String> returnResult = new HashMap<>();
 
         if (storeMstDtoReturnList.getDeleteType().equals(DeleteType.YES)) {
-            return "OK";
+            returnResult.put(storeMstDtoReturnList, "OK");
+            return returnResult;
         } else {
-            return "FAIL";
+            returnResult.put(storeMstDtoReturnList, "FAIL");
+            return returnResult;
         }
     }
 

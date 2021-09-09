@@ -3,6 +3,7 @@ package org.minideliveryproject.application.platform.service;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.minideliveryproject.application.domain.entity.StoreMst;
+import org.minideliveryproject.application.domain.entity.embeded.DeleteType;
 import org.minideliveryproject.application.domain.repository.StoreMstRepositoryImpl;
 import org.minideliveryproject.application.dto.StoreMstDto;
 import org.minideliveryproject.application.platform.dto.StoreContractMstDto;
@@ -159,12 +160,17 @@ public class PlatformStoreContractService {
 
     public StoreMstDto storeContractMstDelete(StoreMstDto storeMstDto) {
         log.info("PlatformStoreContractService::storeContractMstDelete called");
-        StoreMstDto storeMstDtoReturnList = new StoreMstDto();
 
-        if (true) {
-            return "OK";
+        StoreMst beforeSeq = storeMstRepository.findBySeq(storeMstDto.getSeq());
+        beforeSeq.setDeleteType(DeleteType.YES);
+
+        storeMstRepository.save(beforeSeq);
+        StoreMst afterSeq = storeMstRepository.findBySeq(beforeSeq.getSeq());
+
+        if (afterSeq.getSeq().equals(storeMstDto.getSeq()) && afterSeq.getDeleteType().equals(DeleteType.YES)) {
+            return storeMstDto;
         } else {
-            return "FAIL";
+            return storeMstDto;
         }
     }
 
