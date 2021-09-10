@@ -50,24 +50,6 @@ public class PlatformMainController {
         return "platform/storeMgt/personal";
     }
 
-    @GetMapping("/infoMgt/employee")
-    public String employee(Model model){
-        Map<String, Object> map = new HashMap<>();
-        for(int i=1; i<=55; i++){
-            map.put("no", i);
-            map.put("empNum", "A" + i);
-            map.put("dept", "IT");
-            map.put("job", "사원");
-            map.put("name", "홍길동");
-            map.put("hp", "010-1111-1111");
-            map.put("email", "lee@gamil.com");
-            map.put("inDate", "2021-08-10");
-        }
-
-        model.addAttribute("map", map);
-
-        return "platform/infoMgt/employee";
-    }
 
     @GetMapping("prodMgt/franchiseProd")
     public String test() {
