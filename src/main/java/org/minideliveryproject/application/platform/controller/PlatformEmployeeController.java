@@ -2,27 +2,32 @@ package org.minideliveryproject.application.platform.controller;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.minideliveryproject.application.dto.UserMstDto;
+import org.minideliveryproject.application.platform.service.PlatformEmployeeService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
  * <pre>
- * 점포관리 계약관리 Controller
+ * 정보관리 사원관리 Controller
  * <pre>
  *
  * @author LJB
- * @since 2021.09.02
+ * @since 2021.09.10
  * @version 1.0
  * @see
  * =================== 변경 내역 ==================
  * 날짜				변경자			내용
  * ------------------------------------------------
- * 2021.09.02.		LJB			최초작성
+ * 2021.09.10.		LJB			최초작성
  */
 @Controller
 @Slf4j
@@ -30,22 +35,21 @@ import java.util.Map;
 @RequestMapping("/infoMgt/employee")
 public class PlatformEmployeeController {
 
+    private final PlatformEmployeeService platformEmployeeService;
+
+    @ResponseBody
     @GetMapping("/")
-    public String employee(Model model){
-        Map<String, Object> map = new HashMap<>();
-        for(int i=1; i<=55; i++){
-            map.put("no", i);
-            map.put("empNum", "A" + i);
-            map.put("dept", "IT");
-            map.put("job", "사원");
-            map.put("name", "홍길동");
-            map.put("hp", "010-1111-1111");
-            map.put("email", "lee@gamil.com");
-            map.put("inDate", "2021-08-10");
-        }
+    public ModelAndView selectEmployeeList(){
+        ModelAndView modelAndView = new ModelAndView();
 
-        model.addAttribute("map", map);
+        List<UserMstDto> selectEmployeeList = platformEmployeeService.selectEmployeeList();
 
-        return "platform/infoMgt/employee";
+        modelAndView.setViewName("platform/infoMgt/employee");
+        modelAndView.addObject("selectEmployeeList", selectEmployeeList);
+
+        return modelAndView;
     }
+
+
+
 }
