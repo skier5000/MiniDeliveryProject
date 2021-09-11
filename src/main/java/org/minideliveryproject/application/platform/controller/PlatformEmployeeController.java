@@ -57,19 +57,26 @@ public class PlatformEmployeeController {
     }
 
     @ResponseBody
-    @GetMapping("/createOrUpdate")
+    @GetMapping("/createOrUpdateOrDelete")
     public UserMstDto createEmployeeList(
             @RequestParam(value = "createEmployeeList", required = true) UserMstDto userMstDto,
-            @RequestParam(value = "createOrUpdate", required = true) String createOrUpdate
+            @RequestParam(value = "createOrUpdateOrDelete", required = true) String createOrUpdateOrDelete
     ) {
         log.info("PlatformEmployeeController::createEmployeeList called");
         UserMstDto returnEmployeeList = new UserMstDto();
 
-
-        if (createOrUpdate.equals("CREATE")) {
-            returnEmployeeList = platformEmployeeService.createEmployeeList(userMstDto);
-        } else if (createOrUpdate.equals("UPDATE")){
-            returnEmployeeList = platformEmployeeService.updateEmployeeList(userMstDto);
+        try {
+            if (createOrUpdateOrDelete.equals("CREATE")) {
+                returnEmployeeList = platformEmployeeService.createEmployeeList(userMstDto);
+            } else if (createOrUpdateOrDelete.equals("UPDATE")) {
+                returnEmployeeList = platformEmployeeService.updateEmployeeList(userMstDto);
+            } else if (createOrUpdateOrDelete.equals("DELETE")) {
+                returnEmployeeList = platformEmployeeService.deleteEmployeeList(userMstDto);
+            }
+        } catch (Exception e) {
+            returnEmployeeList.setUserId("ERROR");
+            returnEmployeeList.setUserName(createOrUpdateOrDelete);
+            return returnEmployeeList;
         }
 
         return returnEmployeeList;

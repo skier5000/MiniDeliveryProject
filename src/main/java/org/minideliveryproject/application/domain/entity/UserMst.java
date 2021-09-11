@@ -2,6 +2,7 @@ package org.minideliveryproject.application.domain.entity;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.minideliveryproject.application.domain.entity.embeded.DeleteType;
 import org.minideliveryproject.application.domain.entity.embeded.UserRoleType;
 
 import javax.persistence.*;
@@ -25,6 +26,9 @@ public class UserMst {
 
     @Enumerated(EnumType.STRING)
     private UserRoleType userRoleType;
+
+    @Enumerated(EnumType.STRING)
+    private DeleteType deleteType;
 
     @Embedded
     private Address address;

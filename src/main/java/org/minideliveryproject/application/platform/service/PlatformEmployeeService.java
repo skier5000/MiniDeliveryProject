@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.minideliveryproject.application.domain.entity.CommonColumn;
 import org.minideliveryproject.application.domain.entity.UserMst;
+import org.minideliveryproject.application.domain.entity.embeded.DeleteType;
 import org.minideliveryproject.application.domain.repository.UserMstRepositoryImpl;
 import org.minideliveryproject.application.dto.UserMstDto;
 import org.modelmapper.ModelMapper;
@@ -59,13 +60,28 @@ public class PlatformEmployeeService {
 
     public UserMstDto updateEmployeeList(UserMstDto userMstDto) {
         ModelMapper modelMapper = new ModelMapper();
+        Optional<UserMst> byUserId = userMstRepository.findByUserId(userMstDto.getUserId());
 
         try {
             UserMst mapUserMst = modelMapper.map(userMstDto, UserMst.class);
+            mapUserMst.setCommonColumn(new CommonColumn(byUserId.get().getCommonColumn().getInsDate(), byUserId.get().getCommonColumn().getInsUser(), LocalDateTime.now(), "Test"));
             userMstRepository.save(mapUserMst);
         } catch (Exception e) {
             System.out.println("ERROR");
         }
+
+        return userMstDto;
+    }
+
+    public UserMstDto deleteEmployeeList(UserMstDto userMstDto) {
+        ModelMapper modelMapper = new ModelMapper();
+        Optional<UserMst> byUserId = userMstRepository.findByUserId(userMstDto.getUserId());
+        UserMst mapUserMst = modelMapper.map(userMstDto, UserMst.class);
+
+        mapUserMst.setCommonColumn(new CommonColumn(byUserId.get().getCommonColumn().getInsDate(), byUserId.get().getCommonColumn().getInsUser(), LocalDateTime.now(), "Test"));
+        mapUserMst.setDeleteType(DeleteType.YES);
+
+        userMstRepository.save(mapUserMst);
 
         return userMstDto;
     }
