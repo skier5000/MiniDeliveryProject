@@ -2,15 +2,18 @@ package org.minideliveryproject.application.platform.controller;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.minideliveryproject.application.domain.entity.StoreMst;
 import org.minideliveryproject.application.dto.UserMstDto;
 import org.minideliveryproject.application.platform.service.PlatformEmployeeService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -32,22 +35,44 @@ import java.util.Map;
 @Controller
 @Slf4j
 @RequiredArgsConstructor
-@RequestMapping("/infoMgt/employee")
+@RequestMapping("/platform/infoMgt/employee")
 public class PlatformEmployeeController {
 
     private final PlatformEmployeeService platformEmployeeService;
 
-    @ResponseBody
     @GetMapping("/")
-    public ModelAndView selectEmployeeList(){
-        ModelAndView modelAndView = new ModelAndView();
+    public String indexInfoMgtEmployee() {
+        log.info("PlatformEmployeeController::indexInfoMgtEmployee called");
+        return "platform/infoMgt/employee";
+    }
+
+    @ResponseBody
+    @GetMapping("/search")
+    public List<UserMstDto> selectEmployeeList() {
+        log.info("PlatformEmployeeController::selectEmployeeList called");
 
         List<UserMstDto> selectEmployeeList = platformEmployeeService.selectEmployeeList();
 
-        modelAndView.setViewName("platform/infoMgt/employee");
-        modelAndView.addObject("selectEmployeeList", selectEmployeeList);
+        return selectEmployeeList;
+    }
 
-        return modelAndView;
+    @ResponseBody
+    @GetMapping("/createOrUpdate")
+    public UserMstDto createEmployeeList(
+            @RequestParam(value = "createEmployeeList", required = true) UserMstDto userMstDto,
+            @RequestParam(value = "createOrUpdate", required = true) String createOrUpdate
+    ) {
+        log.info("PlatformEmployeeController::createEmployeeList called");
+        UserMstDto returnEmployeeList = new UserMstDto();
+
+
+        if (createOrUpdate.equals("CREATE")) {
+            returnEmployeeList = platformEmployeeService.createEmployeeList(userMstDto);
+        } else if (createOrUpdate.equals("UPDATE")){
+            returnEmployeeList = platformEmployeeService.updateEmployeeList(userMstDto);
+        }
+
+        return returnEmployeeList;
     }
 
 
