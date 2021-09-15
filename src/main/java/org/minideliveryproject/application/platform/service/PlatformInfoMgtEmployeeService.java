@@ -22,7 +22,7 @@ import java.util.Optional;
 @Slf4j
 @RequiredArgsConstructor
 @Service
-public class PlatformEmployeeService {
+public class PlatformInfoMgtEmployeeService {
 
     private final UserMstRepositoryImpl userMstRepository;
 

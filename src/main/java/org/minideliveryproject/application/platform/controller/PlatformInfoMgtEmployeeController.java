@@ -2,21 +2,15 @@ package org.minideliveryproject.application.platform.controller;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.minideliveryproject.application.domain.entity.StoreMst;
 import org.minideliveryproject.application.dto.UserMstDto;
-import org.minideliveryproject.application.platform.service.PlatformEmployeeService;
+import org.minideliveryproject.application.platform.service.PlatformInfoMgtEmployeeService;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * <pre>
@@ -38,7 +32,7 @@ import java.util.Map;
 @RequestMapping("/platform/infoMgt/employee")
 public class PlatformInfoMgtEmployeeController {
 
-    private final PlatformEmployeeService platformEmployeeService;
+    private final PlatformInfoMgtEmployeeService platformInfoMgtEmployeeService;
 
     @GetMapping("/")
     public String indexInfoMgtEmployee() {
@@ -51,7 +45,7 @@ public class PlatformInfoMgtEmployeeController {
     public List<UserMstDto> selectEmployeeList() {
         log.info("PlatformEmployeeController::selectEmployeeList called");
 
-        List<UserMstDto> selectEmployeeList = platformEmployeeService.selectEmployeeList();
+        List<UserMstDto> selectEmployeeList = platformInfoMgtEmployeeService.selectEmployeeList();
 
         return selectEmployeeList;
     }
@@ -67,11 +61,11 @@ public class PlatformInfoMgtEmployeeController {
 
         try {
             if (createOrUpdateOrDelete.equals("CREATE")) {
-                returnEmployeeList = platformEmployeeService.createEmployeeList(userMstDto);
+                returnEmployeeList = platformInfoMgtEmployeeService.createEmployeeList(userMstDto);
             } else if (createOrUpdateOrDelete.equals("UPDATE")) {
-                returnEmployeeList = platformEmployeeService.updateEmployeeList(userMstDto);
+                returnEmployeeList = platformInfoMgtEmployeeService.updateEmployeeList(userMstDto);
             } else if (createOrUpdateOrDelete.equals("DELETE")) {
-                returnEmployeeList = platformEmployeeService.deleteEmployeeList(userMstDto);
+                returnEmployeeList = platformInfoMgtEmployeeService.deleteEmployeeList(userMstDto);
             }
         } catch (Exception e) {
             returnEmployeeList.setUserId("ERROR");
