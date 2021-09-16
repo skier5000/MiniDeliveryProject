@@ -20,6 +20,7 @@ public class UserMstDto {
     private LocalDate joinDate;
 
     private String userRoleType;
+    private String deleteType;
 
     private String zipcode;
     private String city;

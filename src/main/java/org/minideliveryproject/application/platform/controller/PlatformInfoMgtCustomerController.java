@@ -68,7 +68,7 @@ public class PlatformInfoMgtCustomerController {
     @ResponseBody
     @GetMapping("/update")
     public String updateCustomerList(
-            @RequestParam(value = "updateList", required = true) HashMap<String, String> updateList
+            @RequestParam(value = "updateList", required = true) List<UserMstDto> updateList
             ) {
         log.info("PlatformInfoMgtCustomerController::updateCustomerList called");
 

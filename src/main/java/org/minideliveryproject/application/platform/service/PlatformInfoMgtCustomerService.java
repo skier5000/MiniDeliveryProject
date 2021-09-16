@@ -2,6 +2,7 @@ package org.minideliveryproject.application.platform.service;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.minideliveryproject.application.domain.entity.Address;
 import org.minideliveryproject.application.domain.entity.UserMst;
 import org.minideliveryproject.application.domain.entity.embeded.DeleteType;
 import org.minideliveryproject.application.domain.entity.embeded.UserRoleType;
@@ -59,26 +60,27 @@ public class PlatformInfoMgtCustomerService {
         return "OK";
     }
 
-    public String updateCustomerList(HashMap<String, String> updateList) {
+    public String updateCustomerList(List<UserMstDto> updateList) {
 
         try {
-            Iterator<String> iteratorHm = updateList.keySet().iterator();
-            while (iteratorHm.hasNext()) {
+
+            for (UserMstDto userMstDto : updateList) {
+                Optional<UserMst> byUserId = userMstRepository.findByUserId(userMstDto.getUserId());
                 UserMst userMst = new UserMst();
-                String key = iteratorHm.next();
-                String value = updateList.get(key);
-
-                Optional<UserMst> byUserId = userMstRepository.findByUserId(key);
                 userMst = byUserId.get();
+                userMst.setUserName(userMstDto.getUserName());
+                userMst.setPhoneNumber(userMstDto.getPhoneNumber());
+                userMst.setEmail(userMstDto.getEmail());
 
-                if (value.equals("YES")) {
+                if (userMstDto.getDeleteType().equals("YES")) {
                     userMst.setDeleteType(DeleteType.YES);
-                } else if (value.equals("NO")) {
+                } else if (userMstDto.getDeleteType().equals("NO")) {
                     userMst.setDeleteType(DeleteType.NO);
                 }
 
                 userMstRepository.save(userMst);
             }
+
         } catch (Exception e) {
             log.info("ERROR");
             return "ERROR";
