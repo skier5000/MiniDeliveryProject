@@ -6,13 +6,13 @@ package org.minideliveryproject.application.platform.controller;
  * <pre>
  *
  * @author LJB
- * @since 2021.09.10
+ * @since 2021.09.15
  * @version 1.0
  * @see
  * =================== 변경 내역 ==================
  * 날짜				변경자			내용
  * ------------------------------------------------
- * 2021.09.10.		LJB			최초작성
+ * 2021.09.15.		LJB			최초작성
  */
 
 import lombok.RequiredArgsConstructor;
@@ -20,10 +20,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.minideliveryproject.application.dto.UserMstDto;
 import org.minideliveryproject.application.platform.service.PlatformInfoMgtCustomerService;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
 
 @Controller
@@ -46,5 +45,34 @@ public class PlatformInfoMgtCustomerController {
         log.info("PlatformInfoMgtCustomerController::selectCustomerList called");
         List<UserMstDto> selectCustomerList = platformInfoMgtCustomerService.selectCustomerList();
         return selectCustomerList;
+    }
+
+    @ResponseBody
+    @GetMapping("/delete")
+    public String deleteCustomerList(
+            @RequestParam("userId") String userId
+    ) {
+        log.info("PlatformInfoMgtCustomerController::deleteCustomerList called");
+        String result = platformInfoMgtCustomerService.deleteCustomerList(userId);
+
+        if (result.equals("ERROR")) {
+            return "ERROR";
+        } else if (result.equals("DELETED")) {
+            return "DELETED";
+        } else {
+            return "OK";
+        }
+    }
+
+    @ResponseBody
+    @PostMapping("/update")
+    public String updateCustomerList(
+            @RequestParam(value = "updateList", required = true) HashMap<String, String> updateList
+            ) {
+        log.info("PlatformInfoMgtCustomerController::updateCustomerList called");
+
+        String result = platformInfoMgtCustomerService.updateCustomerList(updateList);
+
+        return result;
     }
 }
