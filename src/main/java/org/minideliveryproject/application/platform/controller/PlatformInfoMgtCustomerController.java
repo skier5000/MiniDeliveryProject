@@ -64,8 +64,9 @@ public class PlatformInfoMgtCustomerController {
         }
     }
 
+
     @ResponseBody
-    @PostMapping("/update")
+    @GetMapping("/update")
     public String updateCustomerList(
             @RequestParam(value = "updateList", required = true) HashMap<String, String> updateList
             ) {
