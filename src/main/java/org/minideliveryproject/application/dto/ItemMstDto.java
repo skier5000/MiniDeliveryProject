@@ -3,20 +3,18 @@ package org.minideliveryproject.application.dto;
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter
-@Setter
-public class ItemMstDto {
+import java.math.BigInteger;
+import java.sql.Timestamp;
+import java.util.Date;
 
-    private Long seq;
+public interface ItemMstDto {
 
-    private StoreMstDto storeMstDto;
+    Long getSeq();             // 개인점포코드
+    String getStoreName();     // 개인점포명
+    String getItemName();      // 상품명
+    Integer getItemPrice();    // 상품가격
+    String getItemCategory();  // 상품구분
 
-    private FranchiseMstDto franchiseMstDto;
 
-    private String itemName;
-    private Integer itemPrice;
-    private String itemCategory;
-
-    private CommonColumnDto commonColumn;
 
 }

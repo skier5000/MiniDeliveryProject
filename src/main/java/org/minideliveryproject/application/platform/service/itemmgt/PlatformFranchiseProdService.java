@@ -1,4 +1,4 @@
-package org.minideliveryproject.application.platform.service;
+package org.minideliveryproject.application.platform.service.itemmgt;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

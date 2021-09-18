@@ -2,7 +2,7 @@ package org.minideliveryproject.application.platform.controller;
 
 /**
  * <pre>
- * 정보관리 사원관리 Controller
+ * 정보관리 고객관리 Controller
  * <pre>
  *
  * @author LJB
