@@ -26,7 +26,7 @@ public interface ItemMstRepository extends JpaRepository<ItemMst, Long> {
 
     // 개인점포조회
     // AND IM.franchiseMst.seq = NULL 제거
-    @Query("SELECT IM FROM ItemMst IM, StoreMst SM WHERE IM.seq = SM.seq")
+    @Query("SELECT IM FROM ItemMst IM, StoreMst SM WHERE IM.seq = SM.seq AND IM.franchiseMst.seq = null")
     public List<ItemMstDto> findByPersonalStoreAll();
 
 }

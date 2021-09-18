@@ -22,10 +22,12 @@ public class PlatformPersonalItemService {
     public List<ItemMstDto> selectPersonalItemList(String storeCd, String storeNm, String itemType, String itemNm) {
         List<ItemMstDto> selectListStream = itemMstRepository.findByPersonalStoreAll();
 
+        for (ItemMstDto itemMstDto : selectListStream) {
+            System.out.println(itemMstDto.getSeq());
+            System.out.println(itemMstDto.getItemName());
+        }
+
         if (storeCd != null) {
-            System.out.println(selectListStream.get(0).getSeq());
-            System.out.println(selectListStream.get(0).getStoreName());
-            System.out.println(selectListStream.get(0).getItemName());
             selectListStream = selectListStream.stream()
                     .filter(itemMstDto -> itemMstDto.getSeq().equals(Long.getLong(storeCd)))
                     .collect(Collectors.toList());
